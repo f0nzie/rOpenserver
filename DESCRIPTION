@@ -10,6 +10,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Depends: base, stats, R (>= 3.5.0)
-Imports: R6
-
+Suggests: R6,
+    RDCOMClient
+Remotes: omegahat/RDCOMClient
 
