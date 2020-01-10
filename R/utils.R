@@ -18,7 +18,7 @@ named.list <- function(...) {
 #'
 #' Models were zipped because they were too big for the package
 #' @export
-#' @importFrom utils unzip
+#' @importFrom utils read.table unzip
 unzip_mbal_models <- function() {
     mbal_models_loc <- system.file("models", package = "openserver")
     zip_files  <- paste(mbal_models_loc, "mbal_models.zip", sep = "/")
