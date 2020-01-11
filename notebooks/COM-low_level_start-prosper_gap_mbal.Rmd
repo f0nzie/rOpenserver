@@ -1,0 +1,48 @@
+---
+title: "COM low level start of P{rosper, GAP and MBAL"
+output: html_notebook
+---
+
+```{r}
+library(RDCOMClient)
+prosper_server = COMCreate("PX32.OpenServer.1")
+```
+
+
+```{r}
+command = "PROSPER.START"
+prosper_server$DoCommand(command)
+```
+
+```{r}
+gap_server = COMCreate("PX32.OpenServer.1")
+command = "GAP.START"
+gap_server$DoCommand(command)
+```
+
+
+```{r}
+mbal_server = COMCreate("PX32.OpenServer.1")
+command = "MBAL.START"
+mbal_server$DoCommand(command)
+```
+
+## Closing instances
+
+```{r}
+command = "PROSPER.SHUTDOWN"
+prosper_server$DoCommand(command)
+prosper_server <- NULL
+```
+
+```{r}
+command = "GAP.SHUTDOWN"
+gap_server$DoCommand(command)
+gap_server <- NULL
+```
+
+```{r}
+command = "MBAL.SHUTDOWN"
+mbal_server$DoCommand(command)
+mbal_server <- NULL
+```
