@@ -1,0 +1,201 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(RDCOMClient)
+library(R6) 
+
+OpenServer <- R6Class("OpenServer",  
+  lock_objects = FALSE,                      
+  public = list( 
+    # create a COM connection to OpenServer
+    initialize = function(server = NULL) { 
+      if (is.null(server)) 
+        self$server <- COMCreate("PX32.OpenServer.1")
+      else
+        self$server <- server
+    },
+    # send commands to IPM OpenServer
+    DoCmd = function(command) {
+        app_name <- private$get_app_name(command)
+        ret_cmd <- self$server$DoCommand(command)
+        last_error <- self$server$GetLastError(app_name)
+        if (last_error > 0) {
+            error_description <- self$server$GetErrorDescription(last_error)
+            err = list(last_error, error_description)
+            return(err)
+        }
+        else    
+            return(ret_cmd)
+    },
+    # get a value from an OpenServer variable
+    DoGet = function(variable) {
+        app_name <- private$get_app_name(variable)
+        ret_get <- self$server$GetValue(variable)
+        last_error <- self$server$GetLastError(app_name)
+        if (last_error > 0) {
+            error_description <- self$server$GetErrorDescription(last_error)
+            err = list(last_error, error_description)
+            return(err)
+        }
+        else
+            return(ret_get)
+    },
+    # set a value to an OpenServer variable
+    DoSet = function(variable, set_value = NULL) {
+        app_name <- private$get_app_name(variable)
+        ret_set <- self$server$SetValue(variable, set_value)
+        last_error <- self$server$GetLastError(app_name)
+        if (last_error > 0) {
+            error_description <- self$server$GetErrorDescription(last_error)
+            err = list(last_error, error_description)
+            return(err)
+        }
+        else
+            return(ret_set)
+    }
+  ),
+  private = list(
+    # get the IPM application name and validate
+    get_app_name = function(string_value) {
+        string_value <- toupper(string_value)
+        pos <- regexpr(".", string_value, fixed = TRUE)
+        if (pos < 2) {
+            print("ERROR: BAD STRING")
+            return(FALSE)
+        }
+        app_name <- substring(string_value, 1, pos-1)
+        # these are the valid IPM applications for now
+        if ((!app_name == "PROSPER") && 
+            (!app_name == "GAP") &&
+            (!app_name == "MBAL")) 
+        {
+            print("ERROR: APP NOT RECOGNIZED")
+            return(FALSE)
+        }
+        else
+            return(app_name)
+    }
+  ))
+
+```
+
+
+## Prosper testing
+
+```{r}
+prosper_server <- OpenServer$new()
+cmd = "PROSPER.START"
+prosper_server$DoCmd(cmd)
+```
+
+
+```{r}
+# IPM-9
+prosper_folder <- normalizePath("C:/Program Files (x86)/Petroleum Experts/IPM 9/Samples/prosper")
+print(prosper_folder)
+model_file <- "T00_Integrated_Oil_Well.Out"
+
+model_filename <- file.path(prosper_folder, model_file)
+model_filename
+```
+```{r}
+# IPM-10
+prosper_folder <- normalizePath("C:/Program Files (x86)/Petroleum Experts/IPM 10/Samples/prosper")
+print(prosper_folder)
+model_file <- "T00_Integrated_Oil_Well.Out"
+
+model_filename <- file.path(prosper_folder, model_file)
+model_filename
+```
+
+```{r}
+# open Prosper model
+open_cmd <- "PROSPER.OPENFILE"
+open_cmd <- paste0(open_cmd, "('", model_filename, "')")
+open_cmd
+prosper_server$DoCmd(open_cmd)
+```
+
+```{r}
+# get value
+cmd <- "PROSPER.SIN.IPR.Single.Pres"
+prosper_server$DoGet(cmd)
+```
+
+```{r}
+# set value
+cmd <- "PROSPER.SIN.IPR.Single.Pres"
+prosper_server$DoSet(cmd, 4433)
+```
+
+
+```{r}
+# confirm the value just set. get value
+cmd <- "PROSPER.SIN.IPR.Single.Pres"
+prosper_server$DoGet(cmd)
+```
+
+```{r}
+command = "PROSPER.SHUTDOWN"
+prosper_server$DoCmd(command)
+prosper_server <- NULL
+```
+
+
+
+
+## GAP testing
+
+```{r}
+gap_server     <- OpenServer$new()
+cmd = "GAP.START"
+gap_server$DoCmd(cmd)
+```
+
+
+```{r}
+command = "GAP.SHUTDOWN"
+gap_server$DoCmd(command)
+gap_server <- NULL
+```
+
+
+## MBAL testing
+
+```{r}
+mbal_server <- OpenServer$new()
+cmd         <- "MBAL.START"
+mbal_server$DoCmd(cmd)
+```
+
+
+```{r}
+command <- "MBAL.SHUTDOWN"
+mbal_server$DoCmd(command)
+mbal_server <- NULL
+```
+
+
+## Long low-level version
+
+
+```{r}
+command = "PROSPER.START"
+prosper_server$server$DoCommand(command)
+```
+
+```{r}
+command = "PROSPER.SHUTDOWN"
+prosper_server$server$DoCommand(command)
+prosper_server <- NULL
+```
+
+```{r}
+command = "GAP.SHUTDOWN"
+gap_server$server$DoCommand(command)
+gap_server <- NULL
+```
+

@@ -1,0 +1,24 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+# from R help
+ # slow
+testit <- function(x = sort(runif(20)), ...)
+{
+    pb <- txtProgressBar(...)
+    for(i in c(0, x, 1)) {
+        Sys.sleep(0.5)
+        setTxtProgressBar(pb, i)}
+    Sys.sleep(1)
+    close(pb)
+}
+
+testit(style = 1)
+# testit()
+# testit(runif(10))
+# testit(style = 3)
+```
+
