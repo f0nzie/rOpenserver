@@ -1,0 +1,37 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(rOpenserver)
+
+# pserver <- OpenServer$new()
+pserver <- OpenServer()
+
+cmd = "PROSPER.START"
+pserver$DoCmd(cmd)
+
+Sys.sleep(4)
+
+command = "PROSPER.SHUTDOWN"
+pserver$DoCmd(command)
+pserver <- NULL
+```
+
+
+
+```{r}
+library(rOpenserver)
+
+mserver <- OpenServer()
+
+cmd = "MBAL.START"
+mserver$DoCmd(cmd)
+
+Sys.sleep(4)
+
+command = "MBAL.SHUTDOWN"
+mserver$DoCmd(command)
+mserver <- NULL
+```
