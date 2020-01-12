@@ -2,7 +2,7 @@
 % Please edit documentation in R/core.R
 \name{setOpenServer}
 \alias{setOpenServer}
-\title{Openserver constructor}
+\title{Another Openserver constructor without using `$new()`}
 \usage{
 setOpenServer(server = NULL)
 }

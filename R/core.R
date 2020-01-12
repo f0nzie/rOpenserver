@@ -17,7 +17,7 @@
 #' \code{DoSet()} \tab \code{\link{DoSet}} \cr
 #' \code{DoSlowCmd()} \tab \code{\link{DoSlowCmd}} \cr
 #' \code{DoGAPFunc()} \tab \code{\link{DoGAPFunc}} \cr
-#'
+#' \code{setOpenServer()} \tab \code{\link{setOpenServer}} \cr
 #' }
 #'
 #'
@@ -212,8 +212,11 @@ OpenServer$set("public","app_name",NULL)
 
 
 
+#-------------------------------------------------------------
+# Functions - OpenServer Constructor
+#-------------------------------------------------------------
 #' @name setOpenServer
-#' @title Openserver constructor
+#' @title Another Openserver constructor without using `$new()`
 #' @description  Call class
 #' @param server an existing OpenServer instance
 #' @export

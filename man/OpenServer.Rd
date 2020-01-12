@@ -22,7 +22,7 @@ A class to create OpenServer objects
 \code{DoSet()} \tab \code{\link{DoSet}} \cr
 \code{DoSlowCmd()} \tab \code{\link{DoSlowCmd}} \cr
 \code{DoGAPFunc()} \tab \code{\link{DoGAPFunc}} \cr
-
+\code{setOpenServer()} \tab \code{\link{setOpenServer}} \cr
 }
 }
 
