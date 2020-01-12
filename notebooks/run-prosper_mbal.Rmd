@@ -7,7 +7,8 @@ output: html_notebook
 library(rOpenserver)
 
 # pserver <- OpenServer$new()
-pserver <- OpenServer()
+# pserver <- setOpenServer()
+pserver <- OpenServer$constructor()
 
 cmd = "PROSPER.START"
 pserver$DoCmd(cmd)
@@ -24,7 +25,7 @@ pserver <- NULL
 ```{r}
 library(rOpenserver)
 
-mserver <- OpenServer()
+mserver <- OpenServer$new()
 
 cmd = "MBAL.START"
 mserver$DoCmd(cmd)

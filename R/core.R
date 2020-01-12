@@ -212,6 +212,23 @@ OpenServer$set("public","app_name",NULL)
 
 
 
+#' Openserver constructor
+#' Call class
+#' @param server an existing OpenServer instance
+#' @export
+setOpenServer <- function(server = NULL) {
+  return(OpenServer$new(server))
+}
+
+
+#' Openserver constructor
+#' Call class
+#' @param server an existing OpenServer instance
+#' @export
+OpenServer$constructor <- function(server = NULL) {
+  return(OpenServer$new(server))
+}
+
 
 
 #' @title COM Reference call
