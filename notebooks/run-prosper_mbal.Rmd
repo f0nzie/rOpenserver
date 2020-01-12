@@ -7,8 +7,7 @@ output: html_notebook
 library(rOpenserver)
 
 # pserver <- OpenServer$new()
-# pserver <- setOpenServer()
-pserver <- OpenServer$constructor()
+pserver <- setOpenServer()
 
 cmd = "PROSPER.START"
 pserver$DoCmd(cmd)

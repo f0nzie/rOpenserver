@@ -2,8 +2,7 @@
 % Please edit documentation in R/core.R
 \name{setOpenServer}
 \alias{setOpenServer}
-\title{Openserver constructor
-Call class}
+\title{Openserver constructor}
 \usage{
 setOpenServer(server = NULL)
 }
@@ -11,6 +10,5 @@ setOpenServer(server = NULL)
 \item{server}{an existing OpenServer instance}
 }
 \description{
-Openserver constructor
 Call class
 }

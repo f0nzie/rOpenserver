@@ -1,7 +1,7 @@
 #-------------------------------------------------------------
 # OpenServer Documentation
 #-------------------------------------------------------------
-#' @title OpenServer object
+#' @title R6 class for OpenServer object
 #'
 #' @description A class to create OpenServer objects
 #'
@@ -212,22 +212,15 @@ OpenServer$set("public","app_name",NULL)
 
 
 
-#' Openserver constructor
-#' Call class
+#' @name setOpenServer
+#' @title Openserver constructor
+#' @description  Call class
 #' @param server an existing OpenServer instance
 #' @export
 setOpenServer <- function(server = NULL) {
   return(OpenServer$new(server))
 }
 
-
-#' Openserver constructor
-#' Call class
-#' @param server an existing OpenServer instance
-#' @export
-OpenServer$constructor <- function(server = NULL) {
-  return(OpenServer$new(server))
-}
 
 
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/core.R
 \name{OpenServer}
 \alias{OpenServer}
-\title{OpenServer object}
+\title{R6 class for OpenServer object}
 \value{
 Returns R6 object of class OpenServer
 }
