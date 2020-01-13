@@ -55,7 +55,7 @@ library(rOpenserver)
 
 
 # Initialize OpenServer
-prosper_server <- OpenServer()
+prosper_server <- OpenServer$new()
 
 # Start Prosper
 cmd = "PROSPER.START"
@@ -72,7 +72,7 @@ file.exists(model_filename)
 # open Prosper model
 open_cmd <- "PROSPER.OPENFILE"
 open_cmd <- paste0(open_cmd, "('", model_filename, "')")
-prosper_server$DoCmd(open_cmd)
+DoCmd(prosper_server, open_cmd)
 #> [1] 0
 
 
@@ -83,7 +83,7 @@ prosper_server$DoGet(cmd)
 
 # get reservoir temperature
 cmd <- "PROSPER.SIN.IPR.Single.Tres"
-prosper_server$DoGet(cmd)
+DoGet(prosper_server, cmd)           # S3 class: another way of getting values
 #> [1] "210.000000000"
 
 # [1] "1582.449951172"
