@@ -10,7 +10,7 @@ expect_true(file.exists(gap_file))
 
 
 # start OpenServer and GAP
-gserver <- OpenServer()
+gserver <- setOpenServer()
 gserver$DoCmd("GAP.START")
 
 # open GAP model

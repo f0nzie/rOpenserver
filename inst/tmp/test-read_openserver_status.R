@@ -1,10 +1,10 @@
 library(testthat)
-library(openserver)
+library(rOpenserver)
 
 context("status")
 
 # Initialize OpenServer
-prosper_server <- OpenServer()
+prosper_server <- OpenServer$new()
 
 # Start Prosper
 cmd = "PROSPER.START"
