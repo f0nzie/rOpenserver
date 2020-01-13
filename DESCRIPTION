@@ -9,8 +9,9 @@ Description: Provide a COM interface to R so it can talk to Petex's IPM
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Depends: base, stats, R (>= 3.5.0)
 Imports: 
+    base,
+    stats,
     R6,
     R62S3 (>= 1.3.1),
     RDCOMClient
@@ -18,7 +19,7 @@ Suggests:
   knitr,
   testthat,
   devtools,
-  rmarkdown
+  rmarkdown,
   remotes    
 Remotes: omegahat/RDCOMClient
 RoxygenNote: 7.0.2
