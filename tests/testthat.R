@@ -1,4 +1,4 @@
 library(testthat)
-library(openserver)
+library(rOpenserver)
 
-test_check("openserver")
+test_check("rOpenserver")
