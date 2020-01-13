@@ -10,7 +10,7 @@ library(rOpenserver)
 pserver <- setOpenServer()
 
 cmd = "PROSPER.START"
-pserver$DoCmd(cmd)
+DoCmd(pserver, cmd)
 
 Sys.sleep(4)
 
