@@ -105,6 +105,14 @@
       
     </div>
 
+    <div id="ropenserver-0109006" class="section level1">
+<h1 class="page-header">
+<a href="#ropenserver-0109006" class="anchor"></a>rOpenserver 0.1.0.9006</h1>
+<ul>
+<li>Hide <code>RDCOMClient</code> function <code><a href="../reference/createCOMReference.html">createCOMReference()</a></code> with <code>@keywords internal</code>
+</li>
+</ul>
+</div>
     <div id="ropenserver-0109005" class="section level1">
 <h1 class="page-header">
 <a href="#ropenserver-0109005" class="anchor"></a>rOpenserver 0.1.0.9005</h1>
@@ -120,9 +128,8 @@
 <h1 class="page-header">
 <a href="#ropenserver-0109004" class="anchor"></a>rOpenserver 0.1.0.9004</h1>
 <ul>
-<li>After copying the example in <code>README</code> to a unit test, getting this error when using this form of <code>DoCmd</code> and <code>DoGet</code>: <code><a href="../reference/DoCmd.html">DoCmd(prosper_server, open_cmd)</a></code>.Where is the problem?</li>
+<li>After copying the example in <code>README</code> to a unit test, getting this error when using this form of <code>DoCmd</code> and <code>DoGet</code>: <code><a href="../reference/DoCmd.html">DoCmd(prosper_server, open_cmd)</a></code>. Here is the output:</li>
 </ul>
-<p>Here is the output:</p>
 <pre><code>&gt; library(rOpenserver)
 &gt; 
 &gt; test_check("rOpenserver")
@@ -132,9 +139,7 @@ Backtrace:
  1. R62S3:::DoCmd(prosper_server, open_cmd)
  4. private$get_app_name(command)
  5. base::toupper(string_value)</code></pre>
-<blockquote>
-<p>This form of command works in the <strong>README</strong> but fails in the unit tests. Why? Adding <code>object</code> as an argument to the method in the <code>OpenServer</code> class doesn’t help either; it is just redundant because the <code>object</code> is implied.</p>
-</blockquote>
+<p>This form of command using S3 dispatch works in the <strong>README</strong> but fails in the unit tests. Why? Even adding <code>object</code> as an argument to the method in the <code>OpenServer</code> class doesn’t help either. Because the package <code>R62S3</code> conveniently generates the S3 methods for R6 classes but through the environment, which is not available at unit test time.</p>
 <ul>
 <li>Recompiling <code>testthat</code> from source</li>
 <li>Add simple test to check <code>DoCmd</code> works. It doesn’t. Still getting error at the unit test.</li>
@@ -169,6 +174,7 @@ Backtrace:
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#ropenserver-0109006">0.1.0.9006</a></li>
         <li><a href="#ropenserver-0109005">0.1.0.9005</a></li>
         <li><a href="#ropenserver-0109004">0.1.0.9004</a></li>
         <li><a href="#ropenserver-0109003">0.1.0.9003</a></li>
@@ -183,7 +189,7 @@ Backtrace:
 
       <footer>
       <div class="copyright">
-  <p>Developed by Alfonso Reyes.</p>
+  <p>Developed by Alfonso R. Reyes.</p>
 </div>
 
 <div class="pkgdown">
