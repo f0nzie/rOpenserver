@@ -66,11 +66,11 @@
 <div id="ropenserver" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#ropenserver" class="anchor"></a>rOpenserver</h1></div>
-<p>The goal of <code>rOpenserver</code> is to provide an R interface to Petex applications Prosper, GAP and MBAL to perform automated tasks, create datasets for statistical analysis, and advanced control of the solvers and calculations.</p>
+<p>The goal of <code>rOpenserver</code> is to provide an <strong>R</strong> interface to Petex applications Prosper, GAP and MBAL to perform automated tasks, create datasets for statistical analysis, and advanced control of solvers and calculations.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p><code>rOpenserver</code> is not in <a href="https://cran.r-project.org/">CRAN</a> yet but in the meantime, you could install it from GtiHub, from the <a href="https://github.com/f0nzie/rOpenserver">rOpenserver repository</a> with:</p>
+<p><code>rOpenserver</code> is not in <a href="https://cran.r-project.org/">CRAN</a> yet but in the meantime, you can install it from GtiHub, from the <a href="https://github.com/f0nzie/rOpenserver">rOpenserver repository</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
 <a class="sourceLine" id="cb1-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"f0nzie/rOpenserver"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>The argument <code>dependencies</code> has the role of downloading and installing packages that are key for rOpenserver, such as <code>R6</code> and <code>RDCOMClient</code>.</p>
@@ -142,7 +142,7 @@
 <h2 class="hasAnchor">
 <a href="#uses-of-ropenserver" class="anchor"></a>Uses of <code>rOpenserver</code>
 </h2>
-<p>The previous example just shows a spark of the functionality of <code>rOpenserver</code>: of starting Prosper, opening a well model, read values from it, and close Prosper. This is what we call an <strong>instance</strong>. There are plenty more examples that make use of <code>rOpenserver</code>. During my years as Production Engineer working on well models and optimization we practically had endless use for this interface. Okay, you could call it a <strong>data science</strong> oriented solution, but not all is really data science. The use goes beyond that. Let me cite a few, just for <strong>Prosper</strong>:</p>
+<p>The previous example just shows a spark of the functionality of <code>rOpenserver</code>: of starting Prosper, opening a well model, read values from it, and close Prosper. This is what we call an <strong>instance</strong>. There are plenty more examples that make use of <code>rOpenserver</code>. During my years as Production Engineer working on well models and optimization we practically had endless use for this interface. Okay, you could call it a <strong>data science</strong> oriented solution, but not all is really data science. The use cases go beyond that. Let me cite a few, just for <strong>Prosper</strong>:</p>
 <ul>
 <li><p>Batch automation for reading all the Prosper well models residing in your disk, or the network drive</p></li>
 <li><p>Convert all the well models in Prosper to a reactangular dataset, very much like an Excel spreadsheet, a dataframe, which is a more powerful data structure for performing data analysis</p></li>
@@ -174,7 +174,7 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Alfonso Reyes <br><small class="roles"> Maintainer </small>  </li>
+<li>Alfonso R. Reyes <br><small class="roles"> Maintainer </small>  </li>
 </ul>
 </div>
 
@@ -183,7 +183,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Alfonso Reyes.</p>
+  <p>Developed by Alfonso R. Reyes.</p>
 </div>
 
 <div class="pkgdown">
