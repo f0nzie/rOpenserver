@@ -1,6 +1,5 @@
 # rOpenserver 
 
-
 ## 0.1.0.9005
 * Stick to R6 style for initialization `OpenServer$new()`
 * Improve unit tests
@@ -30,7 +29,6 @@ Addin `object` to the method in the `OpenServer` class doesn't help either; it i
 
 * Recompiling `testthat` from source
 * Add simple test to check `DoCmd` works. It doesn't. Still getting error at the unit test.
-* 
 
 ## 0.1.0.9003
 
@@ -39,12 +37,9 @@ Addin `object` to the method in the `OpenServer` class doesn't help either; it i
 
 ## 0.1.0.9002
 * trying with different option to obtaina constructor of `OpenServer` without using `OpensServer$new()`. Attempts unsuccesful witout sacrificing documentation, and renaming main class to `.OpenServer`, that is *dot OpenServer*
-
 * Added a `NEWS.md` file to track changes to the package.
 
 
-
 ## 0.1.0.9000
-
-The original `openserver` package works fine but didn't have any roxygen2 documentation.
+* The original `openserver` package works fine but didn't have any roxygen2 documentation.
 

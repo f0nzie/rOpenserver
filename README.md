@@ -52,13 +52,6 @@ temperature from a model residing in the Examples folder:
 ``` r
 # load OpenServer
 library(rOpenserver)
-#> 
-#> -----------------------------
-#>  rOpenserver v0.1.0.9004
-#> 
-#> Get started: ?rOpenserver
-#> Changelog:   distr6News()
-#> -----------------------------
 
 
 # Initialize OpenServer
