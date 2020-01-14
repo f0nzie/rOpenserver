@@ -1,7 +1,7 @@
 Package: rOpenserver
 Type: Package
 Title: COM interface to OpenServer written in R
-Version: 0.1.0.9006
+Version: 0.1.0.9007
 Author: Alfonso R. Reyes
 Maintainer: Alfonso R. Reyes <alfonso.reyes@oilgainsanalytics.com>
 Description: Provide a COM interface to R so it can talk to Petex's IPM 
