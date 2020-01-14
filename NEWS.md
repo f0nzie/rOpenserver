@@ -1,12 +1,15 @@
 # rOpenserver 
 
 
-
+## 0.1.0.9005
+* Stick to R6 style for initialization `OpenServer$new()`
+* Improve unit tests
+* Copy models for testing
+* Do not test R6 to S3 methods 
 
 
 ## 0.1.0.9004
-
-After copying the example in `README` to a unit test, getting this error when using this form of `DoCmd` and `DoGet`: `DoCmd(prosper_server, open_cmd)`.Where is the problem?
+* After copying the example in `README` to a unit test, getting this error when using this form of `DoCmd` and `DoGet`: `DoCmd(prosper_server, open_cmd)`.Where is the problem?
 
 
 ```
