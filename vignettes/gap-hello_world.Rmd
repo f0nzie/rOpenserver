@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 
-## Hello World! for GAP OpenServer
+## Get the number of steps for a GAP model prediction
 
 ```{r setup}
 library(rOpenserver)
