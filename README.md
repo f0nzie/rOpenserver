@@ -52,6 +52,13 @@ temperature from a model residing in the Examples folder:
 ``` r
 # load OpenServer
 library(rOpenserver)
+#> 
+#> -----------------------------
+#>  rOpenserver v0.1.0.9004
+#> 
+#> Get started: ?rOpenserver
+#> Changelog:   distr6News()
+#> -----------------------------
 
 
 # Initialize OpenServer
@@ -91,6 +98,7 @@ DoGet(prosper_server, cmd)           # S3 class: another way of getting values
 
 
 # shutdown Prosper
+Sys.sleep(3)
 command = "PROSPER.SHUTDOWN"
 prosper_server$DoCmd(command)
 #> [1] 0

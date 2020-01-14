@@ -4,7 +4,10 @@
 \alias{read_openserver_status}
 \title{Read the status of OpenServer and IPM objects}
 \usage{
-read_openserver_status()
+read_openserver_status(verbose = FALSE)
+}
+\arguments{
+\item{verbose}{indicate if we want live printing}
 }
 \description{
 Create a dataframe with the count of OpenServer and IPM objects

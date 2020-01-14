@@ -83,6 +83,7 @@ DoGet(prosper_server, cmd)           # S3 class: another way of getting values
 
 
 # shutdown Prosper
+Sys.sleep(3)
 command = "PROSPER.SHUTDOWN"
 prosper_server$DoCmd(command)
 prosper_server <- NULL
