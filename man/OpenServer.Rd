@@ -2,16 +2,27 @@
 % Please edit documentation in R/core.R
 \name{OpenServer}
 \alias{OpenServer}
-\alias{createCOMReference}
-\title{Openserver function
-WIll call class}
-\usage{
-OpenServer(server = NULL)
-}
-\arguments{
-\item{server}{an existing OpenServer instance}
+\title{R6 class for OpenServer object}
+\value{
+Returns R6 object of class OpenServer
 }
 \description{
-Openserver function
-WIll call class
+A class to create OpenServer objects
 }
+\section{Constructor}{
+ OpenServer$new(server = NULL)
+}
+
+\section{Public Methods}{
+
+\tabular{ll}{
+\strong{Parameters Methods} \tab \strong{Link} \cr
+\code{DoCmd()} \tab \code{\link{DoCmd}} \cr
+\code{DoGet()} \tab \code{\link{DoGet}} \cr
+\code{DoSet()} \tab \code{\link{DoSet}} \cr
+\code{DoSlowCmd()} \tab \code{\link{DoSlowCmd}} \cr
+\code{DoGAPFunc()} \tab \code{\link{DoGAPFunc}} \cr
+\code{setOpenServer()} \tab \code{\link{setOpenServer}} \cr
+}
+}
+
