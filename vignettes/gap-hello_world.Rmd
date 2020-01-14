@@ -1,0 +1,87 @@
+---
+title: "gap-hello_world"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{gap-hello_world}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Hello World! for GAP OpenServer
+
+```{r setup}
+library(rOpenserver)
+
+get_gap_model_01 <- function() {
+    # get the GAP model "Gap Model.gap"
+    gap_dir <- system.file("models", package = "rOpenserver")
+    gap_model <- list.files(gap_dir, pattern = "*.GAP", ignore.case = TRUE)[1]
+    gap_file <- file.path(gap_dir, gap_model)
+    if (!file.exists(gap_file)) stop("Model not found ...") else
+        return(gap_file)
+
+}
+
+# start OpenServer and GAP
+gserver <- setOpenServer()
+gserver$DoCmd("GAP.START")
+
+# open GAP model
+cmd_openfile <- paste0('GAP.OPENFILE("', get_gap_model_01(), '")')
+gserver$DoSlowCmd(cmd_openfile)
+
+
+# get the number of steps for the model prediction
+NumSteps <- as.integer(gserver$DoGAPFunc("GAP.PREDINIT()"))
+print(NumSteps)
+
+# exit GAP
+Sys.sleep(1)
+gserver$DoCmd("GAP.SHUTDOWN")
+gserver <- NULL
+```
+
+
+## S3 methods
+We can also do this using S3 methods derived from R6 classes
+
+
+```{r setup}
+library(rOpenserver)
+
+get_gap_model_01 <- function() {
+    # get the GAP model "Gap Model.gap"
+    gap_dir <- system.file("models", package = "rOpenserver")
+    gap_model <- list.files(gap_dir, pattern = "*.GAP", ignore.case = TRUE)[1]
+    gap_file <- file.path(gap_dir, gap_model)
+    if (!file.exists(gap_file)) stop("Model not found ...") else
+        return(gap_file)
+
+}
+
+# start OpenServer and GAP
+gserver <- setOpenServer()
+DoCmd(gserver, "GAP.START")
+
+# open GAP model
+cmd_openfile <- paste0('GAP.OPENFILE("', get_gap_model_01(), '")')
+DoSlowCmd(gserver, cmd_openfile)
+
+
+# get the number of steps for the model prediction
+NumSteps <- as.integer(DoGAPFunc(gserver, "GAP.PREDINIT()"))
+print(NumSteps)
+
+# exit GAP
+Sys.sleep(1)
+DoCmd(gserver, "GAP.SHUTDOWN")
+gserver <- NULL
+```
