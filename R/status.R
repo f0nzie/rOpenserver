@@ -2,9 +2,10 @@
 #' Read the status of OpenServer and IPM objects
 #'
 #' Create a dataframe with the count of OpenServer and IPM objects
+#' @param verbose indicate if we want live printing
 #' @importFrom utils read.table
 #' @export
-read_openserver_status <- function() {
+read_openserver_status <- function(verbose = FALSE) {
     # after shutdown Prosper and px32COM dissapear from processes
     # pxserver
     try_reading_table <- function(process) {
@@ -33,7 +34,7 @@ read_openserver_status <- function() {
         txt  <- grep(paste0("^", ipm_obj), readLines(textConnection(call_system)),
                      value=TRUE)
         tbl <- try_reading_table(txt)
-        cat(ipm_obj, length(tbl), dim(tbl), "\n")
+        if (verbose) cat(ipm_obj, length(tbl), dim(tbl), "\n")
         # if ( ((is.null(tbl)) || (dim(tbl)[2] < 6)) ) {
         if (! length(tbl) < 6) {
             # print(tbl)
