@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rOpenserver</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9005</span>
       </span>
     </div>
 
@@ -96,7 +96,7 @@
 <a class="sourceLine" id="cb3-3" title="3"></a>
 <a class="sourceLine" id="cb3-4" title="4"></a>
 <a class="sourceLine" id="cb3-5" title="5"><span class="co"># Initialize OpenServer</span></a>
-<a class="sourceLine" id="cb3-6" title="6">prosper_server &lt;-<span class="st"> </span><span class="kw"><a href="reference/OpenServer.html">OpenServer</a></span>()</a>
+<a class="sourceLine" id="cb3-6" title="6">prosper_server &lt;-<span class="st"> </span>OpenServer<span class="op">$</span><span class="kw">new</span>()</a>
 <a class="sourceLine" id="cb3-7" title="7"></a>
 <a class="sourceLine" id="cb3-8" title="8"><span class="co"># Start Prosper</span></a>
 <a class="sourceLine" id="cb3-9" title="9">cmd =<span class="st"> "PROSPER.START"</span></a>
@@ -113,7 +113,7 @@
 <a class="sourceLine" id="cb3-20" title="20"><span class="co"># open Prosper model</span></a>
 <a class="sourceLine" id="cb3-21" title="21">open_cmd &lt;-<span class="st"> "PROSPER.OPENFILE"</span></a>
 <a class="sourceLine" id="cb3-22" title="22">open_cmd &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(open_cmd, <span class="st">"('"</span>, model_filename, <span class="st">"')"</span>)</a>
-<a class="sourceLine" id="cb3-23" title="23">prosper_server<span class="op">$</span><span class="kw"><a href="reference/DoCmd.html">DoCmd</a></span>(open_cmd)</a>
+<a class="sourceLine" id="cb3-23" title="23"><span class="kw"><a href="reference/DoCmd.html">DoCmd</a></span>(prosper_server, open_cmd)</a>
 <a class="sourceLine" id="cb3-24" title="24"><span class="co">#&gt; [1] 0</span></a>
 <a class="sourceLine" id="cb3-25" title="25"></a>
 <a class="sourceLine" id="cb3-26" title="26"></a>
@@ -124,7 +124,7 @@
 <a class="sourceLine" id="cb3-31" title="31"></a>
 <a class="sourceLine" id="cb3-32" title="32"><span class="co"># get reservoir temperature</span></a>
 <a class="sourceLine" id="cb3-33" title="33">cmd &lt;-<span class="st"> "PROSPER.SIN.IPR.Single.Tres"</span></a>
-<a class="sourceLine" id="cb3-34" title="34">prosper_server<span class="op">$</span><span class="kw"><a href="reference/DoGet.html">DoGet</a></span>(cmd)</a>
+<a class="sourceLine" id="cb3-34" title="34"><span class="kw"><a href="reference/DoGet.html">DoGet</a></span>(prosper_server, cmd)           <span class="co"># S3 class: another way of getting values</span></a>
 <a class="sourceLine" id="cb3-35" title="35"><span class="co">#&gt; [1] "210.000000000"</span></a>
 <a class="sourceLine" id="cb3-36" title="36"></a>
 <a class="sourceLine" id="cb3-37" title="37"><span class="co"># [1] "1582.449951172"</span></a>
@@ -132,10 +132,11 @@
 <a class="sourceLine" id="cb3-39" title="39"></a>
 <a class="sourceLine" id="cb3-40" title="40"></a>
 <a class="sourceLine" id="cb3-41" title="41"><span class="co"># shutdown Prosper</span></a>
-<a class="sourceLine" id="cb3-42" title="42">command =<span class="st"> "PROSPER.SHUTDOWN"</span></a>
-<a class="sourceLine" id="cb3-43" title="43">prosper_server<span class="op">$</span><span class="kw"><a href="reference/DoCmd.html">DoCmd</a></span>(command)</a>
-<a class="sourceLine" id="cb3-44" title="44"><span class="co">#&gt; [1] 0</span></a>
-<a class="sourceLine" id="cb3-45" title="45">prosper_server &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-42" title="42"><span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb3-43" title="43">command =<span class="st"> "PROSPER.SHUTDOWN"</span></a>
+<a class="sourceLine" id="cb3-44" title="44">prosper_server<span class="op">$</span><span class="kw"><a href="reference/DoCmd.html">DoCmd</a></span>(command)</a>
+<a class="sourceLine" id="cb3-45" title="45"><span class="co">#&gt; [1] 0</span></a>
+<a class="sourceLine" id="cb3-46" title="46">prosper_server &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
 </div>
 <div id="uses-of-ropenserver" class="section level2">
 <h2 class="hasAnchor">
