@@ -14,3 +14,4 @@ createCOMReference(ref, className)
 \description{
 Call COM client reference function
 }
+\keyword{internal}

@@ -234,6 +234,7 @@ setOpenServer <- function(server = NULL) {
 #' @param ref the reference to pass
 #' @param className the name of the class
 #' @export
+#' @keywords internal
 createCOMReference <- function(ref, className) {
   RDCOMClient::createCOMReference(ref, className)
 }

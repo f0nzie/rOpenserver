@@ -1,3 +1,6 @@
+# rOpenserver 0.1.0.9006
+* Hide `RDCOMClient` function `createCOMReference()` with `@keywords internal`
+
 # rOpenserver 0.1.0.9005
 * Stick to R6 style for initialization `OpenServer$new()`
 * Improve unit tests
@@ -6,8 +9,7 @@
 
 
 # rOpenserver 0.1.0.9004
-* After copying the example in `README` to a unit test, getting this error when using this form of `DoCmd` and `DoGet`: `DoCmd(prosper_server, open_cmd)`.Where is the problem?
-
+* After copying the example in `README` to a unit test, getting this error when using this form of `DoCmd` and `DoGet`: `DoCmd(prosper_server, open_cmd)`.
 Here is the output:
 
 ```
@@ -22,8 +24,7 @@ Backtrace:
  5. base::toupper(string_value)
 ```
 
->This form of command works in the **README** but fails in the unit tests. Why?
-Adding `object` as an argument to the method in the `OpenServer` class doesn't help either; it is just redundant because the `object` is implied.
+This form of command using S3 dispatch works in the **README** but fails in the unit tests. Why? Even adding `object` as an argument to the method in the `OpenServer` class doesn't help either. Because the package `R62S3` conveniently generates the S3 methods for R6 classes but through the environment, which is not available at unit test time.
 
 * Recompiling `testthat` from source
 * Add simple test to check `DoCmd` works. It doesn't. Still getting error at the unit test.

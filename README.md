@@ -3,15 +3,15 @@
 
 # rOpenserver
 
-The goal of `rOpenserver` is to provide an R interface to Petex
+The goal of `rOpenserver` is to provide an **R** interface to Petex
 applications Prosper, GAP and MBAL to perform automated tasks, create
-datasets for statistical analysis, and advanced control of the solvers
-and calculations.
+datasets for statistical analysis, and advanced control of solvers and
+calculations.
 
 ## Installation
 
 `rOpenserver` is not in [CRAN](https://cran.r-project.org/) yet but in
-the meantime, you could install it from GtiHub, from the [rOpenserver
+the meantime, you can install it from GtiHub, from the [rOpenserver
 repository](https://github.com/f0nzie/rOpenserver) with:
 
 ``` r
@@ -107,7 +107,7 @@ are plenty more examples that make use of `rOpenserver`. During my years
 as Production Engineer working on well models and optimization we
 practically had endless use for this interface. Okay, you could call it
 a **data science** oriented solution, but not all is really data
-science. The use goes beyond that. Let me cite a few, just for
+science. The use cases go beyond that. Let me cite a few, just for
 **Prosper**:
 
   - Batch automation for reading all the Prosper well models residing in
