@@ -54,7 +54,7 @@ gserver <- NULL
 We can also do this using S3 methods derived from R6 classes
 
 
-```{r setup}
+```{r}
 library(rOpenserver)
 
 get_gap_model_01 <- function() {
