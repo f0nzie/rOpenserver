@@ -3,4 +3,5 @@ pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
   gap-hello_world: gap-hello_world.html
+  prosper-hello_world: prosper-hello_world.html
 
