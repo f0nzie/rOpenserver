@@ -1,0 +1,43 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+### Permeability sensitivity
+```{r}
+# PROSPER.SIN.IPR.Single.ResPerm
+perm <- 120  # original value
+perc_var <- 6.25 / 100
+perm_start <- perm -6 * perm * perc_var
+perms <- seq(perm_start, by = perm * perc_var, length.out = 17)
+df_pm <- data.frame(perm = perms)
+df_pm$liquid_rate <- 0
+df_pm
+```
+
+
+```{r}
+# iterate through all assumed permeability values of interest
+i <-  1
+for (perm in df_pm[["perm"]]) {
+  prosper_server$DoSet("PROSPER.SIN.IPR.Single.ResPerm", perm)           # set perm
+  prosper_server$DoSet("PROSPER.SIN.IPR.Single.HorizdP[0].ZONPRM", perm) # set perm in zone 1
+  prosper_server$DoCmd("PROSPER.anl.SYS.CALC")    # do calculation
+  df_pm[["liquid_rate"]][i] <-                    # store liquid rate result in dataframe
+    as.double(prosper_server$DoGet("PROSPER.OUT.SYS.RESULTS[0][0][0].SOL.LIQRATE"))
+  cat(perm, df_pm[["liquid_rate"]][i], "\n")
+  i <-  i + 1
+}
+
+df_pm
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(df_pm, aes(x = perm, y = liquid_rate)) +
+  geom_line() +
+  geom_point()
+```

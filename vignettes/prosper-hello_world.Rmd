@@ -1,0 +1,139 @@
+---
+title: "prosper-hello_world"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{prosper-hello_world}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+## Run sensitivity analysis on Well Length using a Horizontal dP friction IPR model
+
+### Load the OpenServer package
+
+```{r setup}
+library(rOpenserver)
+```
+
+
+### Enter the well lengths for iteration
+
+```{r}
+text_well_length <- "
+well_length
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+4500
+5000
+5500
+6000
+6500
+7000
+7500
+8000
+8500
+"
+
+df_wl <- read.table(text = text_well_length, header = TRUE)
+df_wl$liquid_rate <- 0
+df_wl
+```
+
+The table above is equivalent to this sequence:
+
+```{r}
+well_length <- 1000
+seq(well_length-well_length*50/100, by = well_length*50/100, length.out = 17)
+```
+
+### Function to get the model filename
+This function will go grab the horizontal well model for analysis.
+
+```{r}
+get_prosper_model <- function(model) {
+    # get the well model
+    models_dir <- system.file("models", package = "rOpenserver")
+    model_file <- file.path(models_dir, model)
+    if (!file.exists(model_file)) stop("Model not found ...") else
+        return(model_file)
+
+}
+
+get_prosper_model(model = "HORWELLDP.OUT")
+```
+
+### Start Prosper
+```{r}
+# Initialize OpenServer
+prosper_server <- OpenServer$new()
+
+# Start Prosper
+cmd = "PROSPER.START"
+prosper_server$DoCmd(cmd)
+```
+
+
+### Open the model
+```{r}
+# open Prosper model
+model_file <- get_prosper_model(model = "HORWELLDP.OUT")
+open_cmd <- "PROSPER.OPENFILE"
+open_cmd <- paste0(open_cmd, "('", model_file, "')")
+DoCmd(prosper_server, open_cmd)  # using S3 dispatch of R6 class
+```
+
+
+### Iterate through well lengths
+
+```{r}
+# iterate through all well length values of interest
+i <-  1
+for (wlen in df_wl[["well_length"]]) {
+  prosper_server$DoSet("PROSPER.SIN.IPR.Single.WellLen", wlen)           # set well length
+  prosper_server$DoSet("PROSPER.SIN.IPR.Single.HorizdP[0].ZONLEN", wlen) # set length in zone 1
+  prosper_server$DoCmd("PROSPER.anl.SYS.CALC")    # do calculation
+  df_wl[["liquid_rate"]][i] <-                       # store liquid rate result in dataframe
+    as.double(prosper_server$DoGet("PROSPER.OUT.SYS.RESULTS[0][0][0].SOL.LIQRATE"))
+  cat(wlen, df_wl[["liquid_rate"]][i], "\n")
+  i <-  i + 1
+}
+
+df_wl
+```
+
+
+### Plot the results
+```{r}
+library(ggplot2)
+
+ggplot(df_wl, aes(x = well_length, y = liquid_rate)) +
+  geom_line() +
+  geom_point()
+```
+
+
+### Shutdown Prosper
+
+```{r}
+# shutdown Prosper
+Sys.sleep(3)
+command = "PROSPER.SHUTDOWN"
+prosper_server$DoCmd(command)
+prosper_server <- NULL
+```
+

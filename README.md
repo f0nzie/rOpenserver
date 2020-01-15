@@ -86,9 +86,6 @@ cmd <- "PROSPER.SIN.IPR.Single.Tres"
 DoGet(prosper_server, cmd)           # S3 class: another way of getting values
 #> [1] "210.000000000"
 
-# [1] "1582.449951172"
-# [1] "146.667008038"
-
 
 # shutdown Prosper
 Sys.sleep(3)
