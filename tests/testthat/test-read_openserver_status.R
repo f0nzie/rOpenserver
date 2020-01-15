@@ -18,6 +18,7 @@ test_that("Windows processes are captured", {
     expect_true(any(grepl("px32COM10", unique(status$process))))
 
     cmd = "PROSPER.SHUTDOWN"
+    Sys.sleep(2)
     prosper_server$DoCmd(cmd)
 
     # tests that after shutdown some processes remain

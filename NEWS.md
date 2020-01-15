@@ -1,3 +1,6 @@
+# rOpenserver 0.1.0.9007
+* Hello World examples for Prosper and GAP
+
 # rOpenserver 0.1.0.9006
 * Hide `RDCOMClient` function `createCOMReference()` with `@keywords internal`
 
