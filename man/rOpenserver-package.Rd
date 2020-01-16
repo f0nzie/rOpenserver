@@ -9,4 +9,11 @@
 Provide a COM interface to R so it can talk to Petex's IPM 
     applications Prosper, GAP, MBAL via OpenServer.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/f0nzie/rOpenserver}
+}
+
+}
 \keyword{internal}
