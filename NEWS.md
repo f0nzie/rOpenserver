@@ -1,3 +1,6 @@
+# rOpenserver 0.1.0.9009
+* add demo examples to run with demo()
+
 # rOpenserver 0.1.0.9008
 * Hello World example for MBAL
 * Including BiocStyle. https://bioc.ism.ac.jp/packages/3.0/bioc/vignettes/BiocStyle/inst/doc/HtmlStyle.html. Not yet active. Works only standalone.
