@@ -1,19 +1,20 @@
 ---
 title: "mbal-hello_world"
 output: 
-  rmarkdown::html_vignette:
-    css: bioc.css
+  BiocStyle::html_document
 vignette: >
   %\VignetteIndexEntry{mbal-hello_world}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+BiocStyle::markdown()
 ```
 
 
