@@ -1,3 +1,7 @@
+# rOpenserver 0.1.0.9008
+* Hello World example for MBAL
+* Including BiocStyle. https://bioc.ism.ac.jp/packages/3.0/bioc/vignettes/BiocStyle/inst/doc/HtmlStyle.html. Not yet active. Works only standalone.
+
 # rOpenserver 0.1.0.9007
 * Hello World examples for Prosper and GAP
 
