@@ -15,7 +15,7 @@ rDoGet <- function(oserver, cmd) {
     res <- unlist(strsplit(oserver$DoGet(cmd), "|", fixed = TRUE))
     # find if vector is string or numeric
     if (suppressWarnings(all(is.na(as.numeric(res))))) {
-        # it is a string. In OpenServer, usually a DATESTR
+        # it is a string. In OpenServer, usually a DATESTR or TIME
         return(res)
     } else {
         # it is numeric. Now, determine if it is integer or double.

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rOpenserver</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9009</span>
       </span>
     </div>
 
@@ -68,7 +68,14 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/f0nzie/rOpenserver">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -84,7 +91,7 @@
       <h1>mbal-hello_world</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/f0nzie/rOpenserver/blob/master/vignettes/mbal-hello_world.Rmd"><code>vignettes/mbal-hello_world.Rmd</code></a></small>
       <div class="hidden name"><code>mbal-hello_world.Rmd</code></div>
 
     </div>
@@ -129,11 +136,11 @@
 <a class="sourceLine" id="cb3-3" title="3"></a>
 <a class="sourceLine" id="cb3-4" title="4">model_file &lt;-<span class="st"> </span><span class="kw">get_mbal_model</span>(<span class="dt">model =</span> <span class="st">"oil.mbi"</span>)</a>
 <a class="sourceLine" id="cb3-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(model_file)</a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; [1] "C:/Users/ipm/AppData/Local/Temp/RtmpGStfDX/temp_libpath10dc65556c0/rOpenserver/models/oil.mbi"</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; [1] "C:/Users/ipm/AppData/Local/Temp/Rtmpyyt0Jz/temp_libpathc646760604a/rOpenserver/models/oil.mbi"</span></a>
 <a class="sourceLine" id="cb3-7" title="7">open_cmd &lt;-<span class="st"> 'MBAL.OPENFILE'</span></a>
 <a class="sourceLine" id="cb3-8" title="8">open_cmd &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(open_cmd, <span class="st">'("'</span>, model_file, <span class="st">'")'</span>)</a>
 <a class="sourceLine" id="cb3-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(open_cmd)</a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt; [1] "MBAL.OPENFILE(\"C:/Users/ipm/AppData/Local/Temp/RtmpGStfDX/temp_libpath10dc65556c0/rOpenserver/models/oil.mbi\")"</span></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt; [1] "MBAL.OPENFILE(\"C:/Users/ipm/AppData/Local/Temp/Rtmpyyt0Jz/temp_libpathc646760604a/rOpenserver/models/oil.mbi\")"</span></a>
 <a class="sourceLine" id="cb3-11" title="11"><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(mbal_server, open_cmd)   <span class="co"># using S3 dispatch of R6 class</span></a>
 <a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
 </div>
