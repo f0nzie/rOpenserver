@@ -1,0 +1,64 @@
+# prosperHorizSys.R
+library(rOpenserver)
+library(tidyr)
+library(ggplot2)
+
+# function to get the filename for the model
+get_model_filename <- function(model) {
+    models_dir <- system.file("models", package = "rOpenserver")
+    model_file <- file.path(models_dir, model)
+    if (!file.exists(model_file)) stop("Model not found ...") else
+        return(model_file)
+}
+
+# well lengths and vertical anisotropy vectors
+well_length <- seq(500, by = 500, length.out = 17)
+kv_kh <- c(0.001, 0.005, 0.01, 0.1, 1.0)
+df <- data.frame(well_length)
+
+# Initialize and start OpenServer
+pserver <- OpenServer$new()
+cmd = "PROSPER.START"
+DoCmd(pserver, cmd)
+
+# open model
+model_file <- get_model_filename(model = "HORWELLDP.OUT")
+open_cmd <- "PROSPER.OPENFILE"
+open_cmd <- paste0(open_cmd, "('", model_file, "')")
+DoCmd(pserver, open_cmd)
+
+# iterate through anisotropy values
+for (k in kv_kh) {
+    DoSet(pserver, "PROSPER.SIN.IPR.Single.Vans", k)
+    # iterate through all well length values of interest
+    i <-  1
+    for (wlen in df[["well_length"]]) {
+        # set well length
+        DoSet(pserver, "PROSPER.SIN.IPR.Single.WellLen", wlen)
+        # set length in zone 1
+        DoSet(pserver, "PROSPER.SIN.IPR.Single.HorizdP[0].ZONLEN", wlen)
+        DoCmd(pserver, "PROSPER.anl.SYS.CALC")    # do calculation
+        # store liquid rate result in dataframe for each anisotropy scenario
+        df[[as.character(k)]][i] <-
+            as.double(DoGet(pserver, "PROSPER.OUT.SYS.RESULTS[0][0][0].SOL.LIQRATE"))
+        i <-  i + 1
+    }
+}
+print(df)
+
+# convert dataframe to tidy dataset
+df_gather <- gather(df, kv_kh, liquid_rate, '0.001':'1')
+
+# plot
+g <- ggplot(df_gather, aes(x = well_length, y = liquid_rate, color = kv_kh)) +
+    geom_line() +
+    geom_point()
+
+print(g)
+
+# shutdown Prosper
+Sys.sleep(3)
+command = "PROSPER.SHUTDOWN"
+pserver$DoCmd(command)
+pserver <- NULL
+

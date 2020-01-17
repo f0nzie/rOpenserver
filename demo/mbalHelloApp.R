@@ -32,15 +32,17 @@ DoSet(mbal_server, "MBAL.MB.TANK.OOIP", ooip)        # write value to MBAL
 # run prediction
 DoSlowCmd(mbal_server, "MBAL.MB.RUNPREDICTION")      # send command
 
-oil_rate <- rDoGet(mbal_server, "MBAL.MB.TRES[2][0][$].OILRATE")
-gas_rate <- rDoGet(mbal_server, "MBAL.MB.TRES[2][0][$].GASRATE")
-wat_rate <- rDoGet(mbal_server, "MBAL.MB.TRES[2][0][$].WATRATE")
+date      <- openserver_to_date(DoGet(mbal_server, "MBAL.MB.TRES[2][0][$].TIME"))
+oil_rf    <- rDoGet(mbal_server, "MBAL.MB.TRES[2][0][$].OILRECOVER")
+oil_rate  <- rDoGet(mbal_server, "MBAL.MB.TRES[2][0][$].OILRATE")
+gas_rate  <- rDoGet(mbal_server, "MBAL.MB.TRES[2][0][$].GASRATE")
+wat_rate  <- rDoGet(mbal_server, "MBAL.MB.TRES[2][0][$].WATRATE")
 tank_pres <- rDoGet(mbal_server, "MBAL.MB.TRES[2][0][$].TANKPRESS")
-date <- openserver_to_date(DoGet(mbal_server, "MBAL.MB.TRES[2][0][$].TIME"))
+watercut  <- rDoGet(mbal_server, "MBAL.MB.TRES[2][0][$]WATCUT")
 
 # build tidy dataframe and plot all variables
-df <- data.frame(date, oil_rate, gas_rate, wat_rate, tank_pres)
-df_gather <- gather(df, var, value, oil_rate:tank_pres)
+df <- data.frame(date, oil_rf, oil_rate, gas_rate, wat_rate, tank_pres, watercut)
+df_gather <- gather(df, var, value, oil_rf:watercut)
 ggplot(df_gather, aes(x=date, y = value, color = var)) +
     geom_line() +
     geom_point() +

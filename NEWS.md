@@ -1,3 +1,7 @@
+# rOpenserver 0.1.0.9010
+* Prosper example horizontal well with three independent variables
+* Prosper example horizontal well with two independent variables
+
 # rOpenserver 0.1.0.9009
 * add demo examples to run with demo()
 
