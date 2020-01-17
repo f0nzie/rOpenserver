@@ -1,0 +1,65 @@
+url: https://github.com/f0nzie/rOpenserver
+
+template:
+  params:
+    bootswatch: spacelab
+
+
+
+reference:
+    - title: Main functions
+      desc: Essential functionality
+      contents:
+        - setOpenServer
+        - DoCmd
+        - DoGet
+        - DoSet
+        - DoSlowCmd
+        - DoGAPFunc
+    - title: Utilities
+      desc: Utility functions
+      contents:
+        - rDoGet
+        - openserver_to_character
+        - openserver_to_double
+        - openserver_to_integer
+        - openserver_to_date
+    - title: Classes
+      desc: rOpenserver classes
+      contents:
+        - OpenServer
+    - title: Other
+      desc: Other rOpenserver functions
+      contents:
+        - read_openserver_status
+
+
+navbar:
+  title: ~
+  type: default
+  left:
+  - text: Articles
+    menu:
+      - text: Prosper Hello World!
+        href: articles/prosper-hello_world.html
+      - text: GAP Hello World!
+        href: articles/gap-hello_world.html
+      - text: MBAL Hello World!
+        href: articles/mbal-hello_world.html
+
+    href: articles/index.html
+  - text: Notebooks
+    menu:
+      - text: Calculate liquid rate when varying well length, vertical anisotropy and wellhead pressure
+        href: articles/notebooks/prosperHorizNodeSys.html
+      - text: Calculate liquid rate when varying well length and vertical anisotropy
+        href: articles/notebooks/prosperHorizSys.html
+
+
+  right:
+  - text: Functions and Classes
+    href: reference/index.html
+  - text: Changelog
+    href: news/index.html
+  - icon: fa-github fa-lg
+    href: https://github.com/f0nzie/rOpenserver

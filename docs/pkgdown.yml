@@ -4,5 +4,10 @@ pkgdown_sha: ~
 articles:
   gap-hello_world: gap-hello_world.html
   mbal-hello_world: mbal-hello_world.html
+  prosperHorizNodeSys: notebooks/prosperHorizNodeSys.html
+  prosperHorizSys: notebooks/prosperHorizSys.html
   prosper-hello_world: prosper-hello_world.html
+urls:
+  reference: https://github.com/f0nzie/rOpenserver/reference
+  article: https://github.com/f0nzie/rOpenserver/articles
 
