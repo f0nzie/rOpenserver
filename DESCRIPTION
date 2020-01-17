@@ -1,12 +1,12 @@
 Package: rOpenserver
 Type: Package
 Title: COM interface to OpenServer written in R
-Version: 0.1.0.9010
+Version: 0.1.0.9011
 Author: Alfonso R. Reyes
 Maintainer: Alfonso R. Reyes <alfonso.reyes@oilgainsanalytics.com>
 Description: Provide a COM interface to R so it can talk to Petex's IPM 
     applications Prosper, GAP, MBAL via OpenServer.
-License: GPL-3
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
