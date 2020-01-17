@@ -1,3 +1,10 @@
+# rOpenserver 0.1.0.9011
+* New `_pkgdown.yml`
+* Notebooks derived from `demo` scripts
+* Added section in pkgdown for *Notebooks*
+* License switch to MIT
+
+
 # rOpenserver 0.1.0.9010
 * Prosper example horizontal well with three independent variables
 * Prosper example horizontal well with two independent variables
