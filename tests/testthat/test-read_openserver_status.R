@@ -17,8 +17,8 @@ test_that("Windows processes are captured", {
     expect_true(any(grepl("prosper", unique(status$process))))
     expect_true(any(grepl("px32COM10", unique(status$process))))
 
+    Sys.sleep(4)
     cmd = "PROSPER.SHUTDOWN"
-    Sys.sleep(2)
     prosper_server$DoCmd(cmd)
 
     # tests that after shutdown some processes remain
@@ -34,7 +34,7 @@ test_that("Windows processes are captured", {
     expect_true(any(grepl("PxLs.exe", unique(status$process))))
 
     # test if anything remains after deleting object
-    Sys.sleep(1)
+    Sys.sleep(2)
     # prosper_server <- NULL
     rm(prosper_server)
     status <- read_openserver_status()
@@ -51,7 +51,7 @@ test_that("Windows processes are captured", {
             Sys.sleep(sec)
             setTxtProgressBar(pb, i)
         }
-        Sys.sleep(1)
+        Sys.sleep(2)
         close(pb)
         status <- read_openserver_status()
         expect_false(any(grepl("PxLs.exe", unique(status$process))))
