@@ -1,3 +1,6 @@
+# rOpenserver 0.1.0.9013
+* Heat Transfer Coefficient example
+
 # rOpenserver 0.1.0.9011
 * New `_pkgdown.yml`
 * Notebooks derived from `demo` scripts

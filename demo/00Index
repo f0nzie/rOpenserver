@@ -1,3 +1,4 @@
 mbalHelloApp   Run simple prediction in oil reservoir with MBAL. Extract and plot results
 prosperHorizSysApp   Calculate liquid rates for different well lengths and vertical anisotropies
 prosperHorizNodeSysApp   Calculate liquid rates for different well lengths, vertical anisotropies and top node pressures
+prosperOilwellHtcApp    Calculate some well variables at diiferent values of Heat Transfer Coefficient

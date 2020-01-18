@@ -63,7 +63,7 @@ OpenServer$set("public","DoCmd",function(command) {
     return(err)
   }
   else
-    return(ret_cmd)
+    invisible(ret_cmd)
 })
 
 
@@ -86,7 +86,7 @@ OpenServer$set("public","DoGet",function(variable) {
     return(err)
   }
   else
-    return(ret_get)
+    invisible(ret_get)
 })
 
 #' @name DoSet
@@ -109,7 +109,7 @@ OpenServer$set("public","DoSet",function(variable, set_value = NULL) {
     return(err)
   }
   else
-    return(ret_set)
+    invisible(ret_set)
 })
 
 
@@ -154,7 +154,7 @@ OpenServer$set("public","DoSlowCmd",function(command) {
     return(err)
   }
   else
-    return(last_error)
+    invisible(last_error)
 })
 
 #' @name DoGAPFunc
@@ -175,7 +175,7 @@ OpenServer$set("public","DoGAPFunc",function(Gv) {
     err = list(last_error, error_description)
     return(err)
   }
-  return(ret_get)
+  invisible(ret_get)
 })
 
 

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">rOpenserver</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9011</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9013</span>
       </span>
     </div>
 
@@ -67,6 +67,12 @@
     </li>
     <li>
       <a href="../../articles/notebooks/prosperHorizSys.html">Calculate liquid rate when varying well length and vertical anisotropy</a>
+    </li>
+    <li>
+      <a href="../../articles/notebooks/mbalPredByOoip.html">Run prediction given an OOIP</a>
+    </li>
+    <li>
+      <a href="../../articles/notebooks/prosperOilwellHtc.html">Calculate well variables at diiferent Heat Transfer Coefficients</a>
     </li>
   </ul>
 </li>
@@ -127,43 +133,42 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Initialize and start OpenServer</span></a>
 <a class="sourceLine" id="cb3-2" title="2">pserver &lt;-<span class="st"> </span>OpenServer<span class="op">$</span><span class="kw">new</span>()</a>
 <a class="sourceLine" id="cb3-3" title="3">cmd =<span class="st"> "PROSPER.START"</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(pserver, cmd)</a></code></pre></div>
-<pre><code>[1] 0</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># open model</span></a>
-<a class="sourceLine" id="cb5-2" title="2">model_file &lt;-<span class="st"> </span><span class="kw">get_model_filename</span>(<span class="dt">model =</span> <span class="st">"HORWELLDP.OUT"</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3">open_cmd &lt;-<span class="st"> "PROSPER.OPENFILE"</span></a>
-<a class="sourceLine" id="cb5-4" title="4">open_cmd &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(open_cmd, <span class="st">"('"</span>, model_file, <span class="st">"')"</span>)</a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(pserver, open_cmd)</a></code></pre></div>
-<pre><code>[1] 0</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># iterate with three loops</span></a>
-<a class="sourceLine" id="cb7-2" title="2">cum_df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>()    <span class="co"># dataframe accumulator</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="cf">for</span> (pres <span class="cf">in</span> node_pres) { <span class="co"># iterate through all top node pressures</span></a>
-<a class="sourceLine" id="cb7-4" title="4">    <span class="kw"><a href="../../reference/DoSet.html">DoSet</a></span>(pserver, <span class="st">"PROSPER.ANL.SYS.Pres"</span>, pres) <span class="co"># write the node pressure</span></a>
-<a class="sourceLine" id="cb7-5" title="5">    df[<span class="st">"node_pres"</span>] &lt;-<span class="st"> </span>pres                      <span class="co"># assign value to node_pres</span></a>
-<a class="sourceLine" id="cb7-6" title="6">    <span class="co"># iterate through anisotropy values</span></a>
-<a class="sourceLine" id="cb7-7" title="7">    <span class="cf">for</span> (k <span class="cf">in</span> kv_kh) {</a>
-<a class="sourceLine" id="cb7-8" title="8">        <span class="kw"><a href="../../reference/DoSet.html">DoSet</a></span>(pserver, <span class="st">"PROSPER.SIN.IPR.Single.Vans"</span>, k)  <span class="co"># write kv_kh to model</span></a>
-<a class="sourceLine" id="cb7-9" title="9">        <span class="co"># iterate through all well lengths of interest</span></a>
-<a class="sourceLine" id="cb7-10" title="10">        i &lt;-<span class="st">  </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb7-11" title="11">        <span class="cf">for</span> (wlen <span class="cf">in</span> df[[<span class="st">"well_length"</span>]]) {</a>
-<a class="sourceLine" id="cb7-12" title="12">            <span class="co"># set well length</span></a>
-<a class="sourceLine" id="cb7-13" title="13">            <span class="kw"><a href="../../reference/DoSet.html">DoSet</a></span>(pserver, <span class="st">"PROSPER.SIN.IPR.Single.WellLen"</span>, wlen)</a>
-<a class="sourceLine" id="cb7-14" title="14">            <span class="co"># set length in zone 1</span></a>
-<a class="sourceLine" id="cb7-15" title="15">            <span class="kw"><a href="../../reference/DoSet.html">DoSet</a></span>(pserver, <span class="st">"PROSPER.SIN.IPR.Single.HorizdP[0].ZONLEN"</span>, wlen)</a>
-<a class="sourceLine" id="cb7-16" title="16">            <span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(pserver, <span class="st">"PROSPER.anl.SYS.CALC"</span>)    <span class="co"># do calculation</span></a>
-<a class="sourceLine" id="cb7-17" title="17">            <span class="co"># store liquid rate result in dataframe for each anisotropy scenario</span></a>
-<a class="sourceLine" id="cb7-18" title="18">            df[[<span class="kw"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(k)]][i] &lt;-</a>
-<a class="sourceLine" id="cb7-19" title="19"><span class="st">                </span><span class="kw"><a href="https://rdrr.io/r/base/double.html">as.double</a></span>(<span class="kw"><a href="../../reference/DoGet.html">DoGet</a></span>(pserver, <span class="st">"PROSPER.OUT.SYS.RESULTS[0][0][0].SOL.LIQRATE"</span>))</a>
-<a class="sourceLine" id="cb7-20" title="20">            i &lt;-<span class="st">  </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb7-21" title="21">        }</a>
-<a class="sourceLine" id="cb7-22" title="22">    }</a>
-<a class="sourceLine" id="cb7-23" title="23">    cum_df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(cum_df, df)  <span class="co"># dataframe accumulator</span></a>
-<a class="sourceLine" id="cb7-24" title="24">}</a>
-<a class="sourceLine" id="cb7-25" title="25"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(cum_df))</a></code></pre></div>
+<a class="sourceLine" id="cb3-4" title="4"><span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(pserver, cmd)</a>
+<a class="sourceLine" id="cb3-5" title="5"></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co"># open model</span></a>
+<a class="sourceLine" id="cb3-7" title="7">model_file &lt;-<span class="st"> </span><span class="kw">get_model_filename</span>(<span class="dt">model =</span> <span class="st">"HORWELLDP.OUT"</span>)</a>
+<a class="sourceLine" id="cb3-8" title="8">open_cmd &lt;-<span class="st"> "PROSPER.OPENFILE"</span></a>
+<a class="sourceLine" id="cb3-9" title="9">open_cmd &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(open_cmd, <span class="st">"('"</span>, model_file, <span class="st">"')"</span>)</a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(pserver, open_cmd)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># iterate with three loops</span></a>
+<a class="sourceLine" id="cb4-2" title="2">cum_df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>()    <span class="co"># dataframe accumulator</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="cf">for</span> (pres <span class="cf">in</span> node_pres) { <span class="co"># iterate through all top node pressures</span></a>
+<a class="sourceLine" id="cb4-4" title="4">    <span class="kw"><a href="../../reference/DoSet.html">DoSet</a></span>(pserver, <span class="st">"PROSPER.ANL.SYS.Pres"</span>, pres) <span class="co"># write the node pressure</span></a>
+<a class="sourceLine" id="cb4-5" title="5">    df[<span class="st">"node_pres"</span>] &lt;-<span class="st"> </span>pres                      <span class="co"># assign value to node_pres</span></a>
+<a class="sourceLine" id="cb4-6" title="6">    <span class="co"># iterate through anisotropy values</span></a>
+<a class="sourceLine" id="cb4-7" title="7">    <span class="cf">for</span> (k <span class="cf">in</span> kv_kh) {</a>
+<a class="sourceLine" id="cb4-8" title="8">        <span class="kw"><a href="../../reference/DoSet.html">DoSet</a></span>(pserver, <span class="st">"PROSPER.SIN.IPR.Single.Vans"</span>, k)  <span class="co"># write kv_kh to model</span></a>
+<a class="sourceLine" id="cb4-9" title="9">        <span class="co"># iterate through all well lengths of interest</span></a>
+<a class="sourceLine" id="cb4-10" title="10">        i &lt;-<span class="st">  </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-11" title="11">        <span class="cf">for</span> (wlen <span class="cf">in</span> df[[<span class="st">"well_length"</span>]]) {</a>
+<a class="sourceLine" id="cb4-12" title="12">            <span class="co"># set well length</span></a>
+<a class="sourceLine" id="cb4-13" title="13">            <span class="kw"><a href="../../reference/DoSet.html">DoSet</a></span>(pserver, <span class="st">"PROSPER.SIN.IPR.Single.WellLen"</span>, wlen)</a>
+<a class="sourceLine" id="cb4-14" title="14">            <span class="co"># set length in zone 1</span></a>
+<a class="sourceLine" id="cb4-15" title="15">            <span class="kw"><a href="../../reference/DoSet.html">DoSet</a></span>(pserver, <span class="st">"PROSPER.SIN.IPR.Single.HorizdP[0].ZONLEN"</span>, wlen)</a>
+<a class="sourceLine" id="cb4-16" title="16">            <span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(pserver, <span class="st">"PROSPER.anl.SYS.CALC"</span>)    <span class="co"># do calculation</span></a>
+<a class="sourceLine" id="cb4-17" title="17">            <span class="co"># store liquid rate result in dataframe for each anisotropy scenario</span></a>
+<a class="sourceLine" id="cb4-18" title="18">            df[[<span class="kw"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(k)]][i] &lt;-</a>
+<a class="sourceLine" id="cb4-19" title="19"><span class="st">                </span><span class="kw"><a href="https://rdrr.io/r/base/double.html">as.double</a></span>(<span class="kw"><a href="../../reference/DoGet.html">DoGet</a></span>(pserver, <span class="st">"PROSPER.OUT.SYS.RESULTS[0][0][0].SOL.LIQRATE"</span>))</a>
+<a class="sourceLine" id="cb4-20" title="20">            i &lt;-<span class="st">  </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-21" title="21">        }</a>
+<a class="sourceLine" id="cb4-22" title="22">    }</a>
+<a class="sourceLine" id="cb4-23" title="23">    cum_df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(cum_df, df)  <span class="co"># dataframe accumulator</span></a>
+<a class="sourceLine" id="cb4-24" title="24">}</a>
+<a class="sourceLine" id="cb4-25" title="25"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(cum_df))</a></code></pre></div>
 <pre><code>[1] 153   7</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">"Done!"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">"Done!"</span>)</a></code></pre></div>
 <pre><code>[1] "Done!"</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(cum_df)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(cum_df)</a></code></pre></div>
 <pre><code>    well_length node_pres     0.001     0.005      0.01       0.1         1
 1           500       100  6076.982  7609.854  8325.517 10147.637 10983.459
 2          1000       100  7456.976  9098.525  9684.483 10917.295 11393.289
@@ -318,22 +323,21 @@
 151        7500       300  8934.293  9486.562  9629.824  9883.497  9967.014
 152        8000       300  8990.300  9513.415  9650.671  9890.663  9968.566
 153        8500       300  9039.006  9537.389  9667.896  9894.605  9969.549</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># convert dataframe to tidy dataset</span></a>
-<a class="sourceLine" id="cb13-2" title="2">df_gather &lt;-<span class="st"> </span><span class="kw">gather</span>(cum_df, kv_kh, liquid_rate, <span class="st">'0.001'</span><span class="op">:</span><span class="st">'1'</span>)</a>
-<a class="sourceLine" id="cb13-3" title="3"></a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb13-5" title="5">g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df_gather, <span class="kw">aes</span>(<span class="dt">x =</span> well_length, <span class="dt">y =</span> liquid_rate, <span class="dt">color =</span> kv_kh)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-6" title="6"><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st">             </span><span class="co"># one curve per kv_kh</span></a>
-<a class="sourceLine" id="cb13-7" title="7"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-8" title="8"><span class="st">    </span><span class="kw">facet_wrap</span>(node_pres<span class="op">~</span>.)   <span class="co"># one facet per top node pressure</span></a>
-<a class="sourceLine" id="cb13-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(g)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># convert dataframe to tidy dataset</span></a>
+<a class="sourceLine" id="cb10-2" title="2">df_gather &lt;-<span class="st"> </span><span class="kw">gather</span>(cum_df, kv_kh, liquid_rate, <span class="st">'0.001'</span><span class="op">:</span><span class="st">'1'</span>)</a>
+<a class="sourceLine" id="cb10-3" title="3"></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb10-5" title="5">g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df_gather, <span class="kw">aes</span>(<span class="dt">x =</span> well_length, <span class="dt">y =</span> liquid_rate, <span class="dt">color =</span> kv_kh)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-6" title="6"><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st">             </span><span class="co"># one curve per kv_kh</span></a>
+<a class="sourceLine" id="cb10-7" title="7"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-8" title="8"><span class="st">    </span><span class="kw">facet_wrap</span>(node_pres<span class="op">~</span>.)   <span class="co"># one facet per top node pressure</span></a>
+<a class="sourceLine" id="cb10-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(g)</a></code></pre></div>
 <p><img src="prosperHorizNodeSys_files/figure-html/shutdown-1.png" width="700" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># shutdown Prosper</span></a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb14-3" title="3">command =<span class="st"> "PROSPER.SHUTDOWN"</span></a>
-<a class="sourceLine" id="cb14-4" title="4">pserver<span class="op">$</span><span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(command)</a></code></pre></div>
-<pre><code>[1] 0</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">pserver &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># shutdown Prosper</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb11-3" title="3">command =<span class="st"> "PROSPER.SHUTDOWN"</span></a>
+<a class="sourceLine" id="cb11-4" title="4">pserver<span class="op">$</span><span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(command)</a>
+<a class="sourceLine" id="cb11-5" title="5">pserver &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -54,6 +54,10 @@ navbar:
         href: articles/notebooks/prosperHorizNodeSys.html
       - text: Calculate liquid rate when varying well length and vertical anisotropy
         href: articles/notebooks/prosperHorizSys.html
+      - text: Run prediction given an OOIP
+        href: articles/notebooks/mbalPredByOoip.html
+      - text: Calculate well variables at diiferent Heat Transfer Coefficients
+        href: articles/notebooks/prosperOilwellHtc.html
 
 
   right:
