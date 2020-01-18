@@ -11,7 +11,6 @@ knitr::opts_chunk$set(echo = TRUE,
                       error = TRUE, 
                       warning = FALSE, 
                       message = FALSE, 
-                      cache = TRUE,
                       fig.align = 'center')
 ```
 

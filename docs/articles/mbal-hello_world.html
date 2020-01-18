@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rOpenserver</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9011</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9013</span>
       </span>
     </div>
 
@@ -67,6 +67,12 @@
     </li>
     <li>
       <a href="../articles/notebooks/prosperHorizSys.html">Calculate liquid rate when varying well length and vertical anisotropy</a>
+    </li>
+    <li>
+      <a href="../articles/notebooks/mbalPredByOoip.html">Run prediction given an OOIP</a>
+    </li>
+    <li>
+      <a href="../articles/notebooks/prosperOilwellHtc.html">Calculate well variables at diiferent Heat Transfer Coefficients</a>
     </li>
   </ul>
 </li>
@@ -119,8 +125,7 @@
 <a class="sourceLine" id="cb1-5" title="5"></a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co"># Start Prosper</span></a>
 <a class="sourceLine" id="cb1-7" title="7">cmd =<span class="st"> "MBAL.START"</span></a>
-<a class="sourceLine" id="cb1-8" title="8">mbal_server<span class="op">$</span><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(cmd)</a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-8" title="8">mbal_server<span class="op">$</span><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(cmd)</a></code></pre></div>
 </div>
 <div id="get-the-model" class="section level2">
 <h2 class="hasAnchor">
@@ -145,36 +150,32 @@
 <a class="sourceLine" id="cb3-3" title="3"></a>
 <a class="sourceLine" id="cb3-4" title="4">model_file &lt;-<span class="st"> </span><span class="kw">get_mbal_model</span>(<span class="dt">model =</span> <span class="st">"oil.mbi"</span>)</a>
 <a class="sourceLine" id="cb3-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(model_file)</a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; [1] "C:/Users/ipm/AppData/Local/Temp/RtmpktzRSv/temp_libpath55061314883/rOpenserver/models/oil.mbi"</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; [1] "C:/Users/ipm/AppData/Local/Temp/RtmpY9Lvax/temp_libpath12c47481070/rOpenserver/models/oil.mbi"</span></a>
 <a class="sourceLine" id="cb3-7" title="7">open_cmd &lt;-<span class="st"> 'MBAL.OPENFILE'</span></a>
 <a class="sourceLine" id="cb3-8" title="8">open_cmd &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(open_cmd, <span class="st">'("'</span>, model_file, <span class="st">'")'</span>)</a>
 <a class="sourceLine" id="cb3-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(open_cmd)</a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt; [1] "MBAL.OPENFILE(\"C:/Users/ipm/AppData/Local/Temp/RtmpktzRSv/temp_libpath55061314883/rOpenserver/models/oil.mbi\")"</span></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(mbal_server, open_cmd)   <span class="co"># using S3 dispatch of R6 class</span></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt; [1] "MBAL.OPENFILE(\"C:/Users/ipm/AppData/Local/Temp/RtmpY9Lvax/temp_libpath12c47481070/rOpenserver/models/oil.mbi\")"</span></a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(mbal_server, open_cmd)   <span class="co"># using S3 dispatch of R6 class</span></a></code></pre></div>
 </div>
 <div id="set-the-input-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#set-the-input-data" class="anchor"></a>Set the input data</h2>
 <p>Enter the OOIP and write to MBAL.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">ooip &lt;-<span class="st"> </span><span class="dv">300</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="../reference/DoSet.html">DoSet</a></span>(mbal_server, <span class="st">"MBAL.MB.TANK.OOIP"</span>, ooip)</a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="../reference/DoSet.html">DoSet</a></span>(mbal_server, <span class="st">"MBAL.MB.TANK.OOIP"</span>, ooip)</a></code></pre></div>
 </div>
 <div id="run-the-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#run-the-model" class="anchor"></a>Run the model</h2>
 <p>Run the prediction.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="../reference/DoSlowCmd.html">DoSlowCmd</a></span>(mbal_server, <span class="st">"MBAL.MB.RUNPREDICTION"</span>)</a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="../reference/DoSlowCmd.html">DoSlowCmd</a></span>(mbal_server, <span class="st">"MBAL.MB.RUNPREDICTION"</span>)</a></code></pre></div>
 </div>
 <div id="extract-the-results" class="section level2">
 <h2 class="hasAnchor">
 <a href="#extract-the-results" class="anchor"></a>Extract the results</h2>
 <p>And extract the first row of the table generated by the prediction.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># we get the oil rate from the first in the results table</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="../reference/DoGet.html">DoGet</a></span>(mbal_server, <span class="st">"MBAL.MB.TRES[2][0][0].OILRATE"</span>)</a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; [1] "11491.032258065"</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="../reference/DoGet.html">DoGet</a></span>(mbal_server, <span class="st">"MBAL.MB.TRES[2][0][0].OILRATE"</span>)</a></code></pre></div>
 </div>
 <div id="close-the-application" class="section level2">
 <h2 class="hasAnchor">
@@ -183,8 +184,7 @@
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb7-3" title="3">command =<span class="st"> "MBAL.SHUTDOWN"</span></a>
 <a class="sourceLine" id="cb7-4" title="4">mbal_server<span class="op">$</span><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(command)</a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; [1] 0</span></a>
-<a class="sourceLine" id="cb7-6" title="6">mbal_server &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-5" title="5">mbal_server &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
 </div>
   </div>
 

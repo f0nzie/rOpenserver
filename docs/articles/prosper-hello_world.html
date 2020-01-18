@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rOpenserver</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9011</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9013</span>
       </span>
     </div>
 
@@ -67,6 +67,12 @@
     </li>
     <li>
       <a href="../articles/notebooks/prosperHorizSys.html">Calculate liquid rate when varying well length and vertical anisotropy</a>
+    </li>
+    <li>
+      <a href="../articles/notebooks/mbalPredByOoip.html">Run prediction given an OOIP</a>
+    </li>
+    <li>
+      <a href="../articles/notebooks/prosperOilwellHtc.html">Calculate well variables at diiferent Heat Transfer Coefficients</a>
     </li>
   </ul>
 </li>
@@ -180,7 +186,7 @@
 <a class="sourceLine" id="cb4-8" title="8">}</a>
 <a class="sourceLine" id="cb4-9" title="9"></a>
 <a class="sourceLine" id="cb4-10" title="10"><span class="kw">get_prosper_model</span>(<span class="dt">model =</span> <span class="st">"HORWELLDP.OUT"</span>)</a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; [1] "C:/Users/ipm/AppData/Local/Temp/RtmpktzRSv/temp_libpath55061314883/rOpenserver/models/HORWELLDP.OUT"</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; [1] "C:/Users/ipm/AppData/Local/Temp/RtmpY9Lvax/temp_libpath12c47481070/rOpenserver/models/HORWELLDP.OUT"</span></a></code></pre></div>
 </div>
 <div id="start-prosper" class="section level3">
 <h3 class="hasAnchor">
@@ -190,8 +196,7 @@
 <a class="sourceLine" id="cb5-3" title="3"></a>
 <a class="sourceLine" id="cb5-4" title="4"><span class="co"># Start Prosper</span></a>
 <a class="sourceLine" id="cb5-5" title="5">cmd =<span class="st"> "PROSPER.START"</span></a>
-<a class="sourceLine" id="cb5-6" title="6">prosper_server<span class="op">$</span><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(cmd)</a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-6" title="6">prosper_server<span class="op">$</span><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(cmd)</a></code></pre></div>
 </div>
 <div id="open-the-model" class="section level3">
 <h3 class="hasAnchor">
@@ -200,8 +205,7 @@
 <a class="sourceLine" id="cb6-2" title="2">model_file &lt;-<span class="st"> </span><span class="kw">get_prosper_model</span>(<span class="dt">model =</span> <span class="st">"HORWELLDP.OUT"</span>)</a>
 <a class="sourceLine" id="cb6-3" title="3">open_cmd &lt;-<span class="st"> "PROSPER.OPENFILE"</span></a>
 <a class="sourceLine" id="cb6-4" title="4">open_cmd &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(open_cmd, <span class="st">"('"</span>, model_file, <span class="st">"')"</span>)</a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(prosper_server, open_cmd)  <span class="co"># using S3 dispatch of R6 class</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-5" title="5"><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(prosper_server, open_cmd)  <span class="co"># using S3 dispatch of R6 class</span></a></code></pre></div>
 </div>
 <div id="iterate-through-well-lengths" class="section level3">
 <h3 class="hasAnchor">
@@ -273,8 +277,7 @@
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb9-3" title="3">command =<span class="st"> "PROSPER.SHUTDOWN"</span></a>
 <a class="sourceLine" id="cb9-4" title="4">prosper_server<span class="op">$</span><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(command)</a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="co">#&gt; [1] 0</span></a>
-<a class="sourceLine" id="cb9-6" title="6">prosper_server &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+<a class="sourceLine" id="cb9-5" title="5">prosper_server &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
 </div>
 </div>
   </div>
