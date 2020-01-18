@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rOpenserver</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9011</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9013</span>
       </span>
     </div>
 
@@ -67,6 +67,12 @@
     </li>
     <li>
       <a href="../articles/notebooks/prosperHorizSys.html">Calculate liquid rate when varying well length and vertical anisotropy</a>
+    </li>
+    <li>
+      <a href="../articles/notebooks/mbalPredByOoip.html">Run prediction given an OOIP</a>
+    </li>
+    <li>
+      <a href="../articles/notebooks/prosperOilwellHtc.html">Calculate well variables at diiferent Heat Transfer Coefficients</a>
     </li>
   </ul>
 </li>
@@ -125,24 +131,21 @@
 <a class="sourceLine" id="cb1-13" title="13"><span class="co"># start OpenServer and GAP</span></a>
 <a class="sourceLine" id="cb1-14" title="14">gserver &lt;-<span class="st"> </span><span class="kw"><a href="../reference/setOpenServer.html">setOpenServer</a></span>()</a>
 <a class="sourceLine" id="cb1-15" title="15">gserver<span class="op">$</span><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(<span class="st">"GAP.START"</span>)</a>
-<a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt; [1] 0</span></a>
-<a class="sourceLine" id="cb1-17" title="17"></a>
-<a class="sourceLine" id="cb1-18" title="18"><span class="co"># open GAP model</span></a>
-<a class="sourceLine" id="cb1-19" title="19">cmd_openfile &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">'GAP.OPENFILE("'</span>, <span class="kw">get_gap_model_01</span>(), <span class="st">'")'</span>)</a>
-<a class="sourceLine" id="cb1-20" title="20">gserver<span class="op">$</span><span class="kw"><a href="../reference/DoSlowCmd.html">DoSlowCmd</a></span>(cmd_openfile)</a>
-<a class="sourceLine" id="cb1-21" title="21"><span class="co">#&gt; [1] 0</span></a>
-<a class="sourceLine" id="cb1-22" title="22"></a>
-<a class="sourceLine" id="cb1-23" title="23"></a>
-<a class="sourceLine" id="cb1-24" title="24"><span class="co"># get the number of steps for the model prediction</span></a>
-<a class="sourceLine" id="cb1-25" title="25">NumSteps &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span>(gserver<span class="op">$</span><span class="kw"><a href="../reference/DoGAPFunc.html">DoGAPFunc</a></span>(<span class="st">"GAP.PREDINIT()"</span>))</a>
-<a class="sourceLine" id="cb1-26" title="26"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(NumSteps)</a>
-<a class="sourceLine" id="cb1-27" title="27"><span class="co">#&gt; [1] 78</span></a>
-<a class="sourceLine" id="cb1-28" title="28"></a>
-<a class="sourceLine" id="cb1-29" title="29"><span class="co"># exit GAP</span></a>
-<a class="sourceLine" id="cb1-30" title="30"><span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb1-31" title="31">gserver<span class="op">$</span><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(<span class="st">"GAP.SHUTDOWN"</span>)</a>
-<a class="sourceLine" id="cb1-32" title="32"><span class="co">#&gt; [1] 0</span></a>
-<a class="sourceLine" id="cb1-33" title="33">gserver &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-16" title="16"></a>
+<a class="sourceLine" id="cb1-17" title="17"><span class="co"># open GAP model</span></a>
+<a class="sourceLine" id="cb1-18" title="18">cmd_openfile &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">'GAP.OPENFILE("'</span>, <span class="kw">get_gap_model_01</span>(), <span class="st">'")'</span>)</a>
+<a class="sourceLine" id="cb1-19" title="19">gserver<span class="op">$</span><span class="kw"><a href="../reference/DoSlowCmd.html">DoSlowCmd</a></span>(cmd_openfile)</a>
+<a class="sourceLine" id="cb1-20" title="20"></a>
+<a class="sourceLine" id="cb1-21" title="21"></a>
+<a class="sourceLine" id="cb1-22" title="22"><span class="co"># get the number of steps for the model prediction</span></a>
+<a class="sourceLine" id="cb1-23" title="23">NumSteps &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span>(gserver<span class="op">$</span><span class="kw"><a href="../reference/DoGAPFunc.html">DoGAPFunc</a></span>(<span class="st">"GAP.PREDINIT()"</span>))</a>
+<a class="sourceLine" id="cb1-24" title="24"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(NumSteps)</a>
+<a class="sourceLine" id="cb1-25" title="25"><span class="co">#&gt; [1] 78</span></a>
+<a class="sourceLine" id="cb1-26" title="26"></a>
+<a class="sourceLine" id="cb1-27" title="27"><span class="co"># exit GAP</span></a>
+<a class="sourceLine" id="cb1-28" title="28"><span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-29" title="29">gserver<span class="op">$</span><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(<span class="st">"GAP.SHUTDOWN"</span>)</a>
+<a class="sourceLine" id="cb1-30" title="30">gserver &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
 </div>
 <div id="s3-methods" class="section level2">
 <h2 class="hasAnchor">
@@ -164,24 +167,21 @@
 <a class="sourceLine" id="cb2-14" title="14"><span class="co"># start OpenServer and GAP</span></a>
 <a class="sourceLine" id="cb2-15" title="15">gserver &lt;-<span class="st"> </span><span class="kw"><a href="../reference/setOpenServer.html">setOpenServer</a></span>()</a>
 <a class="sourceLine" id="cb2-16" title="16"><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(gserver, <span class="st">"GAP.START"</span>)</a>
-<a class="sourceLine" id="cb2-17" title="17"><span class="co">#&gt; [1] 0</span></a>
-<a class="sourceLine" id="cb2-18" title="18"></a>
-<a class="sourceLine" id="cb2-19" title="19"><span class="co"># open the GAP model</span></a>
-<a class="sourceLine" id="cb2-20" title="20">cmd_openfile &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">'GAP.OPENFILE("'</span>, <span class="kw">get_gap_model_01</span>(), <span class="st">'")'</span>)</a>
-<a class="sourceLine" id="cb2-21" title="21"><span class="kw"><a href="../reference/DoSlowCmd.html">DoSlowCmd</a></span>(gserver, cmd_openfile)</a>
-<a class="sourceLine" id="cb2-22" title="22"><span class="co">#&gt; [1] 0</span></a>
-<a class="sourceLine" id="cb2-23" title="23"></a>
-<a class="sourceLine" id="cb2-24" title="24"></a>
-<a class="sourceLine" id="cb2-25" title="25"><span class="co"># get the number of steps for the model prediction</span></a>
-<a class="sourceLine" id="cb2-26" title="26">NumSteps &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span>(<span class="kw"><a href="../reference/DoGAPFunc.html">DoGAPFunc</a></span>(gserver, <span class="st">"GAP.PREDINIT()"</span>))</a>
-<a class="sourceLine" id="cb2-27" title="27"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(NumSteps)</a>
-<a class="sourceLine" id="cb2-28" title="28"><span class="co">#&gt; [1] 78</span></a>
-<a class="sourceLine" id="cb2-29" title="29"></a>
-<a class="sourceLine" id="cb2-30" title="30"><span class="co"># exit GAP</span></a>
-<a class="sourceLine" id="cb2-31" title="31"><span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb2-32" title="32"><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(gserver, <span class="st">"GAP.SHUTDOWN"</span>)</a>
-<a class="sourceLine" id="cb2-33" title="33"><span class="co">#&gt; [1] 0</span></a>
-<a class="sourceLine" id="cb2-34" title="34">gserver &lt;-<span class="st"> </span><span class="ot">NULL</span>                             <span class="co"># clean any OpenServer processes</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-17" title="17"></a>
+<a class="sourceLine" id="cb2-18" title="18"><span class="co"># open the GAP model</span></a>
+<a class="sourceLine" id="cb2-19" title="19">cmd_openfile &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">'GAP.OPENFILE("'</span>, <span class="kw">get_gap_model_01</span>(), <span class="st">'")'</span>)</a>
+<a class="sourceLine" id="cb2-20" title="20"><span class="kw"><a href="../reference/DoSlowCmd.html">DoSlowCmd</a></span>(gserver, cmd_openfile)</a>
+<a class="sourceLine" id="cb2-21" title="21"></a>
+<a class="sourceLine" id="cb2-22" title="22"></a>
+<a class="sourceLine" id="cb2-23" title="23"><span class="co"># get the number of steps for the model prediction</span></a>
+<a class="sourceLine" id="cb2-24" title="24">NumSteps &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span>(<span class="kw"><a href="../reference/DoGAPFunc.html">DoGAPFunc</a></span>(gserver, <span class="st">"GAP.PREDINIT()"</span>))</a>
+<a class="sourceLine" id="cb2-25" title="25"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(NumSteps)</a>
+<a class="sourceLine" id="cb2-26" title="26"><span class="co">#&gt; [1] 78</span></a>
+<a class="sourceLine" id="cb2-27" title="27"></a>
+<a class="sourceLine" id="cb2-28" title="28"><span class="co"># exit GAP</span></a>
+<a class="sourceLine" id="cb2-29" title="29"><span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb2-30" title="30"><span class="kw"><a href="../reference/DoCmd.html">DoCmd</a></span>(gserver, <span class="st">"GAP.SHUTDOWN"</span>)</a>
+<a class="sourceLine" id="cb2-31" title="31">gserver &lt;-<span class="st"> </span><span class="ot">NULL</span>                             <span class="co"># clean any OpenServer processes</span></a></code></pre></div>
 </div>
   </div>
 

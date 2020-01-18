@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>prosperHorizSys • rOpenserver</title>
+<title>prosperOilwellHtc • rOpenserver</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
-<script src="../../pkgdown.js"></script><meta property="og:title" content="prosperHorizSys">
+<script src="../../pkgdown.js"></script><meta property="og:title" content="prosperOilwellHtc">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -103,17 +103,17 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>prosperHorizSys</h1>
+      <h1>prosperOilwellHtc</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/f0nzie/rOpenserver/blob/master/vignettes/notebooks/prosperHorizSys.Rmd"><code>vignettes/notebooks/prosperHorizSys.Rmd</code></a></small>
-      <div class="hidden name"><code>prosperHorizSys.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/f0nzie/rOpenserver/blob/master/vignettes/notebooks/prosperOilwellHtc.Rmd"><code>vignettes/notebooks/prosperOilwellHtc.Rmd</code></a></small>
+      <div class="hidden name"><code>prosperOilwellHtc.Rmd</code></div>
 
     </div>
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># prosperHorizSys.R</span></a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># prosperOilwellHtc</span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(rOpenserver)</a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyr)</a>
 <a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
@@ -126,70 +126,76 @@
 <a class="sourceLine" id="cb1-11" title="11">        <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span>(model_file)</a>
 <a class="sourceLine" id="cb1-12" title="12">}</a></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># well lengths and vertical anisotropy vectors</span></a>
-<a class="sourceLine" id="cb2-2" title="2">well_length &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">500</span>, <span class="dt">by =</span> <span class="dv">500</span>, <span class="dt">length.out =</span> <span class="dv">17</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3">kv_kh &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.001</span>, <span class="fl">0.005</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">1.0</span>)</a>
-<a class="sourceLine" id="cb2-4" title="4">df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(well_length)</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" title="2">htc &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">2</span>, <span class="dt">by =</span> <span class="fl">0.5</span>, <span class="dt">to =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3">df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(htc)</a>
+<a class="sourceLine" id="cb2-4" title="4">df[<span class="st">"liquid_rate"</span>]     &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb2-5" title="5">df[<span class="st">"wellhead_temp"</span>]   &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb2-6" title="6">df[<span class="st">"sol_bhp"</span>]         &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb2-7" title="7">df[<span class="st">"sol_dp_friction"</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb2-8" title="8"></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co"># openserver variables</span></a>
+<a class="sourceLine" id="cb2-10" title="10">sys_sol_liqrate       &lt;-<span class="st"> "PROSPER.OUT.SYS.RESULTS[0][0][0].SOL.LIQRATE"</span></a>
+<a class="sourceLine" id="cb2-11" title="11">sys_sol_whtemperature &lt;-<span class="st"> "PROSPER.OUT.SYS.RESULTS[0][0][0].SOL.WHTEMPERATURE"</span></a>
+<a class="sourceLine" id="cb2-12" title="12">sys_sol_bhp           &lt;-<span class="st"> "PROSPER.OUT.SYS.Results[0].Sol.BHP"</span></a>
+<a class="sourceLine" id="cb2-13" title="13">sys_prfric            &lt;-<span class="st"> "PROSPER.OUT.SYS.Results[0].Sol.PRFRIC"</span></a></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Initialize and start OpenServer</span></a>
 <a class="sourceLine" id="cb3-2" title="2">pserver &lt;-<span class="st"> </span>OpenServer<span class="op">$</span><span class="kw">new</span>()</a>
 <a class="sourceLine" id="cb3-3" title="3">cmd =<span class="st"> "PROSPER.START"</span></a>
 <a class="sourceLine" id="cb3-4" title="4"><span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(pserver, cmd)</a>
 <a class="sourceLine" id="cb3-5" title="5"></a>
 <a class="sourceLine" id="cb3-6" title="6"><span class="co"># open model</span></a>
-<a class="sourceLine" id="cb3-7" title="7">model_file &lt;-<span class="st"> </span><span class="kw">get_model_filename</span>(<span class="dt">model =</span> <span class="st">"HORWELLDP.OUT"</span>)</a>
+<a class="sourceLine" id="cb3-7" title="7">model_file &lt;-<span class="st"> </span><span class="kw">get_model_filename</span>(<span class="dt">model =</span> <span class="st">"oilwell.Out"</span>)</a>
 <a class="sourceLine" id="cb3-8" title="8">open_cmd &lt;-<span class="st"> "PROSPER.OPENFILE"</span></a>
 <a class="sourceLine" id="cb3-9" title="9">open_cmd &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(open_cmd, <span class="st">"('"</span>, model_file, <span class="st">"')"</span>)</a>
 <a class="sourceLine" id="cb3-10" title="10"><span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(pserver, open_cmd)</a></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># iterate through anisotropy values</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="cf">for</span> (k <span class="cf">in</span> kv_kh) {</a>
-<a class="sourceLine" id="cb4-3" title="3">    <span class="kw"><a href="../../reference/DoSet.html">DoSet</a></span>(pserver, <span class="st">"PROSPER.SIN.IPR.Single.Vans"</span>, k)</a>
-<a class="sourceLine" id="cb4-4" title="4">    <span class="co"># iterate through all well length values of interest</span></a>
-<a class="sourceLine" id="cb4-5" title="5">    i &lt;-<span class="st">  </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-6" title="6">    <span class="cf">for</span> (wlen <span class="cf">in</span> df[[<span class="st">"well_length"</span>]]) {</a>
-<a class="sourceLine" id="cb4-7" title="7">        <span class="co"># set well length</span></a>
-<a class="sourceLine" id="cb4-8" title="8">        <span class="kw"><a href="../../reference/DoSet.html">DoSet</a></span>(pserver, <span class="st">"PROSPER.SIN.IPR.Single.WellLen"</span>, wlen)</a>
-<a class="sourceLine" id="cb4-9" title="9">        <span class="co"># set length in zone 1</span></a>
-<a class="sourceLine" id="cb4-10" title="10">        <span class="kw"><a href="../../reference/DoSet.html">DoSet</a></span>(pserver, <span class="st">"PROSPER.SIN.IPR.Single.HorizdP[0].ZONLEN"</span>, wlen)</a>
-<a class="sourceLine" id="cb4-11" title="11">        <span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(pserver, <span class="st">"PROSPER.anl.SYS.CALC"</span>)    <span class="co"># do calculation</span></a>
-<a class="sourceLine" id="cb4-12" title="12">        <span class="co"># store liquid rate result in dataframe for each anisotropy scenario</span></a>
-<a class="sourceLine" id="cb4-13" title="13">        df[[<span class="kw"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(k)]][i] &lt;-</a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="st">            </span><span class="kw"><a href="https://rdrr.io/r/base/double.html">as.double</a></span>(<span class="kw"><a href="../../reference/DoGet.html">DoGet</a></span>(pserver, <span class="st">"PROSPER.OUT.SYS.RESULTS[0][0][0].SOL.LIQRATE"</span>))</a>
-<a class="sourceLine" id="cb4-15" title="15">        i &lt;-<span class="st">  </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-16" title="16">    }</a>
-<a class="sourceLine" id="cb4-17" title="17">}</a>
-<a class="sourceLine" id="cb4-18" title="18"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(df)</a></code></pre></div>
-<pre><code>   well_length     0.001     0.005      0.01       0.1        1
-1          500  5122.723  6654.130  7376.862  9225.225 10074.80
-2         1000  6502.892  8158.698  8763.273 10010.193 10500.44
-3         1500  7442.298  8947.091  9422.393 10368.828 10711.88
-4         2000  8081.572  9416.705  9815.624 10576.695 10838.98
-5         2500  8565.691  9734.755 10077.367 10710.160 10924.37
-6         3000  8909.852  9963.207 10263.006 10803.312 10984.46
-7         3500  9177.887 10134.045 10400.360 10870.907 11027.95
-8         4000  9391.362 10265.520 10505.026 10921.186 11059.91
-9         4500  9564.346 10368.811 10585.193 10959.103 11083.47
-10        5000  9706.521 10451.304 10647.387 10987.987 11100.84
-11        5500  9824.676 10517.964 10696.969 11009.371 11112.55
-12        6000  9923.822 10571.524 10736.874 11025.970 11121.27
-13        6500 10007.648 10614.573 10768.802 11038.446 11124.79
-14        7000 10079.021 10650.133 10794.942 11044.998 11127.86
-15        7500 10140.119 10679.603 10813.414 11051.086 11129.07
-16        8000 10192.705 10701.022 10830.166 11055.076 11128.84
-17        8500 10238.145 10720.846 10843.626 11057.347 11127.42</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># convert dataframe to tidy dataset</span></a>
-<a class="sourceLine" id="cb6-2" title="2">df_gather &lt;-<span class="st"> </span><span class="kw">gather</span>(df, kv_kh, liquid_rate, <span class="st">'0.001'</span><span class="op">:</span><span class="st">'1'</span>)</a>
-<a class="sourceLine" id="cb6-3" title="3"></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb6-5" title="5">g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df_gather, <span class="kw">aes</span>(<span class="dt">x =</span> well_length, <span class="dt">y =</span> liquid_rate, <span class="dt">color =</span> kv_kh)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="st">    </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb6-8" title="8"></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(g)</a></code></pre></div>
-<p><img src="prosperHorizSys_files/figure-html/tidy_plot-1.png" width="700" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># shutdown Prosper</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb7-3" title="3">command =<span class="st"> "PROSPER.SHUTDOWN"</span></a>
-<a class="sourceLine" id="cb7-4" title="4">pserver<span class="op">$</span><span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(command)</a>
-<a class="sourceLine" id="cb7-5" title="5">pserver &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># iterate through heat transfer coefficient vector</span></a>
+<a class="sourceLine" id="cb4-2" title="2">i &lt;-<span class="st">  </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="cf">for</span> (h <span class="cf">in</span> df[[<span class="st">"htc"</span>]]) {</a>
+<a class="sourceLine" id="cb4-4" title="4">    <span class="co"># set HTC</span></a>
+<a class="sourceLine" id="cb4-5" title="5">    <span class="kw"><a href="../../reference/DoSet.html">DoSet</a></span>(pserver, <span class="st">"PROSPER.SIN.EQP.Geo.Htc"</span>, h)</a>
+<a class="sourceLine" id="cb4-6" title="6">    <span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(pserver, <span class="st">"PROSPER.anl.SYS.CALC"</span>)    <span class="co"># do calculation</span></a>
+<a class="sourceLine" id="cb4-7" title="7">    <span class="co"># store liquid rate, wellhead temperature, solution BHP and dP friction</span></a>
+<a class="sourceLine" id="cb4-8" title="8">    df[[<span class="st">"liquid_rate"</span>]][i]     &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/double.html">as.double</a></span>(<span class="kw"><a href="../../reference/DoGet.html">DoGet</a></span>(pserver, sys_sol_liqrate))</a>
+<a class="sourceLine" id="cb4-9" title="9">    df[[<span class="st">"wellhead_temp"</span>]][i]   &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/double.html">as.double</a></span>(<span class="kw"><a href="../../reference/DoGet.html">DoGet</a></span>(pserver, sys_sol_whtemperature))</a>
+<a class="sourceLine" id="cb4-10" title="10">    df[[<span class="st">"sol_bhp"</span>]][i]         &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/double.html">as.double</a></span>(<span class="kw"><a href="../../reference/DoGet.html">DoGet</a></span>(pserver, sys_sol_bhp))</a>
+<a class="sourceLine" id="cb4-11" title="11">    df[[<span class="st">"sol_dp_friction"</span>]][i] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/double.html">as.double</a></span>(<span class="kw"><a href="../../reference/DoGet.html">DoGet</a></span>(pserver, sys_prfric))</a>
+<a class="sourceLine" id="cb4-12" title="12">    i &lt;-<span class="st">  </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-13" title="13">}</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(df)</a></code></pre></div>
+<pre><code>    htc liquid_rate wellhead_temp  sol_bhp sol_dp_friction
+1   2.0    12207.70      193.8414 2669.929        514.1321
+2   2.5    12201.75      190.1239 2671.276        512.6521
+3   3.0    12195.78      186.5259 2672.628        511.1868
+4   3.5    12189.82      183.0434 2673.978        509.7431
+5   4.0    12182.66      179.6687 2675.599        508.3648
+6   4.5    12176.46      176.4035 2677.004        506.7877
+7   5.0    12170.23      173.2415 2678.415        505.2016
+8   5.5    12164.05      170.1792 2679.813        503.6503
+9   6.0    12157.92      167.2131 2681.202        502.1317
+10  6.5    12151.84      164.3399 2682.580        500.6453
+11  7.0    12145.80      161.5562 2683.948        499.1901
+12  7.5    12139.76      158.8588 2685.316        497.7242
+13  8.0    12133.74      156.2446 2686.678        496.2813
+14  8.5    12127.75      153.7108 2688.035        494.8627
+15  9.0    12120.55      151.2492 2689.666        493.6298
+16  9.5    12102.93      148.8171 2693.657        493.7540
+17 10.0    12097.17      146.5076 2694.961        492.4105</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># convert dataframe to tidy dataset</span></a>
+<a class="sourceLine" id="cb7-2" title="2">df_gather &lt;-<span class="st"> </span><span class="kw">gather</span>(df, var, value, liquid_rate<span class="op">:</span>sol_dp_friction)</a>
+<a class="sourceLine" id="cb7-3" title="3"></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb7-5" title="5">g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df_gather, <span class="kw">aes</span>(<span class="dt">x =</span> htc, <span class="dt">y =</span> value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="st">    </span><span class="kw">facet_wrap</span>(var <span class="op">~</span>., <span class="dt">scales =</span> <span class="st">"free_y"</span>)</a>
+<a class="sourceLine" id="cb7-9" title="9"></a>
+<a class="sourceLine" id="cb7-10" title="10"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(g)</a></code></pre></div>
+<p><img src="prosperOilwellHtc_files/figure-html/dataframe_plots-1.png" width="700" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># shutdown Prosper</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb8-3" title="3">command =<span class="st"> "PROSPER.SHUTDOWN"</span></a>
+<a class="sourceLine" id="cb8-4" title="4">pserver<span class="op">$</span><span class="kw"><a href="../../reference/DoCmd.html">DoCmd</a></span>(command)</a>
+<a class="sourceLine" id="cb8-5" title="5">pserver &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
