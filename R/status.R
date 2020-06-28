@@ -24,15 +24,17 @@ read_openserver_status <- function(verbose = FALSE) {
                            memory_ws = as.integer(), memory_uom = as.character())
 
     tasklists <- system2( 'tasklist' , stdout = TRUE )
-    call_system <- system('tasklist',intern=TRUE)
+    call_system <- system('tasklist', intern=TRUE)
 
-    ipm_objects <- c("prosper", "gap.exe", "pxserver", "PxLs", "px32COM")
+    ipm_objects <- c("prosper", "gap", "mbal", "pxserver", "PxLs", "px32COM",
+                     "pvtp", "resolve")
 
     row <- vector("list")
     df <- data.frame()
     for (ipm_obj in ipm_objects) {
-        txt  <- grep(paste0("^", ipm_obj), readLines(textConnection(call_system)),
-                     value=TRUE)
+        txt  <- grep(paste0("^", ipm_obj),
+                     readLines(textConnection(call_system)),
+                     value = TRUE, ignore.case = TRUE)
         tbl <- try_reading_table(txt)
         if (verbose) cat(ipm_obj, length(tbl), dim(tbl), "\n")
         # if ( ((is.null(tbl)) || (dim(tbl)[2] < 6)) ) {
