@@ -1,3 +1,13 @@
+# rOpenserver 0.1.0.9015
+* add openserver function. all lowercase. To replace OpenServer function in rProsper package
+* TODO: complete data objects test
+* TODO: check on return of long vector. well test. when most are zeros.
+
+# rOpenserver 0.1.0.9014
+* enhance list of IPM objects in process list in read_openserver_status(). ignore case of object in task list.
+* replace delay using Sys.sleep() in tests with while loop because sleep() doesn't work in this case.
+* add test for DoSet
+
 # rOpenserver 0.1.0.9013
 * Heat Transfer Coefficient example
 

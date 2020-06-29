@@ -1,21 +1,25 @@
 library(testthat)
+# Functions tested:
+#   setOpenServer()
+#   DoGAPFunc, DoCmd, DoSlowCmd
+
+
+context("DoGAPFunc, DoCmd, DoSlowCmd for GAP")
 
 oserver_methods <- c("server", ".__enclos_env__", "clone", "app_name",
                      "DoSet", "DoGet", "DoCmd", "initialize", "DoSlowCmd",
                      "DoGAPFunc")
 
-get_gap_model_01 <- function() {
-    # get the GAP model "Gap Model.gap"
-    gap_dir <- system.file("models", package = "rOpenserver")
-    gap_model <- list.files(gap_dir, pattern = "*.GAP", ignore.case = TRUE)[1]   # the first
-    gap_file <- file.path(gap_dir, gap_model)
-    if (!file.exists(gap_file)) stop("Model not found ...") else
-        return(gap_file)
+get_model_from_pkg <- function(mod_num = 1, ext = c("out", "gap", "mbi")) {
+    app_dir <- system.file("models", package = "rOpenserver")
+    model <- list.files(app_dir, pattern = paste0("*.", ext), ignore.case = TRUE)[mod_num]   # the first
+    file <- file.path(app_dir, model)
+    if (!file.exists(file)) stop("Model not found ...") else
+        return(file)
 
 }
 
 
-context("DoGAPFunc")
 
 test_that("DoGAPFunc works as expected", {
     # start OpenServer and GAP
@@ -25,7 +29,8 @@ test_that("DoGAPFunc works as expected", {
     expect_equal(result, 0)
 
     # open GAP model
-    cmd_openfile <- paste0('GAP.OPENFILE("', get_gap_model_01(), '")')
+    cmd_openfile <- paste0('GAP.OPENFILE("',
+                           get_model_from_pkg(mod_num = 1, ext = "gap"), '")')
     result <- gserver$DoSlowCmd(cmd_openfile)
     expect_equal(result, 0)
 

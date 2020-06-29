@@ -7,7 +7,7 @@
 #' @export
 rDoGet <- function(oserver, cmd) {
     res <- oserver$DoGet(cmd)
-    if(class(res) == "list")    # it is a list because it is returning errors
+    if (class(res) == "list")    # it is a list because it is returning errors
         # 3004: "Variable name was not found"
         if (res[[1]] == 3012 || res[[1]] == 3004)
             return(NA)
@@ -29,4 +29,45 @@ rDoGet <- function(oserver, cmd) {
             return(as.double(as.numeric(res)))
         }
     }
+}
+
+
+
+#' Convert from OpenServer text object to double
+#'
+#' Convert an OpenServer vector (string separated by '|') to a vector of double
+#' @param x an Openserver object
+#' @export
+openserver_to_double <- function(x) {
+    as.double(unlist(strsplit(x, "|", fixed = TRUE)))
+}
+
+#' Convert from OpenServer text object to integer
+#'
+#' Convert an OpenServer vector (string separated by '|') to a vector of integers
+#' @param x an Openserver object
+#' @export
+openserver_to_integer <- function(x) {
+    as.integer(unlist(strsplit(x, "|", fixed = TRUE)))
+}
+
+#' Convert from OpenServer text object to character
+#'
+#' Convert an OpenServer vector (string separated by '|') to a vector of character
+#' @param x an Openserver object
+#' @export
+openserver_to_character <- function(x) {
+    unlist(strsplit(x, "|", fixed = TRUE))
+}
+
+
+#' Convert from OpenServer text object to date
+#'
+#' Convert an OpenServer vector (string separated by '|') to a vector of dates
+#' @param x an Openserver object
+#' @param format use the as.Date formats
+#' @export
+openserver_to_date <- function(x, format = "%m/%d/%Y") {
+    str_split <- unlist(strsplit(x, "|", fixed = TRUE))
+    as.Date(str_split, format = format)
 }

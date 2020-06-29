@@ -225,6 +225,16 @@ setOpenServer <- function(server = NULL) {
 }
 
 
+#' @name openserver
+#' @title Another Openserver constructor without using `$new()`
+#' @description  Call class
+#' @param server an existing OpenServer instance
+#' @export
+openserver <- function(server = NULL) {
+  return(OpenServer$new(server))
+}
+
+
 
 
 #' @title COM Reference call
