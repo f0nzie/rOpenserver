@@ -1,3 +1,8 @@
+# rOpenserver 0.1.0.9014
+* enhance list of IPM objects in process list in read_openserver_status(). ignore case of object in task list.
+* replace delay using Sys.sleep() in tests with while loop because sleep() doesn't work in this case.
+* add test for DoSet
+
 # rOpenserver 0.1.0.9013
 * Heat Transfer Coefficient example
 
