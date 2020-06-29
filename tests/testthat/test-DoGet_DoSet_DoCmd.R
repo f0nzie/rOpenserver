@@ -30,9 +30,9 @@ get_model_from_pkg <- function(mod_num = 1, ext = c("out", "gap", "mbi")) {
 }
 
 
-context("Test DoSet, DoCmd for Prosper")
+context("Test DoSet for Prosper")
 
-test_that("DoCmd, DoSet work", {
+test_that("DoSet, DoCmd work", {
     # Initialize OpenServer
     prosper_server <- OpenServer$new()
 
@@ -74,9 +74,9 @@ test_that("DoCmd, DoSet work", {
 
 
 
-context("Test DoGet, DoCmd for Prosper")
+context("Test DoGet for Prosper")
 
-test_that("DoCmd, DoGet work", {
+test_that("DoGet, DoCmd work", {
     # Initialize OpenServer
     prosper_server <- OpenServer$new()
 
@@ -133,4 +133,15 @@ test_that("OpenServer with setOpenServer function works", {
     mserver <- NULL
 })
 
+
+
+context("openserver function as constructor")
+
+test_that("openserver function works", {
+    mserver <- openserver()
+    expect_s4_class(mserver$server, "COMIDispatch")
+    expect_true(all(class(mserver) %in% c("OpenServer", "R6")))
+    expect_true(all(names(mserver) %in% oserver_methods))
+    mserver <- NULL
+})
 
