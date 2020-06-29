@@ -7,7 +7,7 @@
 #' @export
 rDoGet <- function(oserver, cmd) {
     res <- oserver$DoGet(cmd)
-    if(class(res) == "list")    # it is a list because it is returning errors
+    if (class(res) == "list")    # it is a list because it is returning errors
         # 3004: "Variable name was not found"
         if (res[[1]] == 3012 || res[[1]] == 3004)
             return(NA)
