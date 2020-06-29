@@ -1,7 +1,9 @@
 # rOpenserver 0.1.0.9015
-* add openserver function. all lowercase. To replace OpenServer function in rProsper package
-* TODO: complete data objects test
-* TODO: check on return of long vector. well test. when most are zeros.
+* add openserver() function (all lowercase). Replaces OpenServer function in rProsper package. OpenServer is now a class.
+* add new tests for data objects. not complete yet.
+* new function get_all_models_by_ext() to retrieve all models residing in package
+* TODO: complete data objects test. add commands. add GAP and MBAL.
+* TODO: check on return of long vector in well test, specially, when most rows are zeros. This is addressed in rProsper.
 
 # rOpenserver 0.1.0.9014
 * enhance list of IPM objects in process list in read_openserver_status(). ignore case of object in task list.
