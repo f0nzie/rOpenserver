@@ -1,7 +1,5 @@
 ---
 title: "mbal-hello_world"
-output: 
-  BiocStyle::html_document
 vignette: >
   %\VignetteIndexEntry{mbal-hello_world}
   %\VignetteEngine{knitr::knitr}
@@ -14,7 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-BiocStyle::markdown()
 ```
 
 
