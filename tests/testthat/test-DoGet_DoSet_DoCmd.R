@@ -128,20 +128,20 @@ test_that("OpenServer with setOpenServer function works", {
     mserver <- setOpenServer()
     # tests
     expect_s4_class(mserver$server, "COMIDispatch")
-    expect_true(all(class(mserver) %in% c("OpenServer", "R6")))
+    expect_true(all(class(mserver) %in% c(".OpenServer", "R6", "OpenServer")))
     expect_true(all(names(mserver) %in% oserver_methods))
     mserver <- NULL
 })
 
 
 
-context("openserver function as constructor")
-
-test_that("openserver function works", {
-    mserver <- openserver()
-    expect_s4_class(mserver$server, "COMIDispatch")
-    expect_true(all(class(mserver) %in% c("OpenServer", "R6")))
-    expect_true(all(names(mserver) %in% oserver_methods))
-    mserver <- NULL
-})
+# context("openserver function as constructor")
+#
+# test_that("openserver function works", {
+#     mserver <- openserver()
+#     expect_s4_class(mserver$server, "COMIDispatch")
+#     expect_true(all(class(mserver) %in% c("OpenServer", "R6")))
+#     expect_true(all(names(mserver) %in% oserver_methods))
+#     mserver <- NULL
+# })
 
