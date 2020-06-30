@@ -115,7 +115,7 @@ context("Create server instance with OpenServer$new")
 test_that("OpenServer with $new() loads", {
     mserver <- OpenServer$new()
     expect_s4_class(mserver$server, "COMIDispatch")
-    expect_true(all(class(mserver) %in% c("OpenServer", "R6")))
+    expect_true(all(class(mserver) %in% c(".OpenServer", "R6", "OpenServer")))
     expect_true(all(names(mserver) %in% oserver_methods))
     mserver <- NULL
 })
