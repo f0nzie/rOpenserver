@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Another Openserver constructor without using `$new()` — setOpenServer • rOpenserver</title>
+<title>Lightweight DataSHIELD server-side component — .OpenServer • rOpenserver</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,12 @@
 
 
 
-<meta property="og:title" content="Another Openserver constructor without using `$new()` — setOpenServer" />
-<meta property="og:description" content="Call class" />
+<meta property="og:title" content="Lightweight DataSHIELD server-side component — .OpenServer" />
+<meta property="og:description" content="OpenServer mimics a DataSHIELD server by holding datasets and
+DataSHIELD-like functions: aggregate and assign. A DataSHIELD session is a R
+environment where the assignment and the operations happen.
+Create new DSLiteServer instance. function for including
+when discovering the DataSHIELD configuration from the DataSHIELD" />
 
 
 
@@ -144,31 +148,60 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Another Openserver constructor without using `$new()`</h1>
-    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rOpenserver/blob/master/R/openserver-functions.R'><code>R/openserver-functions.R</code></a></small>
-    <div class="hidden name"><code>setOpenServer.Rd</code></div>
+    <h1>Lightweight DataSHIELD server-side component</h1>
+    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rOpenserver/blob/master/R/openserver-class.R'><code>R/openserver-class.R</code></a></small>
+    <div class="hidden name"><code>dot-OpenServer.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Call class</p>
+    <p>OpenServer mimics a DataSHIELD server by holding datasets and
+DataSHIELD-like functions: aggregate and assign. A DataSHIELD session is a R
+environment where the assignment and the operations happen.</p>
+<p>Create new DSLiteServer instance. function for including
+when discovering the DataSHIELD configuration from the DataSHIELD</p>
     </div>
 
-    <pre class="usage"><span class='fu'>setOpenServer</span>(<span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>server</th>
-      <td><p>an existing OpenServer instance</p></td>
+      <td><p>The DataSHIELD configuration. Default is to discover</p></td>
+    </tr>
+    <tr>
+      <th>variable</th>
+      <td><p>OpenServer variable</p></td>
+    </tr>
+    <tr>
+      <th>set_value</th>
+      <td><p>value to set to OpenServer variable</p></td>
+    </tr>
+    <tr>
+      <th>command</th>
+      <td><p>OpenServer command</p></td>
+    </tr>
+    <tr>
+      <th>Gv</th>
+      <td><p>GAP variable</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A DSLiteServer object</p>
+    <h2 class="hasAnchor" id="r-usage"><a class="anchor" href="#r-usage"></a>R6 Usage</h2>
+
+    <p>$DoCmd()</p>
+<p>$DoGet()</p>
+<p>$DoSet()</p>
+<p>$DoSlowCmd()</p>
+<p>$DoGAPFunc()</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other server-side items: 
-<code><a href='dot-OpenServer.html'>.OpenServer</a></code>,
-<code><a href='newOpenServer.html'>newOpenServer</a>()</code></p></div>
+<code><a href='newOpenServer.html'>newOpenServer</a>()</code>,
+<code><a href='setOpenServer.html'>setOpenServer</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
