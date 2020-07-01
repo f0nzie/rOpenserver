@@ -3,10 +3,6 @@
 
 
 
-
-
-
-
 #' @title COM Reference call
 #'
 #' @description Call COM client reference function
