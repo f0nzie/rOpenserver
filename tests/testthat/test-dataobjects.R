@@ -3,7 +3,7 @@ source("common.R")
 
 
 # Initialize OpenServer
-prosper_server <- OpenServer$new()
+prosper_server <- .OpenServer$new()
 
 expect_true(all(names(prosper_server) %in% oserver_methods))
 

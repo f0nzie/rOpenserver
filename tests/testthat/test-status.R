@@ -16,7 +16,7 @@ test_that("Windows processes are captured", {
     sleep_well(3)
 
     # Initialize OpenServer
-    prosper_server <- OpenServer$new()
+    prosper_server <- OpenServerR6$new()
 
     # Start Prosper
     cmd = "PROSPER.START"

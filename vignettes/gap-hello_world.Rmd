@@ -31,7 +31,7 @@ get_gap_model_01 <- function() {
 }
 
 # start OpenServer and GAP
-gserver <- setOpenServer()
+gserver <- newOpenServer()
 gserver$DoCmd("GAP.START")
 
 # open GAP model

@@ -25,7 +25,8 @@ The MBAL server is started the same way as in Prosper and GAP.
 library(rOpenserver)
 
 # Initialize OpenServer
-mbal_server <- OpenServer$new()
+# mbal_server <- .OpenServer$new()
+mbal_server <- openserver()
 
 # Start Prosper
 cmd = "MBAL.START"
