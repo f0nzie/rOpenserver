@@ -12,10 +12,9 @@ LazyData: true
 OS_type: windows
 Imports: 
     base,
-    stats,
-    rlang,
     R6,
     R62S3 (>= 1.4.0),
+    stats,
     RDCOMClient
 Suggests:
     knitr,
@@ -23,9 +22,7 @@ Suggests:
     ggplot2,
     tidyr,
     testthat (>= 2.1.0),
-    devtools,
-    remotes
-Remotes: omegahat/RDCOMClient
+    devtools
 RoxygenNote: 7.1.1
 Roxygen: list(r6 = FALSE)
 VignetteBuilder: knitr
