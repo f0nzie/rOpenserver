@@ -1,14 +1,30 @@
 # rOpenserver 0.1.0.9015
-* add openserver() function (all lowercase). Replaces OpenServer function in rProsper package. OpenServer is now a class.
-* add new tests for data objects. not complete yet.
+* use .OpenServer (dot-OpenServer) for the R6 class
+* OpenServer R6 class inherits from .OpenServer class
+* new function newOpenServer() that represents OpenServer$new()
+* keep setOpenServer(). does the same as newOpenServer()
+* remove openserver() function because gets in conflict with OpenServer class
+* update R6 class with a structure that does not produce warnings or notes
+* fix roxygen documentation for R6 class
+* prevent R6 warnings by adding roxygen line in DESCRIPTION
 * new function get_all_models_by_ext() to retrieve all models residing in package
-* TODO: complete data objects test. add commands. add GAP and MBAL.
-* TODO: check on return of long vector in well test, specially, when most rows are zeros. This is addressed in rProsper.
+* split core.R in class, functions
+* move conversion functions to dataobjects.R
+* use package example in README
+* remove unneeded packages
+* remove BiocStyle
+* create common.R for unit tests
+* add while-loop time delay that works in unit tests when CPU is busy
+* kill dormant processes before test status
+* TODO: complete data objects for GAP and MBAL tests
+* TODO: check long vector in well test, when most rows are zeros. This is addressed in rProsper as well.
+
 
 # rOpenserver 0.1.0.9014
 * enhance list of IPM objects in process list in read_openserver_status(). ignore case of object in task list.
 * replace delay using Sys.sleep() in tests with while loop because sleep() doesn't work in this case.
 * add test for DoSet
+
 
 # rOpenserver 0.1.0.9013
 * Heat Transfer Coefficient example
