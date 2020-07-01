@@ -11,6 +11,10 @@ sleep_well <- function(seconds = 1.0) {
 context("OpenServer Windows processes")
 
 test_that("Windows processes are captured", {
+    # kill all dormant processes before starting
+    sapply(read_openserver_status()[["pid"]], tools::pskill)
+    sleep_well(3)
+
     # Initialize OpenServer
     prosper_server <- OpenServer$new()
 
