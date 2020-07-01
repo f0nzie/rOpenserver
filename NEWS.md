@@ -1,9 +1,8 @@
 # rOpenserver 0.1.0.9015
 * use .OpenServer (dot-OpenServer) for the R6 class
-* OpenServer R6 class inherits from .OpenServer class
+* OpenServerR6 class inherits from .OpenServer class. We will not use OpenServer because collides with openserver() function
 * new function newOpenServer() that represents OpenServer$new()
 * keep setOpenServer(). does the same as newOpenServer()
-* remove openserver() function because gets in conflict with OpenServer class
 * update R6 class with a structure that does not produce warnings or notes
 * fix roxygen documentation for R6 class
 * prevent R6 warnings by adding roxygen line in DESCRIPTION
@@ -12,7 +11,7 @@
 * move conversion functions to dataobjects.R
 * use package example in README
 * remove unneeded packages
-* remove BiocStyle
+* remove BiocStyle that provide nicer css
 * create common.R for unit tests
 * add while-loop time delay that works in unit tests when CPU is busy
 * kill dormant processes before test status
