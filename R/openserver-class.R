@@ -1,8 +1,9 @@
-#' @title Lightweight DataSHIELD server-side component
+#' @title OpenServer class
 #'
-#' @description OpenServer mimics a DataSHIELD server by holding datasets and
-#' DataSHIELD-like functions: aggregate and assign. A DataSHIELD session is a R
-#' environment where the assignment and the operations happen.
+#' @description The OpenServer class contains functions that communicate
+#' with Petroleum Experts applications such as Prosper, GAP and MBAL. The
+#' function send commands, retrieve data and write data to OpenServer
+#' variables exposed by the Windows COM interface.
 #'
 #' @family server-side items
 #' @docType class
