@@ -15,10 +15,9 @@
     public = list(
         app_name = NULL,
 
-        #' @description Create new DSLiteServer instance. function for including
-        #' when discovering the DataSHIELD configuration from the DataSHIELD
-        #' @param server The DataSHIELD configuration. Default is to discover
-        #' @return A DSLiteServer object
+        #' @description Create new OpenServer instance
+        #' @param server an OpenServer object
+        #' @return An OpenServer object
         initialize = function(server = NULL) {
             if (is.null(server))
                 self$server <- RDCOMClient::COMCreate("PX32.OpenServer.1")
