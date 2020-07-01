@@ -2,10 +2,6 @@
 # Functions - OpenServer Constructor
 #-------------------------------------------------------------
 
-
-
-
-
 #' @name setOpenServer
 #' @title Another Openserver constructor without using `$new()`
 #' @description  Call class
@@ -14,7 +10,7 @@
 #' @family server-side items
 #' @export
 setOpenServer <- function(server = NULL) {
-    return(.OpenServer$new(server))
+    .OpenServer$new(server)
 }
 
 
@@ -28,3 +24,17 @@ setOpenServer <- function(server = NULL) {
 newOpenServer <- function(server = NULL) {
     .OpenServer$new(server)
 }
+
+
+#' @name openserver
+#' @title Openserver constructor without using `$new()`
+#' @description  Another Openserver constructor. Same as
+#' @param server an existing OpenServer instance
+#'
+#' @family server-side items
+#' @export
+openserver <- function(server = NULL) {
+    .OpenServer$new(server)
+}
+
+
