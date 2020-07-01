@@ -32,7 +32,7 @@ test_that("Windows processes are captured", {
     # tests that after shutdown some processes remain
     status <- read_openserver_status()
     if (verbose) print(status)
-    sleep_well(3)
+    sleep_well(5)
     expect_true(any(grepl("pxserver.exe", unique(status$process))))
     expect_true(any(grepl("PxLs.exe", unique(status$process))))
     expect_true(any(grepl("px32COM10.exe", unique(status$process))))
