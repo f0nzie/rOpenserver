@@ -212,10 +212,16 @@ NULL
 #' OpenServer class
 #'
 #' Instantiate the main class .OpenServer
+#'
+#' @docType class
+#' @import R6
+#'
 #' @export
-OpenServer <- R6Class(
-    classname = "OpenServer",
+OpenServerR6 <- R6::R6Class(
+    classname = "OpenServerR6",
     lock_objects = FALSE,
     inherit = .OpenServer
 )
+
+
 
