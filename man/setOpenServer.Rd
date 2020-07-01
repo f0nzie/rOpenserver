@@ -15,6 +15,7 @@ Call class
 \seealso{
 Other server-side items: 
 \code{\link{.OpenServer}},
-\code{\link{newOpenServer}()}
+\code{\link{newOpenServer}()},
+\code{\link{openserver}()}
 }
 \concept{server-side items}
