@@ -23,6 +23,7 @@ Suggests:
     tidyr,
     testthat (>= 2.1.0),
     devtools,
+    Rd2roxygen,
     remotes
 Remotes: omegahat/RDCOMClient
 RoxygenNote: 7.1.1
