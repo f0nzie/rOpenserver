@@ -14,32 +14,52 @@ named.list <- function(...) {
     nl
 }
 
-#' Unzip MBAL model files
+
+
+#' Unzip model pack
 #'
 #' Models were zipped because they were too big for the package
+#'
+#' @param zip_file zipped file to unpack
+#'
 #' @export
 #' @importFrom utils read.table unzip
-unzip_mbal_models <- function() {
-    mbal_models_loc <- system.file("models", package = "openserver")
-    zip_files  <- paste(mbal_models_loc, "mbal_models.zip", sep = "/")
-    unzip(zipfile = zip_files, exdir = mbal_models_loc)
+unzip_model_pack <- function(zip_file) {
+    zip_models_loc <- system.file("models", package = "rOpenserver")
+    zip_file_path  <- file.path(zip_models_loc, zip_file)
+    if (!file.exists(zip_file_path)) stop("file does not exist")
+    unzip(zipfile = zip_file_path, exdir = zip_models_loc)
 }
 
-#' Remove MBAL models from folder
+#' Remove models by extension
 #'
-#' Use this after MBAL files have been unzipped to save disk
+#' Use this after models files have been unzipped to save disk space
+#'
+#' @param ext extension of the files
+#'
 #' @export
-remove_mbal_models <- function() {
-    # remove MBAL files that were temporarily unzipped
-    mbal_models_loc <- system.file("models", package = "openserver")
-    file.remove(list.files(mbal_models_loc, pattern = ".mbi",
+remove_models_by_ext <- function(ext = c("out", "gap", "mbi")) {
+    # remove files that were temporarily unzipped
+    pkg_models_loc <- system.file("models", package = "rOpenserver")
+    file.remove(list.files(pkg_models_loc, pattern = paste0("*.", ext),
                            full.names = TRUE, ignore.case = TRUE))
 }
 
 
-zip_mbal_files <- function() {
-    # to do
+#' Remove all models sparing zip files
+#'
+#' Use this to remove model files keeping the zip file
+#'
+#' @export
+remove_models_but_zip <- function() {
+    #
+    pkg_models_loc <- system.file("models", package = "rOpenserver")
+    all_files <- list.files(pkg_models_loc, full.names = TRUE, ignore.case = TRUE)
+    exclude <- list.files(pkg_models_loc, pattern = "*.zip", full.names = TRUE, ignore.case = TRUE)
+    not_zip <- setdiff(all_files, exclude)
+    file.remove(not_zip)
 }
+
 
 
 
