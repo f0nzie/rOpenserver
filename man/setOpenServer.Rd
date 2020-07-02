@@ -2,19 +2,21 @@
 % Please edit documentation in R/openserver-functions.R
 \name{setOpenServer}
 \alias{setOpenServer}
-\title{Another Openserver constructor without using `$new()`}
+\title{OpenServer constructor}
 \usage{
 setOpenServer(server = NULL)
 }
 \arguments{
-\item{server}{an existing OpenServer instance}
+\item{server}{pass an existing OpenServer instance}
 }
 \description{
-Call class
+Openserver constructor that saves typing
+\code{.OpenServer$new()}.
 }
 \seealso{
 Other server-side items: 
 \code{\link{.OpenServer}},
+\code{\link{OpenServerR6}},
 \code{\link{newOpenServer}()},
 \code{\link{openserver}()}
 }

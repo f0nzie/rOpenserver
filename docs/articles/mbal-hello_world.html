@@ -119,9 +119,16 @@
 <a href="#start-openserver" class="anchor"></a>Start OpenServer</h2>
 <p>The MBAL server is started the same way as in Prosper and GAP.</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rOpenserver</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; -----------------------------</span>
+<span class="co">#&gt;  rOpenserver v0.1.0.9015</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Get started: ?rOpenserver</span>
+<span class="co">#&gt; -----------------------------</span>
 
 <span class="co"># Initialize OpenServer</span>
-<span class="no">mbal_server</span> <span class="kw">&lt;-</span> <span class="no">OpenServer</span>$<span class="fu">new</span>()
+<span class="co"># mbal_server &lt;- .OpenServer$new()</span>
+<span class="no">mbal_server</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/openserver.html">openserver</a></span>()
 
 <span class="co"># Start Prosper</span>
 <span class="no">cmd</span> <span class="kw">=</span> <span class="st">"MBAL.START"</span>
@@ -151,11 +158,11 @@
 
 <span class="no">model_file</span> <span class="kw">&lt;-</span> <span class="fu">get_mbal_model</span>(<span class="kw">model</span> <span class="kw">=</span> <span class="st">"oil.mbi"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">model_file</span>)
-<span class="co">#&gt; [1] "C:/Users/ipm/AppData/Local/Temp/RtmpieTw0B/temp_libpathf2413a66f81/rOpenserver/models/oil.mbi"</span>
+<span class="co">#&gt; [1] "C:/Users/ipm/AppData/Local/Temp/Rtmp0M7hUP/temp_libpath161c6fc3344b/rOpenserver/models/oil.mbi"</span>
 <span class="no">open_cmd</span> <span class="kw">&lt;-</span> <span class="st">'MBAL.OPENFILE'</span>
 <span class="no">open_cmd</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">open_cmd</span>, <span class="st">'("'</span>, <span class="no">model_file</span>, <span class="st">'")'</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">open_cmd</span>)
-<span class="co">#&gt; [1] "MBAL.OPENFILE(\"C:/Users/ipm/AppData/Local/Temp/RtmpieTw0B/temp_libpathf2413a66f81/rOpenserver/models/oil.mbi\")"</span>
+<span class="co">#&gt; [1] "MBAL.OPENFILE(\"C:/Users/ipm/AppData/Local/Temp/Rtmp0M7hUP/temp_libpath161c6fc3344b/rOpenserver/models/oil.mbi\")"</span>
 <span class="fu"><a href="../reference/DoCmd.html">DoCmd</a></span>(<span class="no">mbal_server</span>, <span class="no">open_cmd</span>)   <span class="co"># using S3 dispatch of R6 class</span>
 <span class="co">#&gt; [1] 0</span></pre></body></html></div>
 </div>

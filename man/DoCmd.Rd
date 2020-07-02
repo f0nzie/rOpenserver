@@ -7,9 +7,9 @@
 DoCmd(object, command)
 }
 \arguments{
-\item{object}{OpenServer object}
-
 \item{command}{command to send}
+
+\item{object}{OpenServer object}
 }
 \description{
 Send an OpenServer command

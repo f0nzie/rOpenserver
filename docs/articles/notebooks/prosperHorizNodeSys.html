@@ -131,17 +131,18 @@
 <span class="no">node_pres</span>   <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">100</span>, <span class="fl">125</span>, <span class="fl">150</span>, <span class="fl">175</span>, <span class="fl">200</span>, <span class="fl">225</span>, <span class="fl">250</span>, <span class="fl">275</span>, <span class="fl">300</span>)
 <span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="no">well_length</span>)  <span class="co"># create dataframe with well_length only</span></pre></body></html></div>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># Initialize and start OpenServer</span>
-<span class="no">pserver</span> <span class="kw">&lt;-</span> <span class="no">OpenServer</span>$<span class="fu">new</span>()
-<span class="no">cmd</span> <span class="kw">=</span> <span class="st">"PROSPER.START"</span>
+<span class="no">pserver</span> <span class="kw">&lt;-</span> <span class="no">OpenServer</span>$<span class="fu">new</span>()</pre></body></html></div>
+<pre><code>Error in eval(expr, envir, enclos): object 'OpenServer' not found</code></pre>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">cmd</span> <span class="kw">=</span> <span class="st">"PROSPER.START"</span>
 <span class="fu"><a href="../../reference/DoCmd.html">DoCmd</a></span>(<span class="no">pserver</span>, <span class="no">cmd</span>)</pre></body></html></div>
-<pre><code>[1] 0</code></pre>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># open model</span>
+<pre><code>Error in get("object"): object 'pserver' not found</code></pre>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co"># open model</span>
 <span class="no">model_file</span> <span class="kw">&lt;-</span> <span class="fu">get_model_filename</span>(<span class="kw">model</span> <span class="kw">=</span> <span class="st">"HORWELLDP.OUT"</span>)
 <span class="no">open_cmd</span> <span class="kw">&lt;-</span> <span class="st">"PROSPER.OPENFILE"</span>
 <span class="no">open_cmd</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">open_cmd</span>, <span class="st">"('"</span>, <span class="no">model_file</span>, <span class="st">"')"</span>)
 <span class="fu"><a href="../../reference/DoCmd.html">DoCmd</a></span>(<span class="no">pserver</span>, <span class="no">open_cmd</span>)</pre></body></html></div>
-<pre><code>[1] 0</code></pre>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co"># iterate with three loops</span>
+<pre><code>Error in get("object"): object 'pserver' not found</code></pre>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># iterate with three loops</span>
 <span class="no">cum_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>()    <span class="co"># dataframe accumulator</span>
 <span class="kw">for</span> (<span class="no">pres</span> <span class="kw">in</span> <span class="no">node_pres</span>) { <span class="co"># iterate through all top node pressures</span>
     <span class="fu"><a href="../../reference/DoSet.html">DoSet</a></span>(<span class="no">pserver</span>, <span class="st">"PROSPER.ANL.SYS.Pres"</span>, <span class="no">pres</span>) <span class="co"># write the node pressure</span>
@@ -164,182 +165,32 @@
         }
     }
     <span class="no">cum_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">cum_df</span>, <span class="no">df</span>)  <span class="co"># dataframe accumulator</span>
-}
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="no">cum_df</span>))</pre></body></html></div>
-<pre><code>[1] 153   7</code></pre>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">"Done!"</span>)</pre></body></html></div>
+}</pre></body></html></div>
+<pre><code>Error in DoSet(pserver, "PROSPER.ANL.SYS.Pres", pres): object 'pserver' not found</code></pre>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="no">cum_df</span>))</pre></body></html></div>
+<pre><code>[1] 0 0</code></pre>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">"Done!"</span>)</pre></body></html></div>
 <pre><code>[1] "Done!"</code></pre>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">cum_df</span>)</pre></body></html></div>
-<pre><code>    well_length node_pres     0.001     0.005      0.01       0.1         1
-1           500       100  6076.982  7609.854  8325.517 10147.637 10983.459
-2          1000       100  7456.976  9098.525  9684.483 10917.295 11393.289
-3          1500       100  8383.097  9865.633 10337.559 11262.572 11597.392
-4          2000       100  9018.020 10329.394 10721.544 11460.496 11719.166
-5          2500       100  9478.313 10639.853 10973.842 11588.951 11799.904
-6          3000       100  9820.822 10860.108 11150.819 11677.636 11855.890
-7          3500       100 10085.388 11023.203 11280.408 11741.238 11895.721
-8          4000       100 10294.638 11147.555 11378.154 11787.928 11924.393
-9          4500       100 10463.171 11244.367 11453.398 11822.613 11944.989
-10         5000       100 10600.468 11320.992 11512.248 11848.568 11959.666
-11         5500       100 10713.231 11382.350 11558.754 11866.250 11967.750
-12         6000       100 10807.214 11431.983 11595.836 11880.119 11973.911
-13         6500       100 10886.156 11471.211 11623.887 11890.029 11976.399
-14         7000       100 10952.943 11503.951 11647.312 11895.706 11977.495
-15         7500       100 11009.215 11530.748 11664.641 11899.833 11976.883
-16         8000       100 11057.604 11551.137 11679.270 11902.009 11974.953
-17         8500       100 11099.089 11568.857 11690.758 11902.596 11971.961
-18          500       125  5867.665  7402.261  8116.756  9942.773 10782.082
-19         1000       125  7247.692  8891.949  9478.334 10716.759 11192.734
-20         1500       125  8175.519  9660.619 10134.855 11062.717 11397.816
-21         2000       125  8813.894 10127.168 10522.470 11261.496 11520.504
-22         2500       125  9273.322 10440.571 10775.514 11390.793 11602.079
-23         3000       125  9617.231 10662.590 10953.117 11480.270 11658.828
-24         3500       125  9883.382 10826.229 11083.377 11544.603 11699.359
-25         4000       125 10094.219 10951.180 11181.789 11591.968 11728.672
-26         4500       125 10264.263 11048.599 11257.676 11627.271 11749.854
-27         5000       125 10403.430 11125.817 11317.135 11653.798 11765.070
-28         5500       125 10518.632 11187.744 11364.211 11672.225 11773.902
-29         6000       125 10613.598 11237.918 11401.823 11686.646 11780.592
-30         6500       125 10692.988 11277.887 11430.645 11697.078 11783.291
-31         7000       125 10760.225 11311.168 11454.602 11702.928 11784.801
-32         7500       125 10817.157 11338.484 11472.143 11707.463 11784.572
-33         8000       125 10866.030 11359.057 11487.193 11710.016 11783.004
-34         8500       125 10907.991 11377.193 11499.077 11710.955 11780.349
-35          500       150  5640.045  7177.155  7887.449  9715.735 10560.182
-36         1000       150  7020.612  8664.659  9251.680 10494.819 10977.079
-37         1500       150  7953.400  9434.564  9909.502 10846.139 11186.057
-38         2000       150  8595.669  9902.407 10299.136 11048.522 11311.483
-39         2500       150  9048.764 10217.473 10557.063 11180.527 11395.148
-40         3000       150  9392.996 10442.771 10737.595 11272.124 11453.557
-41         3500       150  9659.916 10609.968 10870.283 11338.170 11495.438
-42         4000       150  9871.714 10737.155 10970.730 11386.947 11525.877
-43         4500       150 10042.778 10836.499 11048.342 11423.436 11548.010
-44         5000       150 10182.964 10915.383 11109.274 11450.967 11564.036
-45         5500       150 10299.150 10978.754 11157.621 11470.477 11573.811
-46         6000       150 10396.396 11030.191 11196.337 11485.703 11581.171
-47         6500       150 10478.416 11071.518 11226.404 11496.857 11584.142
-48         7000       150 10548.074 11105.844 11251.277 11502.982 11586.121
-49         7500       150 10606.451 11134.101 11269.291 11508.022 11586.310
-50         8000       150 10656.466 11155.152 11285.016 11511.025 11585.107
-51         8500       150 10699.479 11173.990 11297.500 11512.365 11582.781
-52          500       175  5392.258  6927.635  7640.872  9480.943 10338.407
-53         1000       175  6774.256  8425.847  9012.822 10272.471 10757.703
-54         1500       175  7708.500  9198.085  9678.570 10629.545 10964.617
-55         2000       175  8347.941  9672.048 10074.700 10829.901 11089.159
-56         2500       175  8810.436  9992.355 10337.823 10960.878 11172.496
-57         3000       175  9158.142 10222.011 10524.095 11051.992 11230.887
-58         3500       175  9428.491 10393.465 10656.641 11117.877 11272.943
-59         4000       175  9643.491 10525.204 10756.396 11166.693 11303.668
-60         4500       175  9817.476 10624.822 10833.612 11203.354 11326.160
-61         5000       175  9960.294 10703.258 10894.351 11231.138 11342.588
-62         5500       175 10078.838 10766.375 10942.646 11251.247 11353.121
-63         6000       175 10178.194 10817.692 10981.410 11266.902 11361.014
-64         6500       175 10262.102 10859.283 11011.939 11278.516 11364.196
-65         7000       175 10333.459 10893.740 11037.072 11284.757 11366.653
-66         7500       175 10394.474 10922.195 11055.064 11290.212 11367.312
-67         8000       175 10446.927 10943.152 11071.056 11293.629 11366.574
-68         8500       175 10492.197 10962.200 11083.826 11295.380 11364.697
-69          500       200  5122.723  6654.130  7376.862  9225.225 10074.803
-70         1000       200  6502.892  8158.698  8763.273 10010.193 10500.440
-71         1500       200  7442.298  8947.091  9422.393 10368.828 10711.876
-72         2000       200  8081.572  9416.705  9815.624 10576.695 10838.980
-73         2500       200  8565.691  9734.755 10077.367 10710.160 10924.368
-74         3000       200  8909.852  9963.207 10263.006 10803.312 10984.456
-75         3500       200  9177.887 10134.045 10400.360 10870.907 11027.947
-76         4000       200  9391.362 10265.520 10505.026 10921.186 11059.907
-77         4500       200  9564.346 10368.811 10585.193 10959.103 11083.471
-78         5000       200  9706.521 10451.304 10647.387 10987.987 11100.839
-79         5500       200  9824.676 10517.964 10696.969 11009.371 11112.546
-80         6000       200  9923.822 10571.524 10736.874 11025.970 11121.272
-81         6500       200 10007.648 10614.573 10768.802 11038.446 11124.790
-82         7000       200 10079.021 10650.133 10794.942 11044.998 11127.859
-83         7500       200 10140.119 10679.603 10813.414 11051.086 11129.072
-84         8000       200 10192.705 10701.022 10830.166 11055.076 11128.836
-85         8500       200 10238.145 10720.846 10843.626 11057.347 11127.418
-86          500       225  4833.952  6358.641  7079.595  8941.816  9788.152
-87         1000       225  6207.354  7872.239  8484.201  9724.586 10214.590
-88         1500       225  7148.471  8667.431  9139.723 10083.819 10431.508
-89         2000       225  7794.515  9134.959  9532.286 10293.497 10562.979
-90         2500       225  8279.030  9452.544  9794.320 10431.890 10648.942
-91         3000       225  8633.103  9681.219  9980.609 10529.091 10709.729
-92         3500       225  8900.088  9852.588 10118.746 10597.975 10753.965
-93         4000       225  9113.150  9984.731 10224.230 10648.896 10786.686
-94         4500       225  9286.107 10088.747 10306.450 10687.486 10811.004
-95         5000       225  9428.496 10171.973 10371.578 10717.046 10829.107
-96         5500       225  9547.009 10239.353 10423.738 10739.470 10841.950
-97         6000       225  9646.602 10294.471 10465.914 10756.827 10851.478
-98         6500       225  9730.925 10339.875 10500.217 10770.056 10855.315
-99         7000       225  9802.820 10377.542 10528.283 10776.834 10859.045
-100        7500       225  9864.448 10408.921 10547.846 10783.538 10860.889
-101        8000       225  9917.563 10431.796 10565.141 10788.121 10861.256
-102        8500       225  9963.522 10453.060 10579.131 10790.957 10860.413
-103         500       250  4518.379  6047.859  6759.525  8643.100  9495.762
-104        1000       250  5894.332  7566.960  8165.398  9432.530  9928.756
-105        1500       250  6830.807  8363.920  8843.997  9797.102 10150.053
-106        2000       250  7490.948  8840.209  9240.356 10010.766 10285.305
-107        2500       250  7959.901  9160.909  9505.941 10152.262 10377.186
-108        3000       250  8329.612  9392.584  9695.338 10251.959 10442.617
-109        3500       250  8607.220  9566.681  9836.153 10325.010 10490.599
-110        4000       250  8822.099  9701.254  9943.950 10379.907 10526.382
-111        4500       250  8996.945  9807.420 10028.173 10421.776 10552.859
-112        5000       250  9141.195  9892.552 10095.047 10454.068 10571.774
-113        5500       250  9261.489  9961.619 10148.735 10479.058 10585.798
-114        6000       250  9362.762 10018.236 10192.256 10498.460 10596.160
-115        6500       250  9448.650 10064.979 10227.747 10513.450 10600.333
-116        7000       250  9521.999 10103.841 10256.871 10521.062 10604.729
-117        7500       250  9584.972 10136.291 10277.708 10528.911 10607.207
-118        8000       250  9639.328 10160.466 10296.754 10534.461 10608.169
-119        8500       250  9686.431 10182.668 10312.267 10538.091 10607.889
-120         500       275  4175.291  5692.357  6420.512  8307.337  9164.606
-121        1000       275  5541.880  7229.722  7815.503  9103.024  9596.589
-122        1500       275  6494.365  8014.176  8520.788  9466.691  9818.378
-123        2000       275  7160.733  8518.202  8914.651  9680.660  9954.495
-124        2500       275  7613.665  8837.004  9179.454  9822.855 10047.348
-125        3000       275  7982.464  9067.979  9368.840  9923.398 10113.767
-126        3500       275  8274.784  9241.999  9510.027  9997.342 10162.716
-127        4000       275  8504.696  9376.839  9618.390 10053.129 10199.434
-128        4500       275  8678.832  9483.466  9703.276 10095.869 10227.172
-129        5000       275  8822.779  9569.164  9770.858 10129.001 10248.226
-130        5500       275  8943.046  9638.854  9825.268 10154.792 10264.107
-131        6000       275  9044.475  9696.121  9869.505 10174.955 10276.021
-132        6500       275  9130.646  9743.517  9905.695 10190.664 10281.535
-133        7000       275  9204.360  9783.023  9935.493 10199.459 10287.039
-134        7500       275  9267.754  9816.103  9957.445 10208.062 10290.457
-135        8000       275  9322.562  9841.380  9977.213 10214.339 10291.791
-136        8500       275  9370.137  9864.271  9993.428 10218.090 10292.118
-137         500       300  3807.335  5300.323  6046.820  7921.388  8814.045
-138        1000       300  5151.050  6837.705  7435.450  8753.569  9250.613
-139        1500       300  6122.537  7632.889  8143.235  9120.925  9476.090
-140        2000       300  6768.205  8141.499  8567.230  9338.170  9615.160
-141        2500       300  7239.247  8490.723  8834.394  9483.162  9710.472
-142        3000       300  7604.459  8723.672  9026.195  9586.100  9778.985
-143        3500       300  7895.059  8899.777  9169.666  9662.117  9829.747
-144        4000       300  8130.811  9036.649  9280.129  9719.720  9868.053
-145        4500       300  8324.982  9145.192  9366.924  9764.061  9897.197
-146        5000       300  8482.617  9232.671  9436.238  9798.613  9919.502
-147        5500       300  8604.257  9304.002  9492.215  9825.675  9936.506
-148        6000       300  8707.070  9362.773  9537.873  9846.978  9949.426
-149        6500       300  8794.606  9411.550  9575.354  9863.717  9956.295
-150        7000       300  8869.639  9452.322  9606.326  9873.941  9962.729
-151        7500       300  8934.293  9486.562  9629.824  9883.497  9967.014
-152        8000       300  8990.300  9513.415  9650.671  9890.663  9968.566
-153        8500       300  9039.006  9537.389  9667.896  9894.605  9969.549</code></pre>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="co"># convert dataframe to tidy dataset</span>
-<span class="no">df_gather</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span>(<span class="no">cum_df</span>, <span class="no">kv_kh</span>, <span class="no">liquid_rate</span>, <span class="st">'0.001'</span>:<span class="st">'1'</span>)
-
-<span class="co"># plot</span>
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">cum_df</span>)</pre></body></html></div>
+<pre><code>data frame with 0 columns and 0 rows</code></pre>
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co"># convert dataframe to tidy dataset</span>
+<span class="no">df_gather</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span>(<span class="no">cum_df</span>, <span class="no">kv_kh</span>, <span class="no">liquid_rate</span>, <span class="st">'0.001'</span>:<span class="st">'1'</span>)</pre></body></html></div>
+<pre><code>Error: Can't subset columns that don't exist.
+[31mx[39m Column `0.001` doesn't exist.</code></pre>
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># plot</span>
 <span class="no">g</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">df_gather</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">well_length</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">liquid_rate</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">kv_kh</span>)) +
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() +             <span class="co"># one curve per kv_kh</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="no">node_pres</span>~<span class="no">.</span>)   <span class="co"># one facet per top node pressure</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">g</span>)</pre></body></html></div>
-<p><img src="prosperHorizNodeSys_files/figure-html/shutdown-1.png" width="700" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co"># shutdown Prosper</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="no">node_pres</span>~<span class="no">.</span>)   <span class="co"># one facet per top node pressure</span></pre></body></html></div>
+<pre><code>Error in ggplot(df_gather, aes(x = well_length, y = liquid_rate, color = kv_kh)): object 'df_gather' not found</code></pre>
+<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">g</span>)</pre></body></html></div>
+<pre><code>Error in print(g): object 'g' not found</code></pre>
+<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="co"># shutdown Prosper</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="fl">3</span>)
 <span class="no">command</span> <span class="kw">=</span> <span class="st">"PROSPER.SHUTDOWN"</span>
 <span class="no">pserver</span>$<span class="fu"><a href="../../reference/DoCmd.html">DoCmd</a></span>(<span class="no">command</span>)</pre></body></html></div>
-<pre><code>[1] 0</code></pre>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">pserver</span> <span class="kw">&lt;-</span> <span class="kw">NULL</span></pre></body></html></div>
+<pre><code>Error in eval(expr, envir, enclos): object 'pserver' not found</code></pre>
+<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="no">pserver</span> <span class="kw">&lt;-</span> <span class="kw">NULL</span></pre></body></html></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

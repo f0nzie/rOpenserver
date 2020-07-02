@@ -2,7 +2,7 @@
 % Please edit documentation in R/openserver-functions.R
 \name{openserver}
 \alias{openserver}
-\title{Openserver constructor without using `$new()`}
+\title{OpenServer constructor}
 \usage{
 openserver(server = NULL)
 }
@@ -10,11 +10,13 @@ openserver(server = NULL)
 \item{server}{an existing OpenServer instance}
 }
 \description{
-Another Openserver constructor. Same as
+Openserver constructor that saves typing
+\code{.OpenServer$new()}. This is used in rProsper.
 }
 \seealso{
 Other server-side items: 
 \code{\link{.OpenServer}},
+\code{\link{OpenServerR6}},
 \code{\link{newOpenServer}()},
 \code{\link{setOpenServer}()}
 }

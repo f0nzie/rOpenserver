@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>.OpenServer class — .OpenServer • rOpenserver</title>
+<title>Secondary OpenServer class — OpenServerR6 • rOpenserver</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,8 @@
 
 
 
-<meta property="og:title" content=".OpenServer class — .OpenServer" />
-<meta property="og:description" content="The OpenServer class contains functions that communicate
-with Petroleum Experts applications such as Prosper, GAP and MBAL. The
-function send commands, retrieve data and write data to OpenServer
-variables exposed by the Windows COM interface.
-Create a new OpenServer instance." />
+<meta property="og:title" content="Secondary OpenServer class — OpenServerR6" />
+<meta property="og:description" content="Inherits the main class .OpenServer" />
 
 
 
@@ -148,104 +144,32 @@ Create a new OpenServer instance." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>.OpenServer class</h1>
+    <h1>Secondary OpenServer class</h1>
     <small class="dont-index">Source: <a href='https://github.com/f0nzie/rOpenserver/blob/master/R/openserver-class.R'><code>R/openserver-class.R</code></a></small>
-    <div class="hidden name"><code>dot-OpenServer.Rd</code></div>
+    <div class="hidden name"><code>OpenServerR6.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The OpenServer class contains functions that communicate
-with Petroleum Experts applications such as Prosper, GAP and MBAL. The
-function send commands, retrieve data and write data to OpenServer
-variables exposed by the Windows COM interface.</p>
-<p>Create a new OpenServer instance.</p>
+    <p>Inherits the main class .OpenServer</p>
     </div>
 
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>server</th>
-      <td><p>passing an OpenServer object if available</p></td>
-    </tr>
-    <tr>
-      <th>variable</th>
-      <td><p>OpenServer variable</p></td>
-    </tr>
-    <tr>
-      <th>set_value</th>
-      <td><p>value to set to OpenServer variable</p></td>
-    </tr>
-    <tr>
-      <th>command</th>
-      <td><p>an OpenServer command</p></td>
-    </tr>
-    <tr>
-      <th>Gv</th>
-      <td><p>GAP variable</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>An OpenServer object.</p>
     <h2 class="hasAnchor" id="openserver-class"><a class="anchor" href="#openserver-class"></a>OpenServer class</h2>
 
     
 
 <table class='table'>
-<tr><td><code>.OpenServer</code></td></tr>
-<tr><td><code><a href='OpenServerR6.html'>OpenServerR6</a></code></td></tr>
+<tr><td><code><a href='dot-OpenServer.html'>.OpenServer</a></code></td></tr>
+<tr><td><code>OpenServerR6</code></td></tr>
 <tr><td></td></tr>
 </table>
 
 
-    <h2 class="hasAnchor" id="constructors"><a class="anchor" href="#constructors"></a>Constructors</h2>
-
-    
-
-<table class='table'>
-<tr><td><strong>Constructor</strong></td></tr>
-<tr><td><code><a href='newOpenServer.html'>newOpenServer()</a></code></td></tr>
-<tr><td><code><a href='setOpenServer.html'>setOpenServer()</a></code></td></tr>
-<tr><td><code><a href='openserver.html'>openserver()</a></code></td></tr>
-<tr><td></td></tr>
-</table>
-
-
-    <h2 class="hasAnchor" id="public-methods"><a class="anchor" href="#public-methods"></a>Public Methods</h2>
-
-    
-
-<table class='table'>
-<tr><td><strong>Parameters Methods</strong></td><td><strong>Action</strong></td></tr>
-<tr><td><code><a href='DoCmd.html'>DoCmd()</a></code></td><td>Send command</td></tr>
-<tr><td><code><a href='DoGet.html'>DoGet()</a></code></td><td>Retrieve value from variable</td></tr>
-<tr><td><code><a href='DoSet.html'>DoSet()</a></code></td><td>Set value to variable</td></tr>
-<tr><td><code><a href='DoSlowCmd.html'>DoSlowCmd()</a></code></td><td>Send slow command</td></tr>
-<tr><td><code><a href='DoGAPFunc.html'>DoGAPFunc()</a></code></td><td>Run GAP function</td></tr>
-</table>
-
-
-    <h2 class="hasAnchor" id="r-usage"><a class="anchor" href="#r-usage"></a>R6 Usage</h2>
-
-    <p><code>$DoCmd(command)</code></p>
-<p><code>$DoGet(variable)</code></p>
-<p><code>$DoSet(variable, set_value)</code></p>
-<p><code>$DoSlowCmd(command)</code></p>
-<p><code>$DoGAPFunc(Gv)</code></p>
-    <h2 class="hasAnchor" id="s-usage"><a class="anchor" href="#s-usage"></a>S3 Usage</h2>
-
-    <p><code><a href='DoCmd.html'>DoCmd(server, command)</a></code></p>
-<p><code><a href='DoGet.html'>DoGet(server, variable)</a></code></p>
-<p><code><a href='DoSet.html'>DoSet(server, variable, set_value)</a></code></p>
-<p><code><a href='DoSlowCmd.html'>DoSlowCmd(server, command)</a></code></p>
-<p><code><a href='DoGAPFunc.html'>DoGAPFunc(server, Gv)</a></code></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other server-side items: 
-<code><a href='OpenServerR6.html'>OpenServerR6</a></code>,
+<code><a href='dot-OpenServer.html'>.OpenServer</a></code>,
 <code><a href='newOpenServer.html'>newOpenServer</a>()</code>,
 <code><a href='openserver.html'>openserver</a>()</code>,
 <code><a href='setOpenServer.html'>setOpenServer</a>()</code></p></div>

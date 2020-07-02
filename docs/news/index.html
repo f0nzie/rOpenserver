@@ -151,11 +151,24 @@
 <h1 class="page-header" data-toc-text="0.1.0.9015">
 <a href="#ropenserver-0109015" class="anchor"></a>rOpenserver 0.1.0.9015</h1>
 <ul>
-<li>add openserver() function (all lowercase). Replaces OpenServer function in rProsper package. OpenServer is now a class.</li>
-<li>add new tests for data objects. not complete yet.</li>
+<li>use .OpenServer (dot-OpenServer) for the R6 class</li>
+<li>OpenServerR6 class inherits from .OpenServer class. We will not use OpenServer because collides with openserver() function</li>
+<li>new function newOpenServer() that represents OpenServer$new()</li>
+<li>keep setOpenServer(). does the same as newOpenServer()</li>
+<li>update R6 class with a structure that does not produce warnings or notes</li>
+<li>fix roxygen documentation for R6 class</li>
+<li>prevent R6 warnings by adding roxygen line in DESCRIPTION</li>
 <li>new function get_all_models_by_ext() to retrieve all models residing in package</li>
-<li>TODO: complete data objects test. add commands. add GAP and MBAL.</li>
-<li>TODO: check on return of long vector in well test, specially, when most rows are zeros. This is addressed in rProsper.</li>
+<li>split core.R in class, functions</li>
+<li>move conversion functions to dataobjects.R</li>
+<li>use package example in README</li>
+<li>remove unneeded packages</li>
+<li>remove BiocStyle that provide nicer css</li>
+<li>create common.R for unit tests</li>
+<li>add while-loop time delay that works in unit tests when CPU is busy</li>
+<li>kill dormant processes before test status</li>
+<li>TODO: complete data objects for GAP and MBAL tests</li>
+<li>TODO: check long vector in well test, when most rows are zeros. This is addressed in rProsper as well.</li>
 </ul>
 </div>
     <div id="ropenserver-0109014" class="section level1">
