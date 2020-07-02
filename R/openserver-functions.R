@@ -3,9 +3,10 @@
 #-------------------------------------------------------------
 
 #' @name setOpenServer
-#' @title Another Openserver constructor without using `$new()`
-#' @description  Call class
-#' @param server an existing OpenServer instance
+#' @title OpenServer constructor
+#' @description  Openserver constructor that saves typing
+#' \code{.OpenServer$new()}.
+#' @param server pass an existing OpenServer instance
 #'
 #' @family server-side items
 #' @export
@@ -15,9 +16,10 @@ setOpenServer <- function(server = NULL) {
 
 
 #' @name newOpenServer
-#' @title Another Openserver constructor without using `$new()`
-#' @description  Call class
-#' @param server an existing OpenServer instance
+#' @title OpenServer constructor
+#' @description  Openserver constructor that saves typing
+#' \code{.OpenServer$new()}.
+#' @param server pass an existing OpenServer instance
 #'
 #' @family server-side items
 #' @export
@@ -27,8 +29,9 @@ newOpenServer <- function(server = NULL) {
 
 
 #' @name openserver
-#' @title Openserver constructor without using `$new()`
-#' @description  Another Openserver constructor. Same as
+#' @title OpenServer constructor
+#' @description  Openserver constructor that saves typing
+#' \code{.OpenServer$new()}. This is used in rProsper.
 #' @param server an existing OpenServer instance
 #'
 #' @family server-side items
