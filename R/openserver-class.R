@@ -1,4 +1,4 @@
-#' @title OpenServer class
+#' @title .OpenServer class
 #'
 #' @description The OpenServer class contains functions that communicate
 #' with Petroleum Experts applications such as Prosper, GAP and MBAL. The
@@ -6,6 +6,32 @@
 #' variables exposed by the Windows COM interface.
 #'
 #' @family server-side items
+#'
+#' @section OpenServer class:
+#' \tabular{l}{
+#' \code{\link{.OpenServer}} \cr
+#' \code{\link{OpenServerR6}} \cr
+#' }
+#'
+#' @section Constructors:
+#' \tabular{l}{
+#' \strong{Constructor}     \cr
+#' \code{newOpenServer()}   \cr
+#' \code{setOpenServer()}   \cr
+#' \code{openserver()}      \cr
+#' }
+#'
+#' @section Public Methods:
+#' \tabular{ll}{
+#' \strong{Parameters Methods} \tab \strong{Action} \cr
+#' \code{DoCmd()} \tab Send command \cr
+#' \code{DoGet()} \tab Retrieve value from variable \cr
+#' \code{DoSet()} \tab Set value to variable \cr
+#' \code{DoSlowCmd()} \tab Send slow command \cr
+#' \code{DoGAPFunc()} \tab Run GAP function \cr
+#' }
+#'
+#'
 #' @docType class
 #' @import R6
 #' @export
@@ -15,9 +41,9 @@
     public = list(
         app_name = NULL,
 
-        #' @description Create new OpenServer instance
-        #' @param server an OpenServer object
-        #' @return An OpenServer object
+        #' @description Create a new OpenServer instance.
+        #' @param server passing an OpenServer object if available
+        #' @return An OpenServer object.
         initialize = function(server = NULL) {
             if (is.null(server))
                 self$server <- RDCOMClient::COMCreate("PX32.OpenServer.1")
@@ -26,7 +52,8 @@
         },
 
         #' @title Send an OpenServer command
-        #' @section R6 Usage: $DoCmd()
+        #' @section R6 Usage: \code{$DoCmd(command)}
+        #' @section S3 Usage: \code{DoCmd(server, command)}
         #' @param command command to send
         DoCmd = function(command) {
             app_name <- private$get_app_name(command)
@@ -41,10 +68,10 @@
                 return(ret_cmd)
         },
 
-        # get a value from an OpenServer variable
         #' @title Get a value from an OpenServer variable
-        #' @section R6 Usage: $DoGet()
-        #' @param variable OpenServer variable
+        #' @section R6 Usage: \code{$DoGet(variable)}
+        #' @section S3 Usage: \code{DoGet(server, variable)}
+        #' @param variable an OpenServer variable
         DoGet = function(variable) {
             app_name <- private$get_app_name(variable)
             ret_get <- self$server$GetValue(variable)
@@ -60,7 +87,8 @@
 
         # set a value to an OpenServer variable
         #' @title Set a value to an OpenServer variable
-        #' @section R6 Usage: $DoSet()
+        #' @section R6 Usage: \code{$DoSet(variable, set_value)}
+        #' @section S3 Usage: \code{DoSet(server, variable, set_value)}
         #' @param variable OpenServer variable
         #' @param set_value value to set to OpenServer variable
         DoSet = function(variable, set_value = NULL) {
@@ -77,8 +105,9 @@
         },
 
         #' @title Send a command with a delay
-        #' @section R6 Usage: $DoSlowCmd()
-        #' @param command OpenServer command
+        #' @section R6 Usage: \code{$DoSlowCmd(command)}
+        #' @section S3 Usage: \code{DoSlowCmd(server, command)}
+        #' @param command an OpenServer command
         DoSlowCmd = function(command) {
             step <-  0.001
             app_name   <- private$get_app_name(command)
@@ -115,7 +144,8 @@
         },
 
         #' @title Run a GAP function
-        #' @section R6 Usage: $DoGAPFunc()
+        #' @section R6 Usage: \code{$DoGAPFunc(Gv)}
+        #' @section S3 Usage: \code{DoGAPFunc(server, Gv)}
         #' @param Gv GAP variable
         DoGAPFunc = function(Gv) {
             self$DoSlowCmd(Gv)
@@ -166,8 +196,8 @@
 #' @title Send an OpenServer command
 #' @usage DoCmd(object, command)
 #' @section R6 Usage: $DoCmd()
-#' @param object OpenServer object
 #' @param command command to send
+#' @param object OpenServer object
 #' @export
 NULL
 
@@ -209,10 +239,17 @@ NULL
 NULL
 
 
-#' OpenServer class
+#' Secondary OpenServer class
 #'
-#' Instantiate the main class .OpenServer
+#' Inherits the main class .OpenServer
 #'
+#' @section OpenServer class:
+#' \tabular{l}{
+#' \code{\link{.OpenServer}} \cr
+#' \code{\link{OpenServerR6}} \cr
+#' }
+#'
+#' @family server-side items
 #' @docType class
 #' @import R6
 #'
