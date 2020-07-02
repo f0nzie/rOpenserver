@@ -19,14 +19,14 @@ The goal of `rOpenserver` is to provide an **R** interface to Petex applications
 
 
 ## Installation
-`rOpenserver` is not in [CRAN](https://cran.r-project.org/) yet but in the meantime, you can install it from  GtiHub, from the [rOpenserver repository](https://github.com/f0nzie/rOpenserver) with:
+`rOpenserver` is not in [CRAN](https://cran.r-project.org/) yet but in the meantime, you can install it from  GtiHub using the `devtools` package, from the [rOpenserver repository](https://github.com/f0nzie/rOpenserver) with:
 
 ```{r eval=FALSE}
 install.packages("devtools")
 devtools::install_github("f0nzie/rOpenserver", dependencies = TRUE)
 ```
 
-The argument `dependencies` has the role of downloading and installing packages that are key for rOpenserver, such as `R6` and `RDCOMClient`. If you want to install `RDCOMClient` separately you could install it from its repository via `devtools`.
+The argument `dependencies` has the role of downloading and installing packages that are key for rOpenserver, such as `R6` and `RDCOMClient`. If you want to install `RDCOMClient` separately you could install it from its repository via `devtools` as well. Then after you could proceed to install `rOpenServer`.
 
 ```{r eval=FALSE}
 devtools::install_github("omegahat/RDCOMClient")
@@ -55,7 +55,7 @@ library(rOpenserver)
 
 
 # Initialize OpenServer
-prosper_server <- OpenServer$new()
+prosper_server <- openserver()
 
 # Start Prosper
 cmd = "PROSPER.START"
@@ -79,7 +79,7 @@ print(prosper_server$DoGet(cmd))
 
 # get reservoir temperature
 cmd <- "PROSPER.SIN.IPR.Single.Tres"
-print(DoGet(prosper_server, cmd))         # S3 class: another way of getting values
+print(DoGet(prosper_server, cmd))      # S3 class: another way of getting values
 
 
 # shutdown Prosper
@@ -88,7 +88,6 @@ command = "PROSPER.SHUTDOWN"
 prosper_server$DoCmd(command)
 prosper_server <- NULL
 ```
-
 
 ## Uses of `rOpenserver`
 The previous example just shows a spark of the functionality of `rOpenserver`:  starting Prosper, opening a well model, read values from it, and close Prosper. This is what we call an **instance**. 

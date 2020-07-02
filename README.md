@@ -4,14 +4,15 @@
 # rOpenserver
 
 The goal of `rOpenserver` is to provide an **R** interface to Petex
-applications Prosper, GAP and MBAL to perform automated tasks, create
-datasets for statistical analysis, and advanced control of solvers and
-calculations.
+applications Prosper, GAP and MBAL to perform automated tasks, generate
+datasets for statistical analysis, and advanced fine control of solvers
+and calculations.
 
 ## Installation
 
 `rOpenserver` is not in [CRAN](https://cran.r-project.org/) yet but in
-the meantime, you can install it from GtiHub, from the [rOpenserver
+the meantime, you can install it from GtiHub using the `devtools`
+package, from the [rOpenserver
 repository](https://github.com/f0nzie/rOpenserver) with:
 
 ``` r
@@ -21,6 +22,13 @@ devtools::install_github("f0nzie/rOpenserver", dependencies = TRUE)
 
 The argument `dependencies` has the role of downloading and installing
 packages that are key for rOpenserver, such as `R6` and `RDCOMClient`.
+If you want to install `RDCOMClient` separately you could install it
+from its repository via `devtools` as well. Then after you could proceed
+to install `rOpenServer`.
+
+``` r
+devtools::install_github("omegahat/RDCOMClient")
+```
 
 ## Indicating files and folders
 
@@ -52,10 +60,16 @@ temperature from a model residing in the Examples folder:
 ``` r
 # load OpenServer
 library(rOpenserver)
+#> 
+#> -----------------------------
+#>  rOpenserver v0.1.0.9015
+#> 
+#> Get started: ?rOpenserver
+#> -----------------------------
 
 
 # Initialize OpenServer
-prosper_server <- OpenServer$new()
+prosper_server <- openserver()
 
 # Start Prosper
 cmd = "PROSPER.START"
@@ -63,7 +77,7 @@ prosper_server$DoCmd(cmd)
 #> [1] 0
 
 # point to the well model
-prosper_folder = "C:\\Program Files (x86)\\Petroleum Experts\\IPM 10\\Samples\\prosper"
+prosper_folder = system.file("models", package = "rOpenserver")
 model_file <- "T00_Integrated_Oil_Well.Out"
 model_filename <- file.path(prosper_folder, model_file)
 file.exists(model_filename)
@@ -78,12 +92,12 @@ DoCmd(prosper_server, open_cmd)
 
 # get reservoir pressure
 cmd <- "PROSPER.SIN.IPR.Single.Pres"
-prosper_server$DoGet(cmd)
+print(prosper_server$DoGet(cmd))
 #> [1] "5200.000000000"
 
 # get reservoir temperature
 cmd <- "PROSPER.SIN.IPR.Single.Tres"
-DoGet(prosper_server, cmd)           # S3 class: another way of getting values
+print(DoGet(prosper_server, cmd))      # S3 class: another way of getting values
 #> [1] "210.000000000"
 
 
@@ -98,10 +112,11 @@ prosper_server <- NULL
 ## Uses of `rOpenserver`
 
 The previous example just shows a spark of the functionality of
-`rOpenserver`: of starting Prosper, opening a well model, read values
-from it, and close Prosper. This is what we call an **instance**. There
-are plenty more examples that make use of `rOpenserver`. During my years
-as Production Engineer working on well models and optimization we
+`rOpenserver`: starting Prosper, opening a well model, read values from
+it, and close Prosper. This is what we call an **instance**.
+
+There are plenty more examples that make use of `rOpenserver`. During my
+years as Production Engineer working on well models and optimization we
 practically had endless use for this interface. Okay, you could call it
 a **data science** oriented solution, but not all is really data
 science. The use cases go beyond that. Let me cite a few, just for
@@ -110,9 +125,9 @@ science. The use cases go beyond that. Let me cite a few, just for
   - Batch automation for reading all the Prosper well models residing in
     your disk, or the network drive
 
-  - Convert all the well models in Prosper to a reactangular dataset,
-    very much like an Excel spreadsheet, a dataframe, which is a more
-    powerful data structure for performing data analysis
+  - Convert all the well models in Prosper to a rectangular or tidy
+    dataset, very much like an Excel spreadsheet: a dataframe, which is
+    a more powerful data structure for performing data analysis
 
   - Perform an inventory of all the fluid properties correlations that
     work in your field
