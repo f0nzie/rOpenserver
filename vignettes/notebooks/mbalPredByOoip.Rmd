@@ -40,7 +40,7 @@ ooip <- 300
 
 ```{r init_start_open}
 # Initialize OpenServer
-mbal_server <- OpenServer$new()
+mbal_server <- newOpenServer()
 
 # Start Prosper
 cmd = "MBAL.START"

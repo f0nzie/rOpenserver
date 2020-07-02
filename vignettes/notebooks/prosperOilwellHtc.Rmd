@@ -49,7 +49,7 @@ sys_prfric            <- "PROSPER.OUT.SYS.Results[0].Sol.PRFRIC"
 
 ```{r init_start_open}
 # Initialize and start OpenServer
-pserver <- OpenServer$new()
+pserver <- OpenServerR6$new()     # another way to start an OpenServer instance
 cmd = "PROSPER.START"
 DoCmd(pserver, cmd)
 
