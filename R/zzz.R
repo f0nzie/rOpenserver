@@ -4,15 +4,15 @@
 R62S3::R62Fun(.OpenServer, assignEnvir = topenv(), mask = T)
 
 
-.onAttach <- function(libname, pkgname) {
-    packageStartupMessage("\n-----------------------------")
-    packageStartupMessage(
-        "\trOpenserver v",
-        utils::packageVersion("rOpenserver"),
-        "\n\nGet started:\t?rOpenserver")
-    packageStartupMessage("-----------------------------\n")
-}
-
+# .onAttach <- function(libname, pkgname) {
+#     packageStartupMessage("\n-----------------------------")
+#     packageStartupMessage(
+#         "\trOpenserver v",
+#         utils::packageVersion("rOpenserver"),
+#         "\n\nGet started:\t?rOpenserver")
+#     packageStartupMessage("-----------------------------\n")
+# }
+#
 
 
 
