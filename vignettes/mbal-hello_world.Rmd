@@ -1,7 +1,5 @@
 ---
 title: "mbal-hello_world"
-output: 
-  BiocStyle::html_document
 vignette: >
   %\VignetteIndexEntry{mbal-hello_world}
   %\VignetteEngine{knitr::knitr}
@@ -14,7 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-BiocStyle::markdown()
 ```
 
 
@@ -28,7 +25,8 @@ The MBAL server is started the same way as in Prosper and GAP.
 library(rOpenserver)
 
 # Initialize OpenServer
-mbal_server <- OpenServer$new()
+# mbal_server <- .OpenServer$new()
+mbal_server <- openserver()
 
 # Start Prosper
 cmd = "MBAL.START"

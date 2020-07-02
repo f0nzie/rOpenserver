@@ -1,7 +1,7 @@
 Package: rOpenserver
 Type: Package
 Title: COM interface to OpenServer written in R
-Version: 0.1.0.9013
+Version: 0.1.0.9015
 Author: Alfonso R. Reyes
 Maintainer: Alfonso R. Reyes <alfonso.reyes@oilgainsanalytics.com>
 Description: Provide a COM interface to R so it can talk to Petex's IPM 
@@ -9,22 +9,24 @@ Description: Provide a COM interface to R so it can talk to Petex's IPM
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+OS_type: windows
 Imports: 
     base,
-    stats,
     R6,
-    R62S3 (>= 1.3.1),
+    R62S3 (>= 1.4.0),
+    stats,
     RDCOMClient
 Suggests:
-    BiocStyle,
     knitr,
     rmarkdown,
     ggplot2,
     tidyr,
     testthat (>= 2.1.0),
     devtools,
+    Rd2roxygen,
     remotes
 Remotes: omegahat/RDCOMClient
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
+Roxygen: list(r6 = FALSE)
 VignetteBuilder: knitr
 URL: https://github.com/f0nzie/rOpenserver

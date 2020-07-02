@@ -80,7 +80,7 @@ get_prosper_model(model = "HORWELLDP.OUT")
 ### Start Prosper
 ```{r}
 # Initialize OpenServer
-prosper_server <- OpenServer$new()
+prosper_server <- .OpenServer$new()
 
 # Start Prosper
 cmd = "PROSPER.START"

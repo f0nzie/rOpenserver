@@ -3,5 +3,8 @@
 .RData
 .Ruserdata
 
-notebooks/run-prosper_mbal.nb.html
+notebooks/run-prosper_mbal.nb.*
 inst/doc
+man/
+doc
+Meta

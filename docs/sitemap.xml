@@ -22,10 +22,19 @@
     <loc>https://github.com/f0nzie/rOpenserver/reference/DoSlowCmd.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rOpenserver/reference/dot-OpenServer.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rOpenserver/reference/named.list.html</loc>
   </url>
   <url>
-    <loc>https://github.com/f0nzie/rOpenserver/reference/OpenServer.html</loc>
+    <loc>https://github.com/f0nzie/rOpenserver/reference/newOpenServer.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rOpenserver/reference/openserver.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rOpenserver/reference/OpenServerR6.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rOpenserver/reference/openserver_to_character.html</loc>
@@ -46,7 +55,10 @@
     <loc>https://github.com/f0nzie/rOpenserver/reference/read_openserver_status.html</loc>
   </url>
   <url>
-    <loc>https://github.com/f0nzie/rOpenserver/reference/remove_mbal_models.html</loc>
+    <loc>https://github.com/f0nzie/rOpenserver/reference/remove_models_but_zip.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rOpenserver/reference/remove_models_by_ext.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rOpenserver/reference/rOpenserver-package.html</loc>
@@ -55,7 +67,7 @@
     <loc>https://github.com/f0nzie/rOpenserver/reference/setOpenServer.html</loc>
   </url>
   <url>
-    <loc>https://github.com/f0nzie/rOpenserver/reference/unzip_mbal_models.html</loc>
+    <loc>https://github.com/f0nzie/rOpenserver/reference/unzip_model_pack.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rOpenserver/articles/gap-hello_world.html</loc>

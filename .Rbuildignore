@@ -15,3 +15,5 @@
 ^\.github$
 ^makefile$
 vignettes/notebooks/.*_cache$
+^doc$
+^Meta$

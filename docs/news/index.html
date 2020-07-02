@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -53,7 +57,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -67,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rOpenserver</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9013</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9015</span>
       </span>
     </div>
 
@@ -139,19 +143,64 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       <small>Source: <a href='https://github.com/f0nzie/rOpenserver/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="ropenserver-0109015" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.0.9015">
+<a href="#ropenserver-0109015" class="anchor"></a>rOpenserver 0.1.0.9015</h1>
+<ul>
+<li>use <code>.OpenServer</code> (dot-OpenServer) instead of <code>OpenServer</code> for the R6 class</li>
+<li>new <code>OpenServerR6</code> class inherits from <code>.OpenServer</code> class. We will not use old <code>OpenServer</code> because collides with <code><a href="../reference/openserver.html">openserver()</a></code> function.</li>
+<li>new function <code><a href="../reference/newOpenServer.html">newOpenServer()</a></code> that represents <code>.OpenServer$new()</code> or <code>OpenServerR6$new()</code>.</li>
+<li>keep <code><a href="../reference/setOpenServer.html">setOpenServer()</a></code> as it does the same as <code><a href="../reference/newOpenServer.html">newOpenServer()</a></code>.</li>
+<li>update R6 class with a structure that does not produce warnings or notes</li>
+<li>fix roxygen documentation for R6 class so we don’t get warnings.</li>
+<li>prevent R6 warnings by adding roxygen line in DESCRIPTION</li>
+<li>new function <code>get_all_models_by_ext()</code> to retrieve all models residing in package</li>
+<li>split <code>core.R</code> in class, functions</li>
+<li>add new zip functions to <code>utils.R</code>
+</li>
+<li>disable .onAttach() in <code>zzz.R</code>
+</li>
+<li>move conversion functions to <code>dataobjects.R</code>
+</li>
+<li>use package example in <code>README</code>
+</li>
+<li>remove unneeded packages from <code>DESCRIPTION</code>.</li>
+<li>remove <code>BiocStyle</code> package that provided nicer <code>css</code>. It was making installation complicated.</li>
+<li>create <code>common.R</code> for unit tests functions.</li>
+<li>add while-loop time delay that works in unit tests when CPU is busy in <code>test-status.R</code>
+</li>
+<li>kill dormant processes before unit test status</li>
+<li>reorganize unit test for status check</li>
+<li>change calls to OpenServer constructors in vignettes</li>
+<li>add note in <code>README</code> for <code>RDCOMClient</code> installation</li>
+<li>add new functions to <code>pkgdown</code>
+</li>
+<li>TODO: complete data objects for GAP and MBAL tests</li>
+<li>TODO: check long vector in well test, when most rows are zeros. This is addressed in rProsper as well.</li>
+</ul>
+</div>
+    <div id="ropenserver-0109014" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.0.9014">
+<a href="#ropenserver-0109014" class="anchor"></a>rOpenserver 0.1.0.9014</h1>
+<ul>
+<li>enhance list of IPM objects in process list in read_openserver_status(). ignore case of object in task list.</li>
+<li>replace delay using Sys.sleep() in tests with while loop because sleep() doesn’t work in this case.</li>
+<li>add test for DoSet</li>
+</ul>
+</div>
     <div id="ropenserver-0109013" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0.9013">
 <a href="#ropenserver-0109013" class="anchor"></a>rOpenserver 0.1.0.9013</h1>
 <ul>
 <li>Heat Transfer Coefficient example</li>
 </ul>
 </div>
     <div id="ropenserver-0109011" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0.9011">
 <a href="#ropenserver-0109011" class="anchor"></a>rOpenserver 0.1.0.9011</h1>
 <ul>
 <li>New <code>_pkgdown.yml</code>
@@ -163,7 +212,7 @@
 </ul>
 </div>
     <div id="ropenserver-0109010" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0.9010">
 <a href="#ropenserver-0109010" class="anchor"></a>rOpenserver 0.1.0.9010</h1>
 <ul>
 <li>Prosper example horizontal well with three independent variables</li>
@@ -171,14 +220,14 @@
 </ul>
 </div>
     <div id="ropenserver-0109009" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0.9009">
 <a href="#ropenserver-0109009" class="anchor"></a>rOpenserver 0.1.0.9009</h1>
 <ul>
 <li>add demo examples to run with demo()</li>
 </ul>
 </div>
     <div id="ropenserver-0109008" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0.9008">
 <a href="#ropenserver-0109008" class="anchor"></a>rOpenserver 0.1.0.9008</h1>
 <ul>
 <li>Hello World example for MBAL</li>
@@ -186,14 +235,14 @@
 </ul>
 </div>
     <div id="ropenserver-0109007" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0.9007">
 <a href="#ropenserver-0109007" class="anchor"></a>rOpenserver 0.1.0.9007</h1>
 <ul>
 <li>Hello World examples for Prosper and GAP</li>
 </ul>
 </div>
     <div id="ropenserver-0109006" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0.9006">
 <a href="#ropenserver-0109006" class="anchor"></a>rOpenserver 0.1.0.9006</h1>
 <ul>
 <li>Hide <code>RDCOMClient</code> function <code><a href="../reference/createCOMReference.html">createCOMReference()</a></code> with <code>@keywords internal</code>
@@ -201,7 +250,7 @@
 </ul>
 </div>
     <div id="ropenserver-0109005" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0.9005">
 <a href="#ropenserver-0109005" class="anchor"></a>rOpenserver 0.1.0.9005</h1>
 <ul>
 <li>Stick to R6 style for initialization <code>OpenServer$new()</code>
@@ -212,7 +261,7 @@
 </ul>
 </div>
     <div id="ropenserver-0109004" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0.9004">
 <a href="#ropenserver-0109004" class="anchor"></a>rOpenserver 0.1.0.9004</h1>
 <ul>
 <li>After copying the example in <code>README</code> to a unit test, getting this error when using this form of <code>DoCmd</code> and <code>DoGet</code>: <code><a href="../reference/DoCmd.html">DoCmd(prosper_server, open_cmd)</a></code>. Here is the output:</li>
@@ -233,14 +282,14 @@ Backtrace:
 </ul>
 </div>
     <div id="ropenserver-0109003" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0.9003">
 <a href="#ropenserver-0109003" class="anchor"></a>rOpenserver 0.1.0.9003</h1>
 <ul>
 <li>Documenting function <code>setOpenServer</code> that acts as a OpenServer constructor.</li>
 </ul>
 </div>
     <div id="ropenserver-0109002" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0.9002">
 <a href="#ropenserver-0109002" class="anchor"></a>rOpenserver 0.1.0.9002</h1>
 <ul>
 <li>trying with different option to obtaina constructor of <code>OpenServer</code> without using <code>OpensServer$new()</code>. Attempts unsuccesful witout sacrificing documentation, and renaming main class to <code>.OpenServer</code>, that is <em>dot OpenServer</em>
@@ -249,7 +298,7 @@ Backtrace:
 </ul>
 </div>
     <div id="ropenserver-0109000" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0.9000">
 <a href="#ropenserver-0109000" class="anchor"></a>rOpenserver 0.1.0.9000</h1>
 <ul>
 <li>The original <code>openserver</code> package works fine but didn’t have any roxygen2 documentation.</li>
@@ -257,24 +306,10 @@ Backtrace:
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#ropenserver-0109013">0.1.0.9013</a></li>
-        <li><a href="#ropenserver-0109011">0.1.0.9011</a></li>
-        <li><a href="#ropenserver-0109010">0.1.0.9010</a></li>
-        <li><a href="#ropenserver-0109009">0.1.0.9009</a></li>
-        <li><a href="#ropenserver-0109008">0.1.0.9008</a></li>
-        <li><a href="#ropenserver-0109007">0.1.0.9007</a></li>
-        <li><a href="#ropenserver-0109006">0.1.0.9006</a></li>
-        <li><a href="#ropenserver-0109005">0.1.0.9005</a></li>
-        <li><a href="#ropenserver-0109004">0.1.0.9004</a></li>
-        <li><a href="#ropenserver-0109003">0.1.0.9003</a></li>
-        <li><a href="#ropenserver-0109002">0.1.0.9002</a></li>
-        <li><a href="#ropenserver-0109000">0.1.0.9000</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
@@ -286,7 +321,7 @@ Backtrace:
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

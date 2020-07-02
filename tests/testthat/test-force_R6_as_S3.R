@@ -5,7 +5,7 @@ oserver_methods <- c("server", ".__enclos_env__", "clone", "app_name",
                      "DoGAPFunc")
 
 test_that("PROSPER using DoCmd to start produces communication error in unit tests", {
-    mserver <- OpenServer$new()
+    mserver <- .OpenServer$new()
     cmd = "PROSPER.START"
     expect_error(DoCmd(cmd))
     # expect_equal(mserver$app_name, "PROSPER")

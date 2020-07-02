@@ -1,3 +1,37 @@
+# rOpenserver 0.1.0.9015
+* use `.OpenServer` (dot-OpenServer) instead of `OpenServer` for the R6 class
+* new `OpenServerR6` class inherits from `.OpenServer` class. We will not use old `OpenServer` because collides with `openserver()` function.
+* new function `newOpenServer()` that represents `.OpenServer$new()` or `OpenServerR6$new()`.
+* keep `setOpenServer()` as it does the same as `newOpenServer()`.
+* update R6 class with a structure that does not produce warnings or notes
+* fix roxygen documentation for R6 class so we don't get warnings.
+* prevent R6 warnings by adding roxygen line in DESCRIPTION
+* new function `get_all_models_by_ext()` to retrieve all models residing in package
+* split `core.R` in class, functions
+* add new zip functions to `utils.R`
+* disable .onAttach() in `zzz.R`
+* move conversion functions to `dataobjects.R`
+* use package example in `README`
+* remove unneeded packages from `DESCRIPTION`.
+* remove `BiocStyle` package that provided nicer `css`. It was making installation complicated.
+* create `common.R` for unit tests functions.
+* add while-loop time delay that works in unit tests when CPU is busy in `test-status.R`
+* kill dormant processes before unit test status
+* reorganize unit test for status check
+* change calls to OpenServer constructors in vignettes
+* add note in `README` for `RDCOMClient` installation
+* add new functions to `pkgdown`
+* add Makefile because `pkgdown` requires building README, install package before building the documentation website.
+* TODO: complete data objects for GAP and MBAL tests
+* TODO: check long vector in well test, when most rows are zeros. This is addressed in rProsper as well.
+
+
+# rOpenserver 0.1.0.9014
+* enhance list of IPM objects in process list in read_openserver_status(). ignore case of object in task list.
+* replace delay using Sys.sleep() in tests with while loop because sleep() doesn't work in this case.
+* add test for DoSet
+
+
 # rOpenserver 0.1.0.9013
 * Heat Transfer Coefficient example
 

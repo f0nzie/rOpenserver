@@ -40,7 +40,7 @@ df <- data.frame(well_length)
 
 ```{r init_start_open}
 # Initialize and start OpenServer
-pserver <- OpenServer$new()
+pserver <- .OpenServer$new()       # this uses the R6 class directly
 cmd = "PROSPER.START"
 DoCmd(pserver, cmd)
 
