@@ -106,21 +106,22 @@
 <div id="ropenserver" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#ropenserver" class="anchor"></a>rOpenserver</h1></div>
-<p>The goal of <code>rOpenserver</code> is to provide an <strong>R</strong> interface to Petex applications Prosper, GAP and MBAL to perform automated tasks, create datasets for statistical analysis, and advanced control of solvers and calculations.</p>
+<p>The goal of <code>rOpenserver</code> is providing an <strong>R</strong> interface to Petex (Petroleum Experts) applications Prosper, GAP and MBAL to perform automated tasks, generate datasets for statistical analysis, and advanced fine control of solvers and calculations.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p><code>rOpenserver</code> is not in <a href="https://cran.r-project.org/">CRAN</a> yet but in the meantime, you can install it from GtiHub, from the <a href="https://github.com/f0nzie/rOpenserver">rOpenserver repository</a> with:</p>
+<p><code>rOpenserver</code> is not in <a href="https://cran.r-project.org/">CRAN</a> yet but in the meantime, you can install it from GtiHub using the <code>devtools</code> package, from the <a href="https://github.com/f0nzie/rOpenserver">rOpenserver repository</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"f0nzie/rOpenserver"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></div>
-<p>The argument <code>dependencies</code> has the role of downloading and installing packages that are key for rOpenserver, such as <code>R6</code> and <code>RDCOMClient</code>.</p>
+<p>The argument <code>dependencies</code> has the role of downloading and installing packages that are key for rOpenserver, such as <code>R6</code> and <code>RDCOMClient</code>. If you want to install <code>RDCOMClient</code> separately you could install it from its repository via <code>devtools</code> as well. Then after you could proceed to install <code>rOpenServer</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"omegahat/RDCOMClient"</span>)</pre></div>
 </div>
 <div id="indicating-files-and-folders" class="section level2">
 <h2 class="hasAnchor">
 <a href="#indicating-files-and-folders" class="anchor"></a>Indicating files and folders</h2>
 <p>In R, as in Python or any other programming languages, there are some conventions to deal with the filenames and folder or directories. In Windows, we should use a double-backslash to separate the paths. In Unix operating systems, like Linux and MacOS, we use a single slash.</p>
 <p>For instance, in the following example, we set the folder where typically the Prosper examples are. Then , we use slash <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code> or the double-backslash <code>\\</code> to separate the folder names, otherwise you will get error. We use both ways in the following two code blocks.</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># point to the well model</span>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="co"># point to the well model</span>
 <span class="no">prosper_folder</span> <span class="kw">=</span> <span class="st">"C:/Program Files (x86)/Petroleum Experts/IPM 10/Samples/prosper"</span>
 <span class="no">model_file</span> <span class="kw">&lt;-</span> <span class="st">"T00_Integrated_Oil_Well.Out"</span>
 <span class="no">model_filename</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="no">prosper_folder</span>, <span class="no">model_file</span>)
@@ -131,12 +132,12 @@
 <h2 class="hasAnchor">
 <a href="#prosper-example-read-reservoir-pressure-and-temperature" class="anchor"></a>Prosper example: read reservoir pressure and temperature</h2>
 <p>This short example will read some values from the Reservoir pressure and temperature from a model residing in the Examples folder: <code>T00_Integrated_Oil_Well.Out</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="co"># load OpenServer</span>
+<div class="sourceCode" id="cb4"><pre class="r"><span class="co"># load OpenServer</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rOpenserver</span>)
 
 
 <span class="co"># Initialize OpenServer</span>
-<span class="no">prosper_server</span> <span class="kw">&lt;-</span> <span class="no">OpenServer</span>$<span class="fu">new</span>()
+<span class="no">prosper_server</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/openserver.html">openserver</a></span>()
 
 <span class="co"># Start Prosper</span>
 <span class="no">cmd</span> <span class="kw">=</span> <span class="st">"PROSPER.START"</span>
@@ -144,7 +145,7 @@
 <span class="co">#&gt; [1] 0</span>
 
 <span class="co"># point to the well model</span>
-<span class="no">prosper_folder</span> <span class="kw">=</span> <span class="st">"C:\\Program Files (x86)\\Petroleum Experts\\IPM 10\\Samples\\prosper"</span>
+<span class="no">prosper_folder</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"models"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"rOpenserver"</span>)
 <span class="no">model_file</span> <span class="kw">&lt;-</span> <span class="st">"T00_Integrated_Oil_Well.Out"</span>
 <span class="no">model_filename</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="no">prosper_folder</span>, <span class="no">model_file</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span>(<span class="no">model_filename</span>)
@@ -159,12 +160,12 @@
 
 <span class="co"># get reservoir pressure</span>
 <span class="no">cmd</span> <span class="kw">&lt;-</span> <span class="st">"PROSPER.SIN.IPR.Single.Pres"</span>
-<span class="no">prosper_server</span>$<span class="fu"><a href="reference/DoGet.html">DoGet</a></span>(<span class="no">cmd</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">prosper_server</span>$<span class="fu"><a href="reference/DoGet.html">DoGet</a></span>(<span class="no">cmd</span>))
 <span class="co">#&gt; [1] "5200.000000000"</span>
 
 <span class="co"># get reservoir temperature</span>
 <span class="no">cmd</span> <span class="kw">&lt;-</span> <span class="st">"PROSPER.SIN.IPR.Single.Tres"</span>
-<span class="fu"><a href="reference/DoGet.html">DoGet</a></span>(<span class="no">prosper_server</span>, <span class="no">cmd</span>)           <span class="co"># S3 class: another way of getting values</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="reference/DoGet.html">DoGet</a></span>(<span class="no">prosper_server</span>, <span class="no">cmd</span>))      <span class="co"># S3 class: another way of getting values</span>
 <span class="co">#&gt; [1] "210.000000000"</span>
 
 
@@ -179,10 +180,11 @@
 <h2 class="hasAnchor">
 <a href="#uses-of-ropenserver" class="anchor"></a>Uses of <code>rOpenserver</code>
 </h2>
-<p>The previous example just shows a spark of the functionality of <code>rOpenserver</code>: of starting Prosper, opening a well model, read values from it, and close Prosper. This is what we call an <strong>instance</strong>. There are plenty more examples that make use of <code>rOpenserver</code>. During my years as Production Engineer working on well models and optimization we practically had endless use for this interface. Okay, you could call it a <strong>data science</strong> oriented solution, but not all is really data science. The use cases go beyond that. Let me cite a few, just for <strong>Prosper</strong>:</p>
+<p>The previous example just shows a spark of the functionality of <code>rOpenserver</code>: starting Prosper, opening a well model, read values from it, and close Prosper. This is what we call an <strong>instance</strong>.</p>
+<p>There are plenty more examples that make use of <code>rOpenserver</code>. During my years as Production Engineer working on well models and optimization we practically had endless use for this interface. Okay, you could call it a <strong>data science</strong> oriented solution, but not all is really data science. The use cases go beyond that. Let me cite a few, just for <strong>Prosper</strong>:</p>
 <ul>
 <li><p>Batch automation for reading all the Prosper well models residing in your disk, or the network drive</p></li>
-<li><p>Convert all the well models in Prosper to a reactangular dataset, very much like an Excel spreadsheet, a dataframe, which is a more powerful data structure for performing data analysis</p></li>
+<li><p>Convert all the well models in Prosper to a rectangular or tidy dataset, very much like an Excel spreadsheet: a dataframe, which is a more powerful data structure for performing data analysis</p></li>
 <li><p>Perform an inventory of all the fluid properties correlations that work in your field</p></li>
 <li><p>Read specific variables inside the well models and presenting them in dataframes</p></li>
 <li><p>Perform statistical analysis of missing values and outliers across all the variables that were entered in the well model</p></li>

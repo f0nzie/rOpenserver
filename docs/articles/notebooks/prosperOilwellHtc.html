@@ -139,18 +139,17 @@
 <span class="no">sys_sol_bhp</span>           <span class="kw">&lt;-</span> <span class="st">"PROSPER.OUT.SYS.Results[0].Sol.BHP"</span>
 <span class="no">sys_prfric</span>            <span class="kw">&lt;-</span> <span class="st">"PROSPER.OUT.SYS.Results[0].Sol.PRFRIC"</span></pre></body></html></div>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># Initialize and start OpenServer</span>
-<span class="no">pserver</span> <span class="kw">&lt;-</span> <span class="no">OpenServer</span>$<span class="fu">new</span>()</pre></body></html></div>
-<pre><code>Error in eval(expr, envir, enclos): object 'OpenServer' not found</code></pre>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">cmd</span> <span class="kw">=</span> <span class="st">"PROSPER.START"</span>
+<span class="no">pserver</span> <span class="kw">&lt;-</span> <span class="no">OpenServerR6</span>$<span class="fu">new</span>()     <span class="co"># another way to start an OpenServer instance</span>
+<span class="no">cmd</span> <span class="kw">=</span> <span class="st">"PROSPER.START"</span>
 <span class="fu"><a href="../../reference/DoCmd.html">DoCmd</a></span>(<span class="no">pserver</span>, <span class="no">cmd</span>)</pre></body></html></div>
-<pre><code>Error in get("object"): object 'pserver' not found</code></pre>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co"># open model</span>
+<pre><code>[1] 0</code></pre>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># open model</span>
 <span class="no">model_file</span> <span class="kw">&lt;-</span> <span class="fu">get_model_filename</span>(<span class="kw">model</span> <span class="kw">=</span> <span class="st">"oilwell.Out"</span>)
 <span class="no">open_cmd</span> <span class="kw">&lt;-</span> <span class="st">"PROSPER.OPENFILE"</span>
 <span class="no">open_cmd</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">open_cmd</span>, <span class="st">"('"</span>, <span class="no">model_file</span>, <span class="st">"')"</span>)
 <span class="fu"><a href="../../reference/DoCmd.html">DoCmd</a></span>(<span class="no">pserver</span>, <span class="no">open_cmd</span>)</pre></body></html></div>
-<pre><code>Error in get("object"): object 'pserver' not found</code></pre>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># iterate through heat transfer coefficient vector</span>
+<pre><code>[1] 0</code></pre>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co"># iterate through heat transfer coefficient vector</span>
 <span class="no">i</span> <span class="kw">&lt;-</span>  <span class="fl">1</span>
 <span class="kw">for</span> (<span class="no">h</span> <span class="kw">in</span> <span class="no">df</span><span class="kw">[[</span><span class="st">"htc"</span>]]) {
     <span class="co"># set HTC</span>
@@ -163,27 +162,26 @@
     <span class="no">df</span><span class="kw">[[</span><span class="st">"sol_dp_friction"</span>]][<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span>(<span class="fu"><a href="../../reference/DoGet.html">DoGet</a></span>(<span class="no">pserver</span>, <span class="no">sys_prfric</span>))
     <span class="no">i</span> <span class="kw">&lt;-</span>  <span class="no">i</span> + <span class="fl">1</span>
 }</pre></body></html></div>
-<pre><code>Error in DoSet(pserver, "PROSPER.SIN.EQP.Geo.Htc", h): object 'pserver' not found</code></pre>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">df</span>)</pre></body></html></div>
-<pre><code>    htc liquid_rate wellhead_temp sol_bhp sol_dp_friction
-1   2.0          NA            NA      NA              NA
-2   2.5          NA            NA      NA              NA
-3   3.0          NA            NA      NA              NA
-4   3.5          NA            NA      NA              NA
-5   4.0          NA            NA      NA              NA
-6   4.5          NA            NA      NA              NA
-7   5.0          NA            NA      NA              NA
-8   5.5          NA            NA      NA              NA
-9   6.0          NA            NA      NA              NA
-10  6.5          NA            NA      NA              NA
-11  7.0          NA            NA      NA              NA
-12  7.5          NA            NA      NA              NA
-13  8.0          NA            NA      NA              NA
-14  8.5          NA            NA      NA              NA
-15  9.0          NA            NA      NA              NA
-16  9.5          NA            NA      NA              NA
-17 10.0          NA            NA      NA              NA</code></pre>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="co"># convert dataframe to tidy dataset</span>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">df</span>)</pre></body></html></div>
+<pre><code>    htc liquid_rate wellhead_temp  sol_bhp sol_dp_friction
+1   2.0    12207.70      193.8414 2669.929        514.1321
+2   2.5    12201.75      190.1239 2671.276        512.6521
+3   3.0    12195.78      186.5259 2672.628        511.1868
+4   3.5    12189.82      183.0434 2673.978        509.7431
+5   4.0    12182.66      179.6687 2675.599        508.3648
+6   4.5    12176.46      176.4035 2677.004        506.7877
+7   5.0    12170.23      173.2415 2678.415        505.2016
+8   5.5    12164.05      170.1792 2679.813        503.6503
+9   6.0    12157.92      167.2131 2681.202        502.1317
+10  6.5    12151.84      164.3399 2682.580        500.6453
+11  7.0    12145.80      161.5562 2683.948        499.1901
+12  7.5    12139.76      158.8588 2685.316        497.7242
+13  8.0    12133.74      156.2446 2686.678        496.2813
+14  8.5    12127.75      153.7108 2688.035        494.8627
+15  9.0    12120.55      151.2492 2689.666        493.6298
+16  9.5    12102.93      148.8171 2693.657        493.7540
+17 10.0    12097.17      146.5076 2694.961        492.4105</code></pre>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># convert dataframe to tidy dataset</span>
 <span class="no">df_gather</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span>(<span class="no">df</span>, <span class="no">var</span>, <span class="no">value</span>, <span class="no">liquid_rate</span>:<span class="no">sol_dp_friction</span>)
 
 <span class="co"># plot</span>
@@ -194,12 +192,12 @@
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">g</span>)</pre></body></html></div>
 <p><img src="prosperOilwellHtc_files/figure-html/dataframe_plots-1.png" width="700" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co"># shutdown Prosper</span>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co"># shutdown Prosper</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="fl">3</span>)
 <span class="no">command</span> <span class="kw">=</span> <span class="st">"PROSPER.SHUTDOWN"</span>
 <span class="no">pserver</span>$<span class="fu"><a href="../../reference/DoCmd.html">DoCmd</a></span>(<span class="no">command</span>)</pre></body></html></div>
-<pre><code>Error in eval(expr, envir, enclos): object 'pserver' not found</code></pre>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">pserver</span> <span class="kw">&lt;-</span> <span class="kw">NULL</span></pre></body></html></div>
+<pre><code>[1] 0</code></pre>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">pserver</span> <span class="kw">&lt;-</span> <span class="kw">NULL</span></pre></body></html></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

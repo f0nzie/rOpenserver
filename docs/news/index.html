@@ -151,22 +151,34 @@
 <h1 class="page-header" data-toc-text="0.1.0.9015">
 <a href="#ropenserver-0109015" class="anchor"></a>rOpenserver 0.1.0.9015</h1>
 <ul>
-<li>use .OpenServer (dot-OpenServer) for the R6 class</li>
-<li>OpenServerR6 class inherits from .OpenServer class. We will not use OpenServer because collides with openserver() function</li>
-<li>new function newOpenServer() that represents OpenServer$new()</li>
-<li>keep setOpenServer(). does the same as newOpenServer()</li>
+<li>use <code>.OpenServer</code> (dot-OpenServer) instead of <code>OpenServer</code> for the R6 class</li>
+<li>new <code>OpenServerR6</code> class inherits from <code>.OpenServer</code> class. We will not use old <code>OpenServer</code> because collides with <code><a href="../reference/openserver.html">openserver()</a></code> function.</li>
+<li>new function <code><a href="../reference/newOpenServer.html">newOpenServer()</a></code> that represents <code>.OpenServer$new()</code> or <code>OpenServerR6$new()</code>.</li>
+<li>keep <code><a href="../reference/setOpenServer.html">setOpenServer()</a></code> as it does the same as <code><a href="../reference/newOpenServer.html">newOpenServer()</a></code>.</li>
 <li>update R6 class with a structure that does not produce warnings or notes</li>
-<li>fix roxygen documentation for R6 class</li>
+<li>fix roxygen documentation for R6 class so we don’t get warnings.</li>
 <li>prevent R6 warnings by adding roxygen line in DESCRIPTION</li>
-<li>new function get_all_models_by_ext() to retrieve all models residing in package</li>
-<li>split core.R in class, functions</li>
-<li>move conversion functions to dataobjects.R</li>
-<li>use package example in README</li>
-<li>remove unneeded packages</li>
-<li>remove BiocStyle that provide nicer css</li>
-<li>create common.R for unit tests</li>
-<li>add while-loop time delay that works in unit tests when CPU is busy</li>
-<li>kill dormant processes before test status</li>
+<li>new function <code>get_all_models_by_ext()</code> to retrieve all models residing in package</li>
+<li>split <code>core.R</code> in class, functions</li>
+<li>add new zip functions to <code>utils.R</code>
+</li>
+<li>disable .onAttach() in <code>zzz.R</code>
+</li>
+<li>move conversion functions to <code>dataobjects.R</code>
+</li>
+<li>use package example in <code>README</code>
+</li>
+<li>remove unneeded packages from <code>DESCRIPTION</code>.</li>
+<li>remove <code>BiocStyle</code> package that provided nicer <code>css</code>. It was making installation complicated.</li>
+<li>create <code>common.R</code> for unit tests functions.</li>
+<li>add while-loop time delay that works in unit tests when CPU is busy in <code>test-status.R</code>
+</li>
+<li>kill dormant processes before unit test status</li>
+<li>reorganize unit test for status check</li>
+<li>change calls to OpenServer constructors in vignettes</li>
+<li>add note in <code>README</code> for <code>RDCOMClient</code> installation</li>
+<li>add new functions to <code>pkgdown</code>
+</li>
 <li>TODO: complete data objects for GAP and MBAL tests</li>
 <li>TODO: check long vector in well test, when most rows are zeros. This is addressed in rProsper as well.</li>
 </ul>
