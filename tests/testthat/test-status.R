@@ -11,37 +11,40 @@ sleep_well <- function(seconds = 1.0) {
 context("OpenServer Windows processes")
 
 test_that("Windows processes are captured", {
+    verbose <- FALSE
+
     # kill all dormant processes before starting
     sapply(read_openserver_status()[["pid"]], tools::pskill)
     sleep_well(3)
 
     # Initialize OpenServer
     prosper_server <- OpenServerR6$new()
-
     # Start Prosper
     cmd = "PROSPER.START"
     prosper_server$DoCmd(cmd)
-
-    verbose <- FALSE
     status <- read_openserver_status(verbose = verbose)  # status dataframe
-
     # print(unique(status$process))
     expect_true(any(grepl("prosper", unique(status$process))))
+    expect_true(any(grepl("PxLs.exe", unique(status$process))))
     expect_true(any(grepl("px32COM10", unique(status$process))))
 
-    #Sys.sleep(2)
+    # tests that after shutdown some processes remain if we don't wait
     cmd = "PROSPER.SHUTDOWN"
     prosper_server$DoCmd(cmd)
-
-    # tests that after shutdown some processes remain
     status <- read_openserver_status()
-    if (verbose) print(status)
-    sleep_well(5)
+    # print(unique(status$process))
+    expect_true(any(grepl("px32COM10.exe", unique(status$process))))
     expect_true(any(grepl("pxserver.exe", unique(status$process))))
     expect_true(any(grepl("PxLs.exe", unique(status$process))))
-    expect_true(any(grepl("px32COM10.exe", unique(status$process))))
 
-    # couple of processes remain after NULL
+    # wait 3 seconds
+    sleep_well(3)
+    status <- read_openserver_status()
+    # print(unique(status$process))
+    expect_true(any(grepl("pxserver.exe", unique(status$process))))
+    expect_true(any(grepl("PxLs.exe", unique(status$process))))
+
+    # couple of processes remain after NULL. No waiting
     prosper_server <- NULL
     status <- read_openserver_status()
     if (verbose) print(status)
@@ -50,12 +53,13 @@ test_that("Windows processes are captured", {
 
     # test if anything remains after deleting object
     Sys.sleep(2)
-    # prosper_server <- NULL
     rm(prosper_server)
     status <- read_openserver_status()
     if (verbose) print(status)
+    # two processes remain active
     expect_true(any(grepl("pxserver.exe", unique(status$process))))
     expect_true(any(grepl("PxLs.exe", unique(status$process))))
+    # two processes are killed
     expect_false(any(grepl("prosper", unique(status$process))))
     expect_false(any(grepl("px32COM10", unique(status$process))))
 
@@ -75,6 +79,6 @@ test_that("Windows processes are captured", {
         expect_false(any(grepl("pxserver", unique(status$process))))
     }
 
-    wait_for_pxserver(t = 27, style = 3)
+    # wait_for_pxserver(t = 25, style = 3)
 })
 
