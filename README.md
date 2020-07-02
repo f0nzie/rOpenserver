@@ -3,10 +3,10 @@
 
 # rOpenserver
 
-The goal of `rOpenserver` is to provide an **R** interface to Petex
-applications Prosper, GAP and MBAL to perform automated tasks, generate
-datasets for statistical analysis, and advanced fine control of solvers
-and calculations.
+The goal of `rOpenserver` is providing an **R** interface to Petex
+(Petroleum Experts) applications Prosper, GAP and MBAL to perform
+automated tasks, generate datasets for statistical analysis, and
+advanced fine control of solvers and calculations.
 
 ## Installation
 
@@ -60,12 +60,6 @@ temperature from a model residing in the Examples folder:
 ``` r
 # load OpenServer
 library(rOpenserver)
-#> 
-#> -----------------------------
-#>  rOpenserver v0.1.0.9015
-#> 
-#> Get started: ?rOpenserver
-#> -----------------------------
 
 
 # Initialize OpenServer
