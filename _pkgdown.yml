@@ -7,10 +7,9 @@ template:
 
 
 reference:
-    - title: Main functions
+    - title: OpenServer functions
       desc: Essential functionality
       contents:
-        - setOpenServer
         - DoCmd
         - DoGet
         - DoSet
@@ -27,11 +26,21 @@ reference:
     - title: Classes
       desc: rOpenserver classes
       contents:
-        - OpenServer
+        - .OpenServer
+        - OpenServerR6
+    - title: Constructors
+      desc: rOpenserver Constructors
+      contents:
+        - newOpenServer
+        - setOpenServer
+        - openserver
     - title: Other
       desc: Other rOpenserver functions
       contents:
         - read_openserver_status
+        - remove_models_by_ext
+        - unzip_model_pack
+        - remove_models_but_zip
 
 
 navbar:
